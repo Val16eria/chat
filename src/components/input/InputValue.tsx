@@ -3,7 +3,7 @@ import React from 'react';
 const InputValue = () => {
     return (
         <div>
-            <p>Тут должен быть инпут</p>
+            <p>тут должны быть инпуты</p>
         </div>
     );
 }

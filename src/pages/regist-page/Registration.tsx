@@ -1,12 +1,13 @@
-import  React from 'react';
+import React from 'react';
 import reg from './Registration.module.css';
+import RegForm from "./regist_form/RegForm";
 
-const Registration: React.FC = () => {
+const Authorization = () => {
     return (
-      <div className={reg.form}>
-          <p>Registration</p>
-      </div>
+        <div className={reg.reg__page}>
+            <RegForm title="Регистрация"/>
+        </div>
     );
 }
 
-export default Registration;
+export default Authorization;
