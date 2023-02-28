@@ -1,0 +1,22 @@
+.inp-form_input {
+    min-width: 280px;
+    border: none;
+    border-bottom: 1px solid blue;
+    outline: none;
+}
+
+.inp-form_container label{
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+
+    color: #999999;
+}
+
+.inp-form_container p {
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+
+    color: #FF2F2F;
+}

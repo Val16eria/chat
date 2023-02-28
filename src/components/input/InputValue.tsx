@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
+import './InputValu.css';
 
-const InputValue = () => {
+interface IInputValue {
+    type: string;
+    lab: string;
+    register: any;
+    error: string;
+}
+
+const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
+    console.log(register);
     return (
-        <div>
-            <p>тут должны быть инпуты</p>
+        <div className="inp-form_container">
+            <label>{lab}</label>
+            <input
+                {...register}
+                className="inp-form_input"
+                type={type}
+            />
+            <p>{error}</p>
         </div>
     );
 }
