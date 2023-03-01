@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
 import LoginForm from "./pages/login-form";
 import RegForm from "./pages/regist-form";
-import { Routes, Route } from "react-router-dom";
+import './App.css';
 
 const App: React.FC = () => {
   return (

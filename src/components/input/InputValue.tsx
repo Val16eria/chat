@@ -9,7 +9,6 @@ interface IInputValue {
 }
 
 const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
-    console.log(register);
     return (
         <div className="inp-form_container">
             <label>{lab}</label>

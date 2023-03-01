@@ -1,9 +1,9 @@
 import React from 'react';
-import InputValue from '../../components/input/InputValue';
-import AuthForm from '../../components/auth-form/AuthForm';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import InputValue from '../../components/input/InputValue';
+import AuthForm from '../../components/auth-form/AuthForm';
 import './RegForm.css';
 
 const schema = yup.object({
@@ -45,39 +45,51 @@ const RegForm = () => {
     })
 
     const onSubmit = (data: FormData) => {
-        console.log(data);
+        alert(data);
     }
 
     return (
-        <AuthForm title="Регистрация" btn="Зарегистрироваться" linkText="Войти" linkUrl="/" onSubmit={handleSubmit(onSubmit)}>
-            <InputValue type="email" lab="Почта"
-                        register={{...register('email')}}
-                        error={errors.email?.message ?? ''}
-            />
-            <InputValue type="text" lab="Логин"
-                        register={{...register('login')}}
-                        error={errors.login?.message ?? ''}
-            />
-            <InputValue type="text" lab="Имя"
-                        register={{...register('firstName')}}
-                        error={errors.firstName?.message ?? ''}
-            />
-            <InputValue type="text" lab="Фамилия"
-                        register={{...register('lastName')}}
-                        error={errors.lastName?.message ?? ''}
-            />
-            <InputValue type="tel" lab="Телефон"
-                        register={{...register('phone')}}
-                        error={errors.phone?.message ?? ''}
-            />
-            <InputValue type="password" lab="Пароль"
-                        register={{...register('password')}}
-                        error={errors.password?.message ?? ''}
-            />
-            <InputValue type="password" lab="Пароль (еще раз)"
-                        register={{...register('confirmPassword')}}
-                        error={errors.confirmPassword?.message ?? ''}
-            />
+        <AuthForm
+            title="Регистрация"
+            btn="Зарегистрироваться"
+            linkText="Войти"
+            linkUrl="/"
+            onSubmit={handleSubmit(onSubmit)}>
+            <InputValue
+                type="email"
+                lab="Почта"
+                register={{...register('email')}}
+                error={errors.email?.message ?? ''}/>
+            <InputValue
+                type="text"
+                lab="Логин"
+                register={{...register('login')}}
+                error={errors.login?.message ?? ''}/>
+            <InputValue
+                type="text"
+                lab="Имя"
+                register={{...register('firstName')}}
+                error={errors.firstName?.message ?? ''}/>
+            <InputValue
+                type="text"
+                lab="Фамилия"
+                register={{...register('lastName')}}
+                error={errors.lastName?.message ?? ''}/>
+            <InputValue
+                type="tel"
+                lab="Телефон"
+                register={{...register('phone')}}
+                error={errors.phone?.message ?? ''}/>
+            <InputValue
+                type="password"
+                lab="Пароль"
+                register={{...register('password')}}
+                error={errors.password?.message ?? ''}/>
+            <InputValue
+                type="password"
+                lab="Пароль (еще раз)"
+                register={{...register('confirmPassword')}}
+                error={errors.confirmPassword?.message ?? ''}/>
         </AuthForm>
     );
 }

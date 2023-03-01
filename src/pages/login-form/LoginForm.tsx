@@ -1,9 +1,9 @@
 import React from 'react';
-import InputValue from '../../components/input';
-import AuthForm from '../../components/auth-form';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import InputValue from '../../components/input';
+import AuthForm from '../../components/auth-form';
 import './LoginForm.css';
 
 const schema = yup.object({
@@ -26,13 +26,26 @@ const LoginForm = () => {
     })
 
     const onSubmit = (data: FormData) => {
-        console.log(data);
+        alert(data);
     }
 
     return (
-        <AuthForm title="Войти" btn="Авторизоваться" linkText="Нет аккаунта?" linkUrl="/reg" onSubmit={handleSubmit(onSubmit)} >
-            <InputValue  type="text" lab="Логин" register={{...register('login')}} error={errors.login?.message ?? ''}/>
-            <InputValue type="password" lab="Пароль" register={{...register('password')}} error={errors.password?.message ?? ''}/>
+        <AuthForm
+            title="Войти"
+            btn="Авторизоваться"
+            linkText="Нет аккаунта?"
+            linkUrl="/reg"
+            onSubmit={handleSubmit(onSubmit)}>
+            <InputValue
+                type="text"
+                lab="Логин"
+                register={{...register('login')}}
+                error={errors.login?.message ?? ''}/>
+            <InputValue
+                type="password"
+                lab="Пароль"
+                register={{...register('password')}}
+                error={errors.password?.message ?? ''}/>
         </AuthForm>
     );
 }
