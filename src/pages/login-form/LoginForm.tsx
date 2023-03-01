@@ -30,7 +30,7 @@ const LoginForm = () => {
     }
 
     return (
-        <AuthForm title="Войти" btn="Авторизоваться" linkText="Нет аккаунта?" linkUrl="reg" onSubmit={handleSubmit(onSubmit)} >
+        <AuthForm title="Войти" btn="Авторизоваться" linkText="Нет аккаунта?" linkUrl="/reg" onSubmit={handleSubmit(onSubmit)} >
             <InputValue  type="text" lab="Логин" register={{...register('login')}} error={errors.login?.message ?? ''}/>
             <InputValue type="password" lab="Пароль" register={{...register('password')}} error={errors.password?.message ?? ''}/>
         </AuthForm>

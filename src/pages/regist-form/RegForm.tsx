@@ -49,7 +49,7 @@ const RegForm = () => {
     }
 
     return (
-        <AuthForm title="Регистрация" btn="Зарегистрироваться" linkText="Войти" linkUrl="" onSubmit={handleSubmit(onSubmit)}>
+        <AuthForm title="Регистрация" btn="Зарегистрироваться" linkText="Войти" linkUrl="/" onSubmit={handleSubmit(onSubmit)}>
             <InputValue type="email" lab="Почта"
                         register={{...register('email')}}
                         error={errors.email?.message ?? ''}

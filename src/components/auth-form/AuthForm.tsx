@@ -23,7 +23,7 @@ const AuthForm: FC<IAuthForm> = ({ title, btn, linkText, linkUrl, ...rest }) => 
             </div>
             <div className="auth-form__actions">
                 <button type="submit">{btn}</button>
-                <NavLink to={`/${linkUrl}`}>{linkText}</NavLink>
+                <NavLink to={`${linkUrl}`}>{linkText}</NavLink>
             </div>
         </form>
     );
