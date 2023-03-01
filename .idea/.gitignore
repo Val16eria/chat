@@ -5,3 +5,7 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+/modules.xml
+/chat.iml
+/vcs.xml
