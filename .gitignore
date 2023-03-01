@@ -5,3 +5,6 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+#IDEA
+/.idea
