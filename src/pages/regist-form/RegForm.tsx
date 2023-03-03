@@ -1,30 +1,30 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import InputValue from '../../components/input/InputValue';
 import AuthForm from '../../components/auth-form/AuthForm';
-import './RegForm.css';
 
 const schema = yup.object({
     email: yup
         .string()
-        .email("Неправильный формат ввода")
-        .required("Обязательное поле"),
+        .email('Неправильный формат ввода')
+        .required('Обязательное поле'),
     login: yup
         .string()
-        .required("Обязательное поле"),
+        .required('Обязательное поле'),
     firstName: yup
         .string()
-        .required("Обязательное поле"),
+        .required('Обязательное поле'),
     lastName: yup
         .string()
-        .required("Обязательное поле"),
+        .required('Обязательное поле'),
     phone: yup
         .number()
-        .typeError("Номер должен быть целым числом")
-        .positive("Номер не может содержать отрицательные цисла")
-        .required("Обязательное поле"),
+        .typeError('Номер должен быть целым числом')
+        .positive('Номер не может содержать отрицательные цисла')
+        .required('Обязательное поле'),
     password: yup
         .string()
         .required('Обязательное поле')
@@ -32,64 +32,74 @@ const schema = yup.object({
         .max(15, 'Пароль не должен быть более 15 символов'),
     confirmPassword: yup
         .string()
-        .required("Обязательное поле")
-        .oneOf([yup.ref('password'), ''], "Пароли не совпадают")
+        .required('Обязательное поле')
+        .oneOf([yup.ref('password'), ''], 'Пароли не совпадают')
 });
 
 type FormData = yup.InferType<typeof schema>;
 
-const RegForm = () => {
+const RegForm: FC = () => {
+    const navigate = useNavigate();
 
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = (data: FormData) => {
-        alert(data);
+        alert('Registration was successful');
+        navigate('/auth/login');
     }
 
     return (
         <AuthForm
-            title="Регистрация"
-            btn="Зарегистрироваться"
-            linkText="Войти"
-            linkUrl="/"
-            onSubmit={handleSubmit(onSubmit)}>
+            title='Регистрация'
+            btn='Зарегистрироваться'
+            linkText='Войти'
+            linkUrl='/auth/login'
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <InputValue
-                type="email"
-                lab="Почта"
+                type='email'
+                lab='Почта'
                 register={{...register('email')}}
-                error={errors.email?.message ?? ''}/>
+                error={errors.email?.message ?? ''}
+            />
             <InputValue
-                type="text"
-                lab="Логин"
+                type='text'
+                lab='Логин'
                 register={{...register('login')}}
-                error={errors.login?.message ?? ''}/>
+                error={errors.login?.message ?? ''}
+            />
             <InputValue
-                type="text"
-                lab="Имя"
+                type='text'
+                lab='Имя'
                 register={{...register('firstName')}}
-                error={errors.firstName?.message ?? ''}/>
+                error={errors.firstName?.message ?? ''}
+            />
             <InputValue
-                type="text"
-                lab="Фамилия"
+                type='text'
+                lab='Фамилия'
                 register={{...register('lastName')}}
-                error={errors.lastName?.message ?? ''}/>
+                error={errors.lastName?.message ?? ''}
+            />
             <InputValue
-                type="tel"
-                lab="Телефон"
+                type='tel'
+                lab='Телефон'
                 register={{...register('phone')}}
-                error={errors.phone?.message ?? ''}/>
+                error={errors.phone?.message ?? ''}
+            />
             <InputValue
-                type="password"
-                lab="Пароль"
+                type='password'
+                lab='Пароль'
                 register={{...register('password')}}
-                error={errors.password?.message ?? ''}/>
+                error={errors.password?.message ?? ''}
+            />
             <InputValue
-                type="password"
-                lab="Пароль (еще раз)"
+                type='password'
+                lab='Пароль (еще раз)'
                 register={{...register('confirmPassword')}}
-                error={errors.confirmPassword?.message ?? ''}/>
+                error={errors.confirmPassword?.message ?? ''}
+            />
         </AuthForm>
     );
 }

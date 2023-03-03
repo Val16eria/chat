@@ -1,51 +1,56 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
+import React, { FC } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import InputValue from '../../components/input';
 import AuthForm from '../../components/auth-form';
-import './LoginForm.css';
 
 const schema = yup.object({
    login: yup
        .string()
-       .required("Обязательное поле"),
+       .required('Обязательное поле'),
    password: yup
        .string()
        .required('Обязательное поле')
-       .min(7, 'Пароль не должен быть менее 8 символов')
+       .min(8, 'Пароль не должен быть менее 8 символов')
        .max(15, 'Пароль не должен быть более 15 символов')
 });
 
 type FormData = yup.InferType<typeof schema>;
 
-const LoginForm = () => {
+const LoginForm: FC = () => {
+    const navigate = useNavigate();
 
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = (data: FormData) => {
-        alert(data);
+        localStorage.setItem('isAuth', 'token');
+        navigate('/');
     }
 
     return (
         <AuthForm
-            title="Войти"
-            btn="Авторизоваться"
-            linkText="Нет аккаунта?"
-            linkUrl="/reg"
-            onSubmit={handleSubmit(onSubmit)}>
+            title='Войти'
+            btn='Авторизоваться'
+            linkText='Нет аккаунта?'
+            linkUrl='/auth/reg'
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <InputValue
-                type="text"
-                lab="Логин"
+                type='text'
+                lab='Логин'
                 register={{...register('login')}}
-                error={errors.login?.message ?? ''}/>
+                error={errors.login?.message ?? ''}
+            />
             <InputValue
-                type="password"
-                lab="Пароль"
+                type='password'
+                lab='Пароль'
                 register={{...register('password')}}
-                error={errors.password?.message ?? ''}/>
+                error={errors.password?.message ?? ''}
+            />
         </AuthForm>
     );
 }
