@@ -1,5 +1,5 @@
-import React, { FC, HTMLAttributes} from 'react';
-import { NavLink } from "react-router-dom";
+import React, { FC, HTMLAttributes } from 'react';
+import { NavLink } from 'react-router-dom';
 import './AuthForm.css';
 
 interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
@@ -14,15 +14,15 @@ interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
 // }
 
 const AuthForm: FC<IAuthForm> = ({ title, btn, linkText, linkUrl, ...rest }) => {
-    const { children } = rest;
+    const {children} = rest;
     return (
-        <form className="auth-form" {...rest}>
-            <div className="auth-form__title">{title}</div>
+        <form className='auth-form' {...rest}>
+            <div className='auth-form__title'>{title}</div>
             <div className={'auth-form__container'}>
                 {children}
             </div>
-            <div className="auth-form__actions">
-                <button type="submit">{btn}</button>
+            <div className='auth-form__actions'>
+                <button type='submit'>{btn}</button>
                 <NavLink to={`${linkUrl}`}>{linkText}</NavLink>
             </div>
         </form>

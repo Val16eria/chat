@@ -10,11 +10,11 @@ interface IInputValue {
 
 const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
     return (
-        <div className="inp-form_container">
+        <div className='inp-form_container'>
             <label>{lab}</label>
             <input
                 {...register}
-                className="inp-form_input"
+                className='inp-form_input'
                 type={type}
             />
             <p>{error}</p>
