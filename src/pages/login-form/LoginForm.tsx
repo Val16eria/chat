@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const schema = yup.object({
 
 type FormData = yup.InferType<typeof schema>;
 
-const LoginForm = () => {
+const LoginForm: FC = () => {
     const navigate = useNavigate();
 
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>({

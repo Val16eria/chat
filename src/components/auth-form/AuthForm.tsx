@@ -1,6 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react';
-import { NavLink } from 'react-router-dom';
 import './AuthForm.css';
+import Button from "../button";
+import LinkPage from "../link-page";
 
 interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
     title: string;
@@ -22,8 +23,9 @@ const AuthForm: FC<IAuthForm> = ({ title, btn, linkText, linkUrl, ...rest }) => 
                 {children}
             </div>
             <div className='auth-form__actions'>
-                <button type='submit'>{btn}</button>
-                <NavLink to={`${linkUrl}`}>{linkText}</NavLink>
+                <Button btn={btn} />
+                <LinkPage linkUrl={linkUrl} linkText={linkText}/>
+                {/*<NavLink to={`${linkUrl}`}>{linkText}</NavLink>*/}
             </div>
         </form>
     );
