@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './InputValu.css';
+import './InputValue.css';
 
 interface IInputValue {
     type: string;

@@ -1,0 +1,28 @@
+.inputInfo-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    line-height: 20px;
+    justify-content: space-between;
+}
+
+.inputInfo-container label{
+    font-weight: 500;
+    font-size: 13px
+}
+
+.inputInfo-input {
+    min-width: 510px;
+    border: none;
+    border-bottom: 1px solid #EAEAEA;
+    outline: none;
+
+}
+
+input::placeholder{
+    float: right;
+}
+
+input:disabled {
+    background: none;
+}

@@ -1,0 +1,26 @@
+.buttonBack-container {
+    max-width: 64px;
+    width: 100%;
+    min-height: 100vh;
+
+    background: #FBFBFB;
+}
+
+.buttonBack-container button {
+    padding: 9px 10px;
+    border-radius: 100%;
+
+    background: #3369F3;
+    border: none;
+
+    margin: 40vh 0.8vh;
+}
+
+.buttonBack-arrow {
+    max-width: 28px;
+    max-height: 28px;
+    width: 100%;
+    height: 100%;
+
+    color: white;
+}

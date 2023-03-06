@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputValue from '../../components/input/InputValue';
 import AuthForm from '../../components/auth-form/AuthForm';
+import { postSignUp } from '../../shared/api/apiAxios';
 
 const schema = yup.object({
     email: yup
@@ -46,8 +47,16 @@ const RegForm: FC = () => {
     })
 
     const onSubmit = (data: FormData) => {
-        alert('Registration was successful');
         navigate('/auth/login');
+        // регистрация
+        postSignUp({
+            email: data.email,
+            login: data.login,
+            first_name: data.firstName,
+            second_name: data.lastName,
+            phone: data.phone.toString(),
+            password: data.password,
+        })
     }
 
     return (
