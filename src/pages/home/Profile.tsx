@@ -1,5 +1,7 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { getUsers, postLogout, USER_RESULT_TYPE } from '../../shared/api/auth';
+import { useNavigate } from "react-router-dom";
+import { logout } from '../../shared/lib/auth';
 import LinkPage from '../../components/link-page';
 import Title from '../../components/title';
 import ButtonBack from '../../components/buttonBack';
@@ -10,48 +12,78 @@ import './Profile.css';
 const Profile = () => {
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        localStorage.removeItem('isAuth');
-        navigate('/auth/login');
+    const handleSubmit = async () => {
+        const logoutData = await postLogout();
+
+        if (logoutData.type === USER_RESULT_TYPE.SUCCESS) {
+            logout();
+            navigate('/auth/login')
+        }
+        if (logoutData.type === USER_RESULT_TYPE.FAILURE) {
+            logout();
+            navigate('/auth/login');
+        }
     }
 
-    // const handleUserInfo = () => {
-    //     getUsers()
-    //         .then((res) => {
-    //             console.log('это в общем инфа о юзере', res.data)
-    //         })
-    //         .catch((err) => console.error('это в общем инфа об ошибках юзера', err));
-    // }
+    // todo: оррганизовать правильную структуру
+    const [firstName, setFirstName] = useState('');
+    const [email, setEmail] = useState('');
+    const [login, setLogin] = useState('');
+    const [secondName, setSecondName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [displayName, setDisplayName] = useState('');
+
+    useEffect(() => {
+        const handleUserInfo = async () => {
+            const usersInfo = await getUsers();
+            if (usersInfo.type === USER_RESULT_TYPE.SUCCESS) {
+                setFirstName(usersInfo.data.first_name);
+                setLogin(usersInfo.data.login);
+                setEmail(usersInfo.data.email);
+                setSecondName(usersInfo.data.second_name);
+                setPhone(usersInfo.data.phone);
+                setDisplayName(usersInfo.data.display_name);
+            }
+            if (usersInfo.type === USER_RESULT_TYPE.FAILURE) {
+                navigate('/auth/login');
+            }
+        }
+        handleUserInfo();
+    }, []);
+
 
     return (
         <div className='profile'>
             <ButtonBack />
             <div className='profile-container'>
                 <div className='profile-avatar'>
+                    {/*todo: организовать выбор аватарки*/}
                     <AvatarImg />
-                    {/*todo: прокидывать сюда first_name */}
-                    <Title title='Иван' />
+                    <Title title={firstName} />
                 </div>
 
-                {/*todo: вынести в отдельный компонент*/}
                 <div className='profile-info'>
-                    <InputInfo title='Почта' type='email' />
-                    <InputInfo title='Логин' type='text' />
-                    <InputInfo title='Имя' type='text' />
-                    <InputInfo title='Фамилия' type='text' />
-                    <InputInfo title='Имя в чате' type='text'/>
-                    <InputInfo title='Телефон' type='tel'/>
-                    {/*<button onClick={handleUserInfo}>Получить данные</button>*/}
+                    <InputInfo title='Почта' type='email' placeholder={email} />
+                    <InputInfo title='Логин' type='text' placeholder={login} />
+                    <InputInfo title='Имя' type='text' placeholder={firstName} />
+                    <InputInfo title='Фамилия' type='text' placeholder={secondName} />
+                    <InputInfo title='Имя в чате' type='text' placeholder={displayName} />
+                    <InputInfo title='Телефон' type='tel' placeholder={phone} />
                 </div>
 
                 <div className='profile-buttons'>
-                    <LinkPage linkUrl='/auth/login' linkText='Изменить данные' />
-                    <LinkPage linkUrl='/auth/login' linkText='Изменить изменить пароль' />
-                    <LinkPage linkUrl='/auth/login' linkText='Выйти' handleBack={() => handleSubmit()} />
+                    <div className='profile-button'>
+                        <LinkPage linkUrl='/' linkText='Изменить данные' />
+                    </div>
+                    <div className='profile-button'>
+                        <LinkPage linkUrl='/' linkText='Изменить пароль' />
+                    </div>
+                    <div className='profile-button'>
+                        <LinkPage linkText='Выйти' handleBack={() => handleSubmit()} />
+                    </div>
                 </div>
             </div>
         </div>
-
     );
 }
 

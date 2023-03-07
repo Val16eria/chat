@@ -7,7 +7,7 @@ interface IButton {
 
 const Button: FC<IButton> = ({ btn }) => {
     return (
-        <div className="button-container">
+        <div className='button-container'>
             <button type='submit'>{btn}</button>
         </div>
     );

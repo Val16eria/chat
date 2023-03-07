@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import './LinkPage.css';
 
 interface ILinkPage {
-    linkUrl: string | void;
+    linkUrl?: string | void;
     linkText: string;
     handleBack?: () => void;
 }
@@ -11,7 +11,7 @@ interface ILinkPage {
 const LinkPage: FC<ILinkPage> = ({ linkUrl, linkText, handleBack}) => {
 
     return (
-        <div className="link">
+        <div className='link'>
             <NavLink onClick={handleBack} to={`${linkUrl}`}>{linkText}</NavLink>
         </div>
     );

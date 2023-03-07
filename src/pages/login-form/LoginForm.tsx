@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { postSignIn, USER_RESULT_TYPE } from '../../shared/api/auth';
+import { login } from '../../shared/lib/auth';
 import InputValue from '../../components/input';
 import AuthForm from '../../components/auth-form';
-import { postSignIn } from '../../shared/api/apiAxios';
 
 const schema = yup.object({
    login: yup
@@ -23,28 +24,20 @@ type FormData = yup.InferType<typeof schema>;
 const LoginForm: FC = () => {
     const navigate = useNavigate();
 
-    const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
+    const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = async (data: FormData) => {
+        const loginData = await postSignIn(data);
 
-        // вход
-        postSignIn({
-            login: data.login,
-            password: data.password,
-        }).then((res) => {
-            if (res.status === 'success') {
-                localStorage.setItem('isAuth', 'token')
-                navigate('/')
-                console.log('Это дата', res.data)
-            }
-        }).catch((err) => {console.error('Это ошибка', err)})
-
-        // if (localStorage.getItem('isAuth') !== null) {
-        //     console.log("ключ есть")
-        //     navigate('/')
-        // }
+        if (loginData.type === USER_RESULT_TYPE.SUCCESS) {
+            login();
+            navigate('/')
+        }
+        if (loginData.type === USER_RESULT_TYPE.FAILURE) {
+            setError('password', {type: 'custom', message: loginData.data })
+        }
     }
 
     return (
