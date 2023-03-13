@@ -1,9 +1,7 @@
 import { AxiosError } from "axios";
 
-
 export interface IUser {
-    avatar: string | null;
-    // todo: нужно добавить null
+    avatar: string;
     display_name: string;
     first_name: string;
     second_name: string;

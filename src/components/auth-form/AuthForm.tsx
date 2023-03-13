@@ -7,14 +7,23 @@ import './AuthForm.css';
 interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
     title: string;
     btn: string;
-    linkText: string;
-    linkUrl: string;
+    linkText?: string;
+    linkUrl?: string;
+    error?:  string;
 }
 
-const AuthForm: FC<IAuthForm> = ({ title, btn, linkText, linkUrl, ...rest }) => {
+const AuthForm: FC<IAuthForm> = (
+    {
+        title,
+        btn,
+        linkText,
+        linkUrl,
+        error,
+        ...rest
+    }) => {
     const {children} = rest;
     return (
-        <form className='auth-form' {...rest}  >
+        <form className='auth-form' {...rest} >
             <Title title={title} />
             <div className={'auth-form__container'}>
                 {children}
@@ -22,9 +31,10 @@ const AuthForm: FC<IAuthForm> = ({ title, btn, linkText, linkUrl, ...rest }) => 
             <div className='auth-form__actions'>
                 <Button btn={btn} />
                 <LinkPage linkUrl={linkUrl} linkText={linkText}/>
+                <p>{error}</p>
             </div>
         </form>
     );
-};
+}
 
 export default AuthForm;

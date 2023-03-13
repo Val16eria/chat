@@ -4,17 +4,17 @@ import './InputInfo.css';
 interface IInputInfo {
     title: string;
     type: string;
-    // todo: добавить null
     placeholder?: string;
+    disabled: boolean;
 }
 
-const InputInfo: FC<IInputInfo> = ({ title, type, placeholder}) => {
+const InputInfo: FC<IInputInfo> = ({ title, type, placeholder, disabled}) => {
     return (
         <div className='inputInfo-container'>
             <label>
                 {title}
             </label>
-            <input type={type} className='inputInfo-input' placeholder={placeholder} disabled={false} />
+            <input type={type} className='inputInfo-input' placeholder={placeholder} disabled={disabled} />
         </div>
     );
 }

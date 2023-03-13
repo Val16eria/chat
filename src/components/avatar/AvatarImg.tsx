@@ -1,11 +1,19 @@
 import React, { FC } from 'react';
-import { Avatar } from '@mui/material';
+import Avatar from '../../image/avatar.svg';
+import './AvatarImg.css';
 
-const AvatarImg: FC = () => {
+interface IAvatarImg {
+    open?: () => void;
+    avatar?: string;
+}
+
+const AvatarImg: FC<IAvatarImg> = ({open, avatar}) => {
+
     return (
-        <>
-            <Avatar sx={{ width: 130, height: 130 }}/>
-        </>
+        <div className='avatar-img'>
+            <img alt='avatar' src={avatar && Avatar} className='avatar-img__img' id='target' />
+            <a className='avatar-text' onClick={open}>Поменять аватарку</a>
+        </div>
     );
 }
 

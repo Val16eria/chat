@@ -36,7 +36,7 @@ const LoginForm: FC = () => {
             navigate('/')
         }
         if (loginData.type === USER_RESULT_TYPE.FAILURE) {
-            setError('password', {type: 'custom', message: loginData.data })
+            setError('login', {type: 'custom', message: loginData.data })
         }
     }
 

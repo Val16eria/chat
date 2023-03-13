@@ -1,0 +1,36 @@
+.avatar-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: center;
+}
+
+.avatar-img img{
+    width: 130px;
+    height: 130px;
+    padding: 25px;
+    border-radius: 100%;
+
+    background: #EFEFEF;
+}
+
+.avatar-text {
+    display: none;
+    position: absolute;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    padding: 47px 0;
+}
+
+.avatar-img:hover .avatar-text {
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+

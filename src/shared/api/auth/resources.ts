@@ -1,5 +1,5 @@
-import { BadResponse, IUser, USER_RESULT_TYPE, UserResult } from './types';
-import { api } from '../apiAxios';
+import {BadResponse, IUser, USER_RESULT_TYPE, UserResult} from './types';
+import {api} from '../apiAxios';
 
 export const postSignUp = async (props: {
     password: string;
@@ -75,6 +75,22 @@ export const postLogout = async (): Promise<UserResult<IUser>> => {
         return {
             type: USER_RESULT_TYPE.FAILURE,
             data: error?.response?.data.reason || 'default',
+        };
+    }
+}
+
+export const putAvatar = async (props: FormData): Promise<UserResult<IUser>> => {
+    try {
+        const userData = await api.put<IUser>('/user/profile/avatar', props);
+        return {
+            type: USER_RESULT_TYPE.SUCCESS,
+            data: userData.data,
+        };
+    } catch (e: unknown) {
+        const error = e as BadResponse;
+        return {
+            type: USER_RESULT_TYPE.FAILURE,
+            data: error.response?.data?.reason || 'default',
         };
     }
 }

@@ -4,7 +4,7 @@ import './LinkPage.css';
 
 interface ILinkPage {
     linkUrl?: string | void;
-    linkText: string;
+    linkText?: string;
     handleBack?: () => void;
 }
 

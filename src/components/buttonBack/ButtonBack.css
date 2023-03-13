@@ -1,8 +1,11 @@
 .buttonBack-container {
+    display: flex;
+    justify-content: center;
     max-width: 64px;
-    width: 100%;
     min-height: 100vh;
+    width: 100%;
 
+    align-items: center;
     background: #FBFBFB;
 }
 
@@ -12,8 +15,6 @@
 
     background: #3369F3;
     border: none;
-
-    margin: 40vh 0.8vh;
 }
 
 .buttonBack-arrow {
