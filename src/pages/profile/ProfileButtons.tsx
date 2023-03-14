@@ -25,7 +25,7 @@ const ProfileButtons: FC = () => {
     return (
         <div className='profile-buttons'>
             <div className='profile-button'>
-                <LinkPage linkUrl='/' linkText='Изменить данные' />
+                <LinkPage linkUrl='/settings' linkText='Изменить данные' />
             </div>
             <div className='profile-button'>
                 <LinkPage linkUrl='/' linkText='Изменить пароль' />

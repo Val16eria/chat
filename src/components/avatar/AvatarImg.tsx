@@ -11,7 +11,7 @@ const AvatarImg: FC<IAvatarImg> = ({open, avatar}) => {
 
     return (
         <div className='avatar-img'>
-            <img alt='avatar' src={avatar && Avatar} className='avatar-img__img' id='target' />
+            <img alt='avatar' src={avatar || Avatar} className='avatar-img__img' id='target' />
             <a className='avatar-text' onClick={open}>Поменять аватарку</a>
         </div>
     );

@@ -4,17 +4,33 @@ import './InputInfo.css';
 interface IInputInfo {
     title: string;
     type: string;
-    placeholder?: string;
+    value?: any;
     disabled: boolean;
+    onChange?: any,
+    changeDisable?: () => void
 }
 
-const InputInfo: FC<IInputInfo> = ({ title, type, placeholder, disabled}) => {
+const InputInfo: FC<IInputInfo> = (
+    {
+        title,
+        type,
+        value,
+        disabled,
+        onChange,
+        changeDisable
+    }) => {
     return (
-        <div className='inputInfo-container'>
+        <div className='inputInfo-container' onDoubleClick={changeDisable}>
             <label>
                 {title}
             </label>
-            <input type={type} className='inputInfo-input' placeholder={placeholder} disabled={disabled} />
+            <input
+                type={type}
+                className='inputInfo-input'
+                value={value}
+                disabled={disabled}
+                onChange={onChange}
+            />
         </div>
     );
 }

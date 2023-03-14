@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
-import { putAvatar, USER_RESULT_TYPE } from '../../../shared/api/auth';
+import { putAvatar, USER_RESULT_TYPE } from '../../../shared/api/users';
 import AuthForm from '../../auth-form';
 import './ModalAvatar.css';
 

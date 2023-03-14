@@ -5,6 +5,7 @@ import RegForm from './pages/regist-form';
 import PrivateRoute from './routing/privateRoute';
 import Profile from './pages/profile';
 import ModalAvatar from './components/modal/modal-avatar';
+import ProfileSettings from "./pages/profile-settings";
 
 const App: FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: FC = () => {
         <Routes>
             <Route path='/' element={<PrivateRoute />}>
                 <Route path='/' element={<Profile />} />
+                <Route path='/settings' element={<ProfileSettings />} />
                 <Route path='/modal' element={<ModalAvatar />} />
             </Route>
             <Route path='/auth/login' element={<LoginForm />} />

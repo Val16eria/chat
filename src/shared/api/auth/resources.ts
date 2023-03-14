@@ -78,19 +78,3 @@ export const postLogout = async (): Promise<UserResult<IUser>> => {
         };
     }
 }
-
-export const putAvatar = async (props: FormData): Promise<UserResult<IUser>> => {
-    try {
-        const userData = await api.put<IUser>('/user/profile/avatar', props);
-        return {
-            type: USER_RESULT_TYPE.SUCCESS,
-            data: userData.data,
-        };
-    } catch (e: unknown) {
-        const error = e as BadResponse;
-        return {
-            type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
-        };
-    }
-}
