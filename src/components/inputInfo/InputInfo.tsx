@@ -1,7 +1,7 @@
-import React, {ComponentProps, FC } from 'react';
+import React, { FC, InputHTMLAttributes} from 'react';
 import './InputInfo.css';
 
-interface IInputInfo extends ComponentProps<'input'> {
+interface IInputInfo extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
     register?: any,
     error?: string,

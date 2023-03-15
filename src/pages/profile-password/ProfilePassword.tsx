@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import {putPassword, USER_RESULT_TYPE } from '../../shared/api/users';
+import { putPassword, USER_RESULT_TYPE } from '../../shared/api/users';
 import ButtonBack from '../../components/buttonBack';
 import InputInfo from '../../components/inputInfo';
 import Avatar from '../../components/avatar/Avatar';
@@ -38,7 +38,6 @@ const ProfilePassword: FC = () => {
     })
 
     const [homeUserInfo, changeInfo] = useProfile();
-    //const [isDisabled, setIsDisables] = useState(true);
 
     const onSubmit = async (data: FormData) => {
         const usersPassword = await putPassword(data);
@@ -63,11 +62,9 @@ const ProfilePassword: FC = () => {
                         error={errors.oldPassword?.message ?? ''}
                         defaultValue={homeUserInfo.password}
                         register={{...register('oldPassword', {
-                                //disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'password') //поменять
                             })}}
-                        //changeDisable={() => setIsDisables(!isDisabled)}
                     />
                     <InputInfo
                         title='Новый пароль'
@@ -75,11 +72,9 @@ const ProfilePassword: FC = () => {
                         error={errors.newPassword?.message ?? ''}
                         defaultValue={''}
                         register={{...register('newPassword', {
-                                //disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'password') //поменять
                             })}}
-                        //changeDisable={() => setIsDisables(!isDisabled)}
                     />
                     <InputInfo
                         title='Повторить новый пароль'
@@ -87,11 +82,9 @@ const ProfilePassword: FC = () => {
                         error={errors.confirmPassword?.message ?? ''}
                         defaultValue={''}
                         register={{...register('confirmPassword', {
-                                //disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'password') //поменять
                             })}}
-                        //changeDisable={() => setIsDisables(!isDisabled)}
                     />
                 </div>
                 <Button btn={'Сохранить'} />

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -68,7 +68,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.email}
                         register={{...register('email', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'email')
                         })}}
                         changeDisable={() => setIsDisables(!isDisabled)}
@@ -80,7 +80,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.login}
                         register={{...register('login', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'login')
                             })}}
                         changeDisable={() => setIsDisables(!isDisabled)}
@@ -92,7 +92,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.first_name}
                         register={{...register('first_name', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'first_name')
                             })}}
                         changeDisable={() => setIsDisables(!isDisabled)}
@@ -104,7 +104,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.second_name}
                         register={{...register('second_name', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'second_name')
                             })}}
                         changeDisable={() => setIsDisables(!isDisabled)}
@@ -116,7 +116,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.display_name}
                         register={{...register('display_name', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'display_name')
                             })}}
                         changeDisable={() => setIsDisables(!isDisabled)}
@@ -128,7 +128,7 @@ const ProfileSettings: FC = () => {
                         defaultValue={homeUserInfo.phone}
                         register={{...register('phone', {
                                 disabled: isDisabled,
-                                onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
+                                onChange: (e: ChangeEvent<HTMLInputElement>) =>
                                     changeInfo(e.target.value, 'phone'),
                             })}}
                         changeDisable={() => setIsDisables(!isDisabled)}

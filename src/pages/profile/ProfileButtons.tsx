@@ -8,7 +8,6 @@ import './ProfileButtons.css';
 const ProfileButtons: FC = () => {
     const navigate = useNavigate();
 
-    // для выхода
     const handleSubmit = async () => {
         const logoutData = await postLogout();
 
