@@ -17,7 +17,7 @@ const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
                 className='inp-form_input'
                 type={type}
             />
-            <p>{error}</p>
+            <p className='error-valid'>{error}</p>
         </div>
     );
 }

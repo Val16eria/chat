@@ -1,37 +1,39 @@
-import React, { FC } from 'react';
+import React, {ComponentProps, FC } from 'react';
 import './InputInfo.css';
 
-interface IInputInfo {
+interface IInputInfo extends ComponentProps<'input'> {
     title: string;
-    type: string;
-    value?: any;
-    disabled: boolean;
-    onChange?: any,
+    register?: any,
+    error?: string,
     changeDisable?: () => void
 }
 
 const InputInfo: FC<IInputInfo> = (
     {
         title,
-        type,
-        value,
-        disabled,
-        onChange,
-        changeDisable
+        changeDisable,
+        register,
+        error,
+        ...props
     }) => {
     return (
-        <div className='inputInfo-container' onDoubleClick={changeDisable}>
-            <label>
-                {title}
-            </label>
-            <input
-                type={type}
-                className='inputInfo-input'
-                value={value}
-                disabled={disabled}
-                onChange={onChange}
-            />
-        </div>
+        <>
+            <div className='inputInfo-container' onDoubleClick={changeDisable}>
+                <div>
+                    <label>
+                        {title}
+                    </label>
+                    <p className='error-valid'>{error}</p>
+                </div>
+
+                <input
+                    className='inputInfo-input'
+                    {...register}
+                    {...props}
+                />
+            </div>
+        </>
+
     );
 }
 

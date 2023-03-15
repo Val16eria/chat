@@ -31,7 +31,7 @@ const AuthForm: FC<IAuthForm> = (
             <div className='auth-form__actions'>
                 <Button btn={btn} />
                 <LinkPage linkUrl={linkUrl} linkText={linkText}/>
-                <p>{error}</p>
+                <p className='error-modal'>{error}</p>
             </div>
         </form>
     );

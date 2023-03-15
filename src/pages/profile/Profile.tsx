@@ -18,37 +18,37 @@ const Profile: FC = () => {
                     <InputInfo
                         title='Почта'
                         type='email'
-                        value={homeUserInfo.email}
+                        defaultValue={homeUserInfo.email}
                         disabled={true}
                     />
                     <InputInfo
                         title='Логин'
                         type='text'
-                        value={homeUserInfo.login}
+                        defaultValue={homeUserInfo.login}
                         disabled={true}
                     />
                     <InputInfo
                         title='Имя'
                         type='text'
-                        value={homeUserInfo.first_name}
+                        defaultValue={homeUserInfo.first_name}
                         disabled={true}
                     />
                     <InputInfo
                         title='Фамилия'
                         type='text'
-                        value={homeUserInfo.second_name}
+                        defaultValue={homeUserInfo.second_name}
                         disabled={true}
                     />
                     <InputInfo
                         title='Имя в чате'
                         type='text'
-                        value={homeUserInfo.display_name}
+                        defaultValue={homeUserInfo.display_name}
                         disabled={true}
                     />
                     <InputInfo
                         title='Телефон'
                         type='tel'
-                        value={homeUserInfo.phone}
+                        defaultValue={homeUserInfo.phone}
                         disabled={true}
                     />
                 </div>

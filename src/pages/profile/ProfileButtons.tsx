@@ -25,12 +25,12 @@ const ProfileButtons: FC = () => {
     return (
         <div className='profile-buttons'>
             <div className='profile-button'>
-                <LinkPage linkUrl='/settings' linkText='Изменить данные' />
+                <LinkPage linkUrl='/profile-settings' linkText='Изменить данные' />
             </div>
             <div className='profile-button'>
-                <LinkPage linkUrl='/' linkText='Изменить пароль' />
+                <LinkPage linkUrl='/profile-password' linkText='Изменить пароль' />
             </div>
-            <div className='profile-button'>
+            <div className='profile-button' >
                 <LinkPage linkText='Выйти' handleBack={() => handleSubmit()} />
             </div>
         </div>

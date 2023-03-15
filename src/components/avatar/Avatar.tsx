@@ -5,7 +5,7 @@ import Title from '../title';
 
 interface IAvatar {
     avatar: any;
-    title: string;
+    title?: string;
 }
 
 const Avatar: FC<IAvatar> = ({avatar, title}) => {
