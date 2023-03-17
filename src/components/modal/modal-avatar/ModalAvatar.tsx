@@ -1,10 +1,13 @@
 import React, { FC, HTMLAttributes, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
+
 import { putAvatar, USER_RESULT_TYPE } from '../../../shared/api/users';
 import AuthForm from '../../auth-form';
+
 import './ModalAvatar.css';
 
 const schema = yup.object().shape({
@@ -20,6 +23,7 @@ interface IModalAvatar extends HTMLAttributes<HTMLInputElement>{
 }
 
 const ModalAvatar: FC<IModalAvatar> = ({close}) => {
+
     const navigate = useNavigate();
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
@@ -56,7 +60,11 @@ const ModalAvatar: FC<IModalAvatar> = ({close}) => {
                 onClick={e => e.stopPropagation()}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <label htmlFor='upload-photo'>{image ? image.name : 'Выбрать файл на компьютере'}</label>
+                <label htmlFor='upload-photo'>
+                    {
+                        image ? <p style={{color: 'gray'}}>image.name</p> : 'Выбрать файл на компьютере'
+                    }
+                </label>
                 <input
                     type='file'
                     id='upload-photo'

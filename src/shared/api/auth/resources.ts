@@ -1,7 +1,7 @@
 import {BadResponse, IUser, USER_RESULT_TYPE, UserResult} from './types';
 import {api} from '../apiAxios';
 
-export const postSignUp = async (props: {
+export const postSignUp = async (dto: {
     password: string;
     phone: string;
     second_name: string;
@@ -11,7 +11,7 @@ export const postSignUp = async (props: {
 }): Promise<UserResult<IUser>> => {
     try {
         const userData = await api.post<IUser>('/auth/signup', {
-            ...props,
+            ...dto,
         });
         return {
             type: USER_RESULT_TYPE.SUCCESS,
@@ -21,18 +21,18 @@ export const postSignUp = async (props: {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }
 
-export const postSignIn = async (props: {
+export const postSignIn = async (dto: {
     login: string;
     password: string
 }): Promise<UserResult<IUser>> => {
     try {
         const userData = await api.post<IUser>('/auth/signin', {
-            ...props,
+            ...dto,
         });
         return {
             type: USER_RESULT_TYPE.SUCCESS,
@@ -42,7 +42,7 @@ export const postSignIn = async (props: {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }
@@ -58,7 +58,7 @@ export const getUsers = async (): Promise<UserResult<IUser>> => {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }
@@ -74,7 +74,7 @@ export const postLogout = async (): Promise<UserResult<IUser>> => {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error?.response?.data.reason || 'default',
+            data: error?.response?.data.reason || 'Извините, что-то пошло не так',
         };
     }
 }

@@ -1,9 +1,9 @@
 import { BadResponse, IUser, USER_RESULT_TYPE, UserResult } from './types';
 import { api } from '../apiAxios';
 
-export const putAvatar = async (props: FormData): Promise<UserResult<IUser>> => {
+export const putAvatar = async (dto: FormData): Promise<UserResult<IUser>> => {
     try {
-        const userData = await api.put<IUser>('/user/profile/avatar', props);
+        const userData = await api.put<IUser>('/user/profile/avatar', dto);
         return {
             type: USER_RESULT_TYPE.SUCCESS,
             data: userData.data,
@@ -12,12 +12,12 @@ export const putAvatar = async (props: FormData): Promise<UserResult<IUser>> => 
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }
 
-export const putUsers = async (props: {
+export const putUsers = async (dto: {
     first_name: string;
     phone: string;
     display_name?: string;
@@ -27,7 +27,7 @@ export const putUsers = async (props: {
 }): Promise<UserResult<IUser>> => {
     try {
         const userData = await api.put<IUser>('/user/profile', {
-            ...props
+            ...dto
         });
         return {
             type: USER_RESULT_TYPE.SUCCESS,
@@ -37,18 +37,18 @@ export const putUsers = async (props: {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }
 
-export const putPassword = async (props: {
+export const putPassword = async (dto: {
     oldPassword: string,
     newPassword: string
 }): Promise<UserResult<IUser>> => {
     try {
         const userData = await api.put<IUser>('/user/password', {
-            ...props
+            ...dto
         });
         return {
             type: USER_RESULT_TYPE.SUCCESS,
@@ -58,7 +58,7 @@ export const putPassword = async (props: {
         const error = e as BadResponse;
         return {
             type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'default',
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
         };
     }
 }

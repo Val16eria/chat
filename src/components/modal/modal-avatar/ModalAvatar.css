@@ -18,10 +18,11 @@
     line-height: 16px;
 
     text-align: center;
-    text-decoration-line: underline;
+    text-decoration: none;
     color: #3369F3;
 }
 
 #upload-photo {
     display: none;
 }
+

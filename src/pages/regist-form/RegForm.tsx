@@ -1,9 +1,12 @@
 import React, {FC} from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+
 import { postSignUp, USER_RESULT_TYPE } from '../../shared/api/auth';
+
 import InputValue from '../../components/input/InputValue';
 import AuthForm from '../../components/auth-form/AuthForm';
 
@@ -38,6 +41,7 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const RegForm: FC = () => {
+
     const navigate = useNavigate();
 
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>({

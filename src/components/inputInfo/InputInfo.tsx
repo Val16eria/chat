@@ -1,40 +1,37 @@
-import React, { FC, InputHTMLAttributes} from 'react';
+import React, { forwardRef, InputHTMLAttributes} from 'react';
 import './InputInfo.css';
 
 interface IInputInfo extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
-    register?: any,
     error?: string,
-    changeDisable?: () => void
 }
 
-const InputInfo: FC<IInputInfo> = (
+const InputInfo = forwardRef<HTMLInputElement, IInputInfo>((
     {
         title,
-        changeDisable,
-        register,
         error,
         ...props
-    }) => {
+    }, ref) => {
+
     return (
         <>
-            <div className='inputInfo-container' onDoubleClick={changeDisable}>
+            <div className='inputInfo-container' >
                 <div>
                     <label>
                         {title}
                     </label>
                     <p className='error-valid'>{error}</p>
                 </div>
-
-                <input
-                    className='inputInfo-input'
-                    {...register}
-                    {...props}
-                />
+                <div>
+                    <input
+                        className='inputInfo-input'
+                        {...props}
+                        ref={ref}
+                    />
+                </div>
             </div>
         </>
-
     );
-}
+})
 
 export default InputInfo;

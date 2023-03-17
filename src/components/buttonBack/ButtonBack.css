@@ -10,6 +10,8 @@
 }
 
 .buttonBack-container button {
+    height: 45px;
+    width: 45px;
     padding: 9px 10px;
     border-radius: 100%;
 

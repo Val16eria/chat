@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import Avatar from '../../image/avatar.svg';
 import './AvatarImg.css';
 
@@ -8,7 +9,6 @@ interface IAvatarImg {
 }
 
 const AvatarImg: FC<IAvatarImg> = ({open, avatar}) => {
-
     return (
         <div className='avatar-img'>
             <img alt='avatar' src={avatar || Avatar} className='avatar-img__img' id='target' />

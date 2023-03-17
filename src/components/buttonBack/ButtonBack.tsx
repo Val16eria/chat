@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import arrowBack from '../../image/arrow.svg'
 import './ButtonBack.css';
 
 const ButtonBack: FC = () => {
+
     const navigate = useNavigate();
 
     return (

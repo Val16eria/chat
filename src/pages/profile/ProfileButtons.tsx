@@ -1,11 +1,15 @@
 import React, { FC } from 'react';
-import LinkPage from '../../components/link-page';
+import { useNavigate } from 'react-router-dom';
+
 import { postLogout, USER_RESULT_TYPE } from '../../shared/api/auth';
 import { logout } from '../../shared/lib/auth';
-import { useNavigate } from 'react-router-dom';
+
+import LinkPage from '../../components/link-page';
+
 import './ProfileButtons.css';
 
 const ProfileButtons: FC = () => {
+
     const navigate = useNavigate();
 
     const handleSubmit = async () => {

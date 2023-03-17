@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getUsers, USER_RESULT_TYPE } from '../../shared/api/auth';
 
-type TUser = {
+export type TUser = {
     first_name: string;
     email: string;
     login: string
     second_name: string;
     phone: string;
-    display_name: string;
+    display_name?: string;
     avatar?: string;
-    password?: string;
+    password: string;
 }
 
 const useProfile = (): [TUser, (value: string, name: keyof TUser) => void] => {
@@ -38,7 +38,6 @@ const useProfile = (): [TUser, (value: string, name: keyof TUser) => void] => {
                     phone: usersInfo.data.phone,
                     display_name: usersInfo.data.display_name,
                     avatar: usersInfo.data.avatar,
-                    // password: usersInfo.data.password
                 }))
             }
 
