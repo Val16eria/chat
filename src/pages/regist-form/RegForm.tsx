@@ -1,8 +1,12 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+
+import { postSignUp, USER_RESULT_TYPE } from '../../shared/api/auth';
+
 import InputValue from '../../components/input/InputValue';
 import AuthForm from '../../components/auth-form/AuthForm';
 
@@ -14,16 +18,14 @@ const schema = yup.object({
     login: yup
         .string()
         .required('Обязательное поле'),
-    firstName: yup
+    first_name: yup
         .string()
         .required('Обязательное поле'),
-    lastName: yup
+    second_name: yup
         .string()
         .required('Обязательное поле'),
     phone: yup
-        .number()
-        .typeError('Номер должен быть целым числом')
-        .positive('Номер не может содержать отрицательные цисла')
+        .string()
         .required('Обязательное поле'),
     password: yup
         .string()
@@ -39,15 +41,22 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const RegForm: FC = () => {
+
     const navigate = useNavigate();
 
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
-    const onSubmit = (data: FormData) => {
-        alert('Registration was successful');
-        navigate('/auth/login');
+    const onSubmit = async (data: FormData) => {
+        const regData = await postSignUp(data);
+
+        if (regData.type === USER_RESULT_TYPE.SUCCESS) {
+            navigate('/auth/login');
+        }
+        if (regData.type === USER_RESULT_TYPE.FAILURE) {
+            navigate('/auth/login');
+        }
     }
 
     return (
@@ -73,14 +82,14 @@ const RegForm: FC = () => {
             <InputValue
                 type='text'
                 lab='Имя'
-                register={{...register('firstName')}}
-                error={errors.firstName?.message ?? ''}
+                register={{...register('first_name')}}
+                error={errors.first_name?.message ?? ''}
             />
             <InputValue
                 type='text'
                 lab='Фамилия'
-                register={{...register('lastName')}}
-                error={errors.lastName?.message ?? ''}
+                register={{...register('second_name')}}
+                error={errors.second_name?.message ?? ''}
             />
             <InputValue
                 type='tel'

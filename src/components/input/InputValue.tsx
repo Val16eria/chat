@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './InputValu.css';
+import './InputValue.css';
 
 interface IInputValue {
     type: string;
@@ -17,7 +17,7 @@ const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
                 className='inp-form_input'
                 type={type}
             />
-            <p>{error}</p>
+            <p className='error-valid'>{error}</p>
         </div>
     );
 }

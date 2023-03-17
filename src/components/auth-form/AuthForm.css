@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: center;
 }
 
 .auth-form__actions {
@@ -35,3 +36,14 @@
     text-align: center;
 }
 
+.auth-form__actions a {
+    color: #3369F3;
+}
+
+.error-modal {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+
+    color: #FF2F2F;
+}

@@ -5,10 +5,10 @@ interface IButton {
     btn: string;
 }
 
-const Button: FC<IButton> = ({ btn }) => {
+const Button: FC<IButton> = ({ btn}) => {
     return (
-        <div className="button">
-            <button type='submit'>{btn}</button>
+        <div className='button-container'>
+            <button type='submit' >{btn}</button>
         </div>
     );
 }
