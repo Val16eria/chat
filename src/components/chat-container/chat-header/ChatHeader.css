@@ -1,0 +1,26 @@
+
+.chat-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #EAEAEA;
+    padding: 0 0 10px 0;
+}
+
+.chat-header__user {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    align-items: center;
+}
+
+.chat-header__user img {
+    width: 47px;
+    height: 47px;
+    padding: 5px;
+    border-radius: 100%;
+
+    background: #EFEFEF;
+}

@@ -1,5 +1,5 @@
-import {BadResponse, IUser, USER_RESULT_TYPE, UserResult} from './types';
-import {api} from '../apiAxios';
+import {BadResponse, IUser, USER_RESULT_TYPE, UserResult} from '../users';
+import { api } from '../apiAxios';
 
 export const postSignUp = async (dto: {
     password: string;

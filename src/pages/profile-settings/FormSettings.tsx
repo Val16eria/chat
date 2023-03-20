@@ -58,7 +58,7 @@ const FormSettings: FC<IUser> = ({homeUserInfo}) => {
         const usersData = await putUsers(data);
 
         if (usersData.type === USER_RESULT_TYPE.SUCCESS) {
-            navigate('/');
+            navigate('/profile');
         }
         if (usersData.type === USER_RESULT_TYPE.FAILURE) {
             setError('email', {type: 'custom', message: usersData.data})

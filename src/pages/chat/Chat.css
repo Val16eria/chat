@@ -1,0 +1,29 @@
+.chat {
+    display: flex;
+    flex-direction: row;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+
+    margin: 10px 20px;
+}
+
+.chat-main {
+
+}
+
+/*.chat-container p{*/
+/*    margin: 354px 356px;*/
+
+/*    font-weight: 500;*/
+/*    font-size: 12px;*/
+/*    line-height: 12px;*/
+
+/*    text-align: center;*/
+
+/*    color: #999999;*/
+/*}*/
