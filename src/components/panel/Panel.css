@@ -1,11 +1,9 @@
 .panel {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 14px;
 
     max-width: 370px;
-    min-height: 100vh;
     width: 100%;
     padding: 20px 10px 0 10px;
 

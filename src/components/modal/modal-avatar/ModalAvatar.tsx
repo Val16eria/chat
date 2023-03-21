@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
 import { putAvatar, USER_RESULT_TYPE } from '../../../shared/api/users';
-import AuthForm from '../../auth-form';
+import DataPage from '../../form-data';
 
 import './ModalAvatar.css';
 
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 
 type FormData = yup.InferType<typeof schema>;
 
-interface IModalAvatar extends HTMLAttributes<HTMLInputElement>{
+interface IModalAvatar extends HTMLAttributes<HTMLInputElement> {
     close?: () => void;
 }
 
@@ -53,7 +53,7 @@ const ModalAvatar: FC<IModalAvatar> = ({close}) => {
 
     return (
         <div className='modal-avatar__container' onClick={close}>
-            <AuthForm
+            <DataPage
                 title='Загрузите файл'
                 btn='Поменять'
                 error={errors.avatar?.message ?? ''}
@@ -72,7 +72,7 @@ const ModalAvatar: FC<IModalAvatar> = ({close}) => {
                     {...register('avatar')}
                     onChange={handleOnChange}
                 />
-            </AuthForm>
+            </DataPage>
         </div>
     );
 }

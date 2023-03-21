@@ -1,20 +1,27 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import CreateChat from '../../../image/createChat.svg';
-import PopupCreateChat from '../../popup/create-chat/PopupCreateChat';
+import ModalChat from '../../modal/modal-chat';
+
 import './Search.css';
 
-const Search: FC = () => {
+interface ISearch {
+    modalChange: () => void;
+}
+
+const Search: FC<ISearch> = ({modalChange}) => {
+
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+
     return (
         <>
-            {isPopupOpen && <PopupCreateChat />}
+            {isPopupOpen && <ModalChat modalChange={modalChange} close={() => {setIsPopupOpen(false)}} />}
             <div className='search-container'>
                 <NavLink to='/profile'>Профиль</NavLink>
                 <div className='search-chat'>
                     <input type='search' placeholder='Поиск' />
-                    <img src={CreateChat} alt='create chat' onClick={() => setIsPopupOpen(!isPopupOpen)}/>
+                    <img src={CreateChat} alt='create chat' onClick={() => setIsPopupOpen(true)}/>
                 </div>
             </div>
         </>

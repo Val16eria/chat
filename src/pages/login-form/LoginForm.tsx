@@ -9,7 +9,7 @@ import { postSignIn, USER_RESULT_TYPE } from '../../shared/api/auth';
 import { login } from '../../shared/lib/auth';
 
 import InputValue from '../../components/input';
-import AuthForm from '../../components/auth-form';
+import DataPage from '../../components/form-data';
 
 const schema = yup.object({
    login: yup
@@ -40,12 +40,12 @@ const LoginForm: FC = () => {
             navigate('/')
         }
         if (loginData.type === USER_RESULT_TYPE.FAILURE) {
-            setError('login', {type: 'custom', message: loginData.data })
+            setError('login', { type: 'custom', message: loginData.data })
         }
     }
 
     return (
-        <AuthForm
+        <DataPage
             title='Войти'
             btn='Авторизоваться'
             linkText='Нет аккаунта?'
@@ -64,7 +64,7 @@ const LoginForm: FC = () => {
                 register={{...register('password')}}
                 error={errors.password?.message ?? ''}
             />
-        </AuthForm>
+        </DataPage>
     );
 }
 

@@ -1,8 +1,13 @@
+.list {
+    padding: 10px;
+    overflow-y: scroll;
+    list-style: none;
+}
+
 .list-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
     border-top: 1px solid #EAEAEA;
     padding: 12px 0 12px 0;
 }

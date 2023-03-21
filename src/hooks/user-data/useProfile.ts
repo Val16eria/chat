@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getUsers, USER_RESULT_TYPE } from '../../shared/api/auth';
-
-export type TUser = {
-    first_name: string;
-    email: string;
-    login: string
-    second_name: string;
-    phone: string;
-    display_name?: string;
-    avatar?: string;
-    password: string;
-}
+import { TUser } from '../../shared/types/type-profile/profile';
 
 const useProfile = (): [TUser, (value: string, name: keyof TUser) => void] => {
     const [homeUserInfo, setHomeUserInfo] = useState<TUser>({
