@@ -17,14 +17,14 @@
 
 }
 
-/*.chat-container p{*/
-/*    margin: 354px 356px;*/
+.none-text {
+    margin: 354px 356px;
 
-/*    font-weight: 500;*/
-/*    font-size: 12px;*/
-/*    line-height: 12px;*/
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
 
-/*    text-align: center;*/
+    text-align: center;
 
-/*    color: #999999;*/
-/*}*/
+    color: #999999;
+}

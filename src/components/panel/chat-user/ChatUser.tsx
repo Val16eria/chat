@@ -7,30 +7,37 @@ import './ChatUser.css';
 
 interface IChatUser {
     chatInfo: TChat[];
+    query: string;
 }
 
-const ChatUser:FC<IChatUser> = ({chatInfo}) => {
+const ChatUser:FC<IChatUser> = ({chatInfo, query}) => {
 
     return (
-        <ul className='list'>
-            {chatInfo.map(item => {
-                return <li>
-                    <div className='list-container'>
-                        <div className='list-user'>
-                            <img src={item.avatar || Avatar} alt='avatar'/>
-                            <div className='list-user__name'>
-                                <p>{item.title}</p>
-                                <p>{item.last_message}</p>
-                            </div>
-                        </div>
-                        <div className='list-user__time'>
-                            <p>12:51</p>
-                            {item.unread_count ? <p>{item.unread_count}</p> : ''}
-                        </div>
-                    </div>
-                </li>
-            })}
-        </ul>
+        <>
+            {/*{chatInfo.length > 0 ?*/}
+                <ul className='list'>
+                    {chatInfo.filter(i => i.title.toLowerCase().includes(query)).map(item => {
+                        return (
+                            <li key={item.id}>
+                                <div className='list-container'>
+                                    <div className='list-user'>
+                                        <img src={item.avatar || Avatar} alt='avatar'/>
+                                        <div className='list-user__name'>
+                                            <p>{item.title}</p>
+                                            <p>{item.last_message}</p>
+                                        </div>
+                                    </div>
+                                    <div className='list-user__time'>
+                                        <p>12:51</p>
+                                        {item.unread_count ? <p>{item.unread_count}</p> : ''}
+                                    </div>
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+                {/*: <p className='none-chat'>Начните общение</p>}*/}
+        </>
     );
 }
 

@@ -21,9 +21,9 @@ export const postChat = async (dto: {
     }
 }
 
-export const getChat = async (): Promise<ChatResult<IChat[]>> => {
+export const getChat = async (dto: string): Promise<ChatResult<IChat[]>> => {
     try {
-        const chatData = await api.get<IChat[]>('/chats');
+        const chatData = await api.get<IChat[]>(`/chats${dto}`);
         return {
             type: CHAT_RESULT_TYPE.SUCCESS,
             data: chatData.data,

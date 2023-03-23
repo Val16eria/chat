@@ -10,20 +10,29 @@ import './Chat.css';
 
 const Chat: FC = () => {
 
-    const [userInfo, changeChatInfo] = useChatPanel();
+    const [userInfo, changeChatInfo, changeQuery, postQuery] = useChatPanel();
 
+    console.log('это длина', userInfo)
     return (
         <>
             {userInfo.length ?
                 <div className='chat'>
-                    <Panel chatInfo={userInfo} modalChange={changeChatInfo} />
+                    <Panel
+                        chatInfo={userInfo}
+                        modalChange={changeChatInfo}
+                        changeQuery = {changeQuery}
+                        query={postQuery}
+                    />
                     <div className='chat-container'>
-                        {/*<p className='none-text'>Выберите чат чтобы отправить сообщение</p>*/}
-                        <ChatHeader />
-                        <div className='chat-main'>
-                            <p>Chat</p>
-                        </div>
-                        <ChatFooter />
+                        {!userInfo ?
+                            <>
+                                <ChatHeader />
+                                <div className='chat-main'>
+                                    <p>Chat</p>
+                                </div>
+                                <ChatFooter />
+                            </>
+                            : <p className='none-text'>Выберите чат чтобы отправить сообщение</p>}
                     </div>
                 </div>
                 : <Loader />}

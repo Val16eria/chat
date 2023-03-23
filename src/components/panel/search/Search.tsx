@@ -8,9 +8,10 @@ import './Search.css';
 
 interface ISearch {
     modalChange: () => void;
+    changeQuery: (e: any) => void;
 }
 
-const Search: FC<ISearch> = ({modalChange}) => {
+const Search: FC<ISearch> = ({modalChange, changeQuery}) => {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -20,7 +21,13 @@ const Search: FC<ISearch> = ({modalChange}) => {
             <div className='search-container'>
                 <NavLink to='/profile'>Профиль</NavLink>
                 <div className='search-chat'>
-                    <input type='search' placeholder='Поиск' />
+                    <input
+                        type='search'
+                        name='search'
+                        placeholder='Поиск'
+                        // производит поиск
+                        onChange={(e) => changeQuery(e)}
+                    />
                     <img src={CreateChat} alt='create chat' onClick={() => setIsPopupOpen(true)}/>
                 </div>
             </div>
