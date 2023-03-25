@@ -4,12 +4,20 @@
     list-style: none;
 }
 
+.list a {
+    text-decoration: none;
+}
+
 .list-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     border-top: 1px solid #EAEAEA;
     padding: 12px 0 12px 0;
+}
+
+.active {
+    background-color: #E4EDFD;;
 }
 
 .list-container img {

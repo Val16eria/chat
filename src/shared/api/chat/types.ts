@@ -9,6 +9,10 @@ export interface IChat {
     last_message?: string;
 }
 
+export interface IToken {
+    token: string;
+}
+
 export enum CHAT_RESULT_TYPE {
     SUCCESS = 'SUCCESS',
     FAILURE = 'FAILURE',

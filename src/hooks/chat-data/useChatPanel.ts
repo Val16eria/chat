@@ -1,10 +1,10 @@
-import {ChangeEvent, useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { CHAT_RESULT_TYPE, getChat } from '../../shared/api/chat';
 import { TChat } from '../../shared/types/type-chat/chat';
 
-const useChatPanel = (): [TChat[], () => void, (e: any) => void, string] => {
+const useChatPanel = (): [TChat[], () => void] => {
 
     const [panelUserInfo, setPanelUserInfo] = useState<TChat[]>([]);
     const [changePanel, setChangePanel] = useState(true);
@@ -32,17 +32,7 @@ const useChatPanel = (): [TChat[], () => void, (e: any) => void, string] => {
         setChangePanel(prevState => !prevState)
     };
 
-    // происходит при onChange
-    const changeQuery = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value === '') {
-            setSearchParams(() => '')
-        }
-        else {
-            setSearchParams({title: e.target.value})
-        }
-    }
-
-    return [panelUserInfo, changeChatInfo, changeQuery, postQuery];
+    return [panelUserInfo, changeChatInfo];
 }
 
 export default useChatPanel;

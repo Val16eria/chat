@@ -1,3 +1,10 @@
+.chat {
+    display: flex;
+    flex-direction: row;
+    max-height: 100vh;
+    overflow-x: hidden;
+}
+
 .panel {
     display: flex;
     flex-direction: column;

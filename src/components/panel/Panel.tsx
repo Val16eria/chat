@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, HTMLAttributes } from 'react';
 
 import { IChat } from '../../shared/api/chat';
 
@@ -7,19 +7,22 @@ import ChatUser from './chat-user';
 
 import './Panel.css';
 
-interface IPanel {
+interface IPanel extends HTMLAttributes<HTMLFormElement> {
     modalChange: () => void;
     chatInfo: IChat[];
-    query: string;
-    changeQuery: (e: any) => void;
 }
 
-const Panel: FC<IPanel> = ({modalChange, chatInfo, query, changeQuery}) => {
+const Panel: FC<IPanel> = ({modalChange, chatInfo, ...rest}) => {
+
+    const {children} = rest;
 
     return (
-        <div className='panel'>
-            <Search modalChange={modalChange} changeQuery={changeQuery}/>
-            <ChatUser chatInfo={chatInfo} query={query}/>
+        <div className='chat'>
+            <div className='panel'>
+                <Search modalChange={modalChange} />
+                <ChatUser chatInfo={chatInfo} />
+            </div>
+            {children}
         </div>
     );
 }

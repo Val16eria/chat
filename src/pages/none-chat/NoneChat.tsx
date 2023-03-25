@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import useChatPanel from '../../hooks/chat-data/useChatPanel';
 
 import Panel from '../../components/panel';
-import ChatContainer from '../../components/chat-container';
 
-const Chat: FC = () => {
+import './NoneChat.css';
+
+const NoneChat: FC = () => {
 
     const [userInfo, changeChatInfo] = useChatPanel();
 
@@ -13,9 +14,9 @@ const Chat: FC = () => {
             chatInfo={userInfo}
             modalChange={changeChatInfo}
         >
-            <ChatContainer chatInfo={userInfo}/>
+            <p className='none-text'>Выберите чат чтобы начать общение</p>
         </Panel>
     );
 }
 
-export default Chat;
+export default NoneChat;
