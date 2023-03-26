@@ -1,25 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 import { CHAT_RESULT_TYPE, getChat } from '../../shared/api/chat';
 import { TChat } from '../../shared/types/type-chat/chat';
 
-const useChatPanel = (): [TChat[], () => void] => {
+const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<HTMLInputElement>) => void)] => {
 
     const [panelUserInfo, setPanelUserInfo] = useState<TChat[]>([]);
     const [changePanel, setChangePanel] = useState(true);
 
     // поиск по чатам
-    const [searchParams, setSearchParams] = useSearchParams('');
-    const postQuery = searchParams.get('title') || '';
-    // постоянно рендириться
-    console.log('PARAMS', postQuery);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
 
         const handlePanelInfo = async () => {
             // передаю сюда квери
-            const panelInfo = await getChat(postQuery);
+            const panelInfo = await getChat(search);
 
             if (panelInfo.type === CHAT_RESULT_TYPE.SUCCESS) {
                 setPanelUserInfo(panelInfo.data);
@@ -32,7 +28,11 @@ const useChatPanel = (): [TChat[], () => void] => {
         setChangePanel(prevState => !prevState)
     };
 
-    return [panelUserInfo, changeChatInfo];
+    const changeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value)
+    }
+
+    return [panelUserInfo, changeChatInfo, search, changeSearch];
 }
 
 export default useChatPanel;

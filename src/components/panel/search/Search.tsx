@@ -8,9 +8,11 @@ import './Search.css';
 
 interface ISearch {
     modalChange: () => void;
+    search: string;
+    changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Search: FC<ISearch> = ({modalChange}) => {
+const Search: FC<ISearch> = ({modalChange, changeSearch, search}) => {
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -23,7 +25,9 @@ const Search: FC<ISearch> = ({modalChange}) => {
                     <input
                         type='search'
                         name='search'
+                        value={search}
                         placeholder='Поиск'
+                        onChange={changeSearch}
                     />
                     <img src={CreateChat} alt='create chat' onClick={() => setIsPopupOpen(true)}/>
                 </div>

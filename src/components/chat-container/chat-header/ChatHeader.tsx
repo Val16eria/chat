@@ -8,7 +8,7 @@ import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
 
 interface IChatHeader {
-    chatInfo: IChat[];
+    chatInfo?: IChat[];
 }
 
 const ChatHeader:FC<IChatHeader> = ({chatInfo}) => {

@@ -54,3 +54,21 @@ export const postChatToken = async (token: string, id: number): Promise<ChatResu
         }
     }
 }
+
+export const putAddUsers = async (dto: string): Promise<ChatResult<IChat>> => {
+    try {
+        const chatData = await api.put<IChat>('/chats/users', {
+            dto
+        });
+        return {
+            type: CHAT_RESULT_TYPE.SUCCESS,
+            data: chatData.data,
+        };
+    } catch (e: unknown) {
+        const error = e as BadResponse;
+        return {
+            type: CHAT_RESULT_TYPE.FAILURE,
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
+        };
+    }
+}

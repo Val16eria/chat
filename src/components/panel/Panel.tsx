@@ -9,18 +9,26 @@ import './Panel.css';
 
 interface IPanel extends HTMLAttributes<HTMLFormElement> {
     modalChange: () => void;
-    chatInfo: IChat[];
+    userInfo: IChat[];
+    search: string;
+    changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Panel: FC<IPanel> = ({modalChange, chatInfo, ...rest}) => {
+const Panel: FC<IPanel> = ({modalChange, userInfo, search, changeSearch, ...rest}) => {
 
     const {children} = rest;
 
     return (
         <div className='chat'>
             <div className='panel'>
-                <Search modalChange={modalChange} />
-                <ChatUser chatInfo={chatInfo} />
+                <Search
+                    modalChange={modalChange}
+                    changeSearch={changeSearch}
+                    search={search}
+                />
+                <ChatUser
+                    userInfo={userInfo}
+                />
             </div>
             {children}
         </div>

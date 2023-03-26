@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { TChat } from '../../../shared/types/type-chat/chat';
 import { CHAT_RESULT_TYPE, postChatToken } from '../../../shared/api/chat';
@@ -6,13 +7,14 @@ import { CHAT_RESULT_TYPE, postChatToken } from '../../../shared/api/chat';
 import Avatar from '../../../image/avatar.svg';
 
 import './ChatUser.css';
-import { NavLink } from "react-router-dom";
 
 interface IChatUser {
-    chatInfo: TChat[];
+    userInfo: TChat[];
 }
 
-const ChatUser:FC<IChatUser> = ({chatInfo}) => {
+const ChatUser:FC<IChatUser> = ({userInfo}) => {
+
+    const navigate = useNavigate();
 
     const [isActive, setActive] = useState<number>(0);
 
@@ -25,7 +27,7 @@ const ChatUser:FC<IChatUser> = ({chatInfo}) => {
             console.log(item.id);
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
-            console.log('проблемы');
+            navigate('/');
         }
 
         setActive(item.id);
@@ -34,7 +36,7 @@ const ChatUser:FC<IChatUser> = ({chatInfo}) => {
     return (
         <>
             <ul className='list'>
-                {chatInfo.map(item => {
+                {userInfo.map(item => {
                     return (
                         <li key={item.id}>
                             <NavLink onClick={() => onClick(item)} to={`/chat/${item.id}`}>

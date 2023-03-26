@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Outlet } from 'react-router-dom';
 import useChatPanel from '../../hooks/chat-data/useChatPanel';
 
 import Panel from '../../components/panel';
@@ -7,14 +8,22 @@ import './NoneChat.css';
 
 const NoneChat: FC = () => {
 
-    const [userInfo, changeChatInfo] = useChatPanel();
+    const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
+
+    const filtered = !search
+        ? userInfo
+        : userInfo.filter((item) =>
+            item.title.toLowerCase().includes(search.toLowerCase())
+        );
 
     return (
         <Panel
-            chatInfo={userInfo}
+            userInfo={filtered}
             modalChange={changeChatInfo}
+            search={search}
+            changeSearch={changeSearch}
         >
-            <p className='none-text'>Выберите чат чтобы начать общение</p>
+            <Outlet />
         </Panel>
     );
 }
