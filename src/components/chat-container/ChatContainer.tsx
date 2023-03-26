@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
+import { IChat } from '../../shared/api/chat';
 
 import ChatHeader from './chat-header';
 import ChatFooter from './chat-footer';
 import ChatMain from './chat-main';
 
 import './ChatContainer.css';
-import {IChat} from "../../shared/api/chat";
 
 interface IChatContainer {
-    chatInfo: IChat[];
+    chatInfo?: IChat[];
 }
 
 const ChatContainer: FC<IChatContainer> = ({chatInfo}) => {
