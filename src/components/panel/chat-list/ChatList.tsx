@@ -6,13 +6,14 @@ import { CHAT_RESULT_TYPE, postChatToken } from '../../../shared/api/chat';
 
 import Avatar from '../../../image/avatar.svg';
 
-import './ChatUser.css';
+import './ChatList.css';
 
 interface IChatUser {
     userInfo: TChat[];
+    search: string;
 }
 
-const ChatUser:FC<IChatUser> = ({userInfo}) => {
+const ChatList:FC<IChatUser> = ({userInfo, search}) => {
 
     const navigate = useNavigate();
 
@@ -36,7 +37,11 @@ const ChatUser:FC<IChatUser> = ({userInfo}) => {
     return (
         <>
             <ul className='list'>
-                {userInfo.map(item => {
+                {userInfo
+                    .filter(item => item.title
+                    .toLowerCase()
+                    .includes(search.toLowerCase()))
+                    .map(item => {
                     return (
                         <li key={item.id}>
                             <NavLink onClick={() => onClick(item)} to={`/chat/${item.id}`}>
@@ -62,4 +67,4 @@ const ChatUser:FC<IChatUser> = ({userInfo}) => {
     );
 }
 
-export default ChatUser;
+export default ChatList;

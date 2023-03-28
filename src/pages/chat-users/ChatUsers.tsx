@@ -4,21 +4,21 @@ import useChatPanel from '../../hooks/chat-data/useChatPanel';
 
 import Panel from '../../components/panel';
 
-import './NoneChat.css';
+import './ChatUsers.css';
 
-const NoneChat: FC = () => {
+const ChatUsers: FC = () => {
 
     const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
 
-    const filtered = !search
-        ? userInfo
-        : userInfo.filter((item) =>
-            item.title.toLowerCase().includes(search.toLowerCase())
-        );
+    // const filtered = !search
+    //     ? userInfo
+    //     : userInfo.filter((item) =>
+    //         item.title.toLowerCase().includes(search.toLowerCase())
+    //     );
 
     return (
         <Panel
-            userInfo={filtered}
+            userInfo={userInfo}
             modalChange={changeChatInfo}
             search={search}
             changeSearch={changeSearch}
@@ -28,4 +28,4 @@ const NoneChat: FC = () => {
     );
 }
 
-export default NoneChat;
+export default ChatUsers;

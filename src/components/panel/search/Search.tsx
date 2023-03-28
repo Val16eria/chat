@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import CreateChat from '../../../image/createChat.svg';
-import ModalChat from '../../modal/modal-chat';
+import ModalNewChat from '../../modal/modal-new-chat';
 
 import './Search.css';
 
@@ -14,11 +14,11 @@ interface ISearch {
 
 const Search: FC<ISearch> = ({modalChange, changeSearch, search}) => {
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isPopupOpen, setPopupOpen] = useState(false);
 
     return (
         <>
-            {isPopupOpen && <ModalChat modalChange={modalChange} close={() => {setIsPopupOpen(false)}} />}
+            {isPopupOpen && <ModalNewChat modalChange={modalChange} close={() => {setPopupOpen(false)}} />}
             <div className='search-container'>
                 <NavLink to='/profile'>Профиль</NavLink>
                 <div className='search-chat'>
@@ -29,7 +29,7 @@ const Search: FC<ISearch> = ({modalChange, changeSearch, search}) => {
                         placeholder='Поиск'
                         onChange={changeSearch}
                     />
-                    <img src={CreateChat} alt='create chat' onClick={() => setIsPopupOpen(true)}/>
+                    <img src={CreateChat} alt='create chat' onClick={() => setPopupOpen(true)}/>
                 </div>
             </div>
         </>

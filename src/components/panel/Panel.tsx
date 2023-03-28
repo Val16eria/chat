@@ -3,7 +3,7 @@ import React, { FC, HTMLAttributes } from 'react';
 import { IChat } from '../../shared/api/chat';
 
 import Search from './search';
-import ChatUser from './chat-user';
+import ChatList from './chat-list';
 
 import './Panel.css';
 
@@ -26,7 +26,8 @@ const Panel: FC<IPanel> = ({modalChange, userInfo, search, changeSearch, ...rest
                     changeSearch={changeSearch}
                     search={search}
                 />
-                <ChatUser
+                <ChatList
+                    search={search}
                     userInfo={userInfo}
                 />
             </div>

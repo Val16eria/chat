@@ -13,6 +13,22 @@ export interface IToken {
     token: string;
 }
 
+export interface IAddUser {
+    users: number[]
+}
+
+export interface IChatUser {
+    id: string;
+    first_name: string;
+    second_name: string;
+    display_name?: string;
+    login: string;
+    avatar?: string;
+    email: string;
+    phone: string;
+    role: string;
+}
+
 export enum CHAT_RESULT_TYPE {
     SUCCESS = 'SUCCESS',
     FAILURE = 'FAILURE',

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import { CHAT_RESULT_TYPE, getChat } from '../../shared/api/chat';
 import { TChat } from '../../shared/types/type-chat/chat';

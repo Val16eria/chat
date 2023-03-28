@@ -7,7 +7,7 @@ import PrivateRoute from './routing/privateRoute';
 import Profile from './pages/profile';
 import ProfileSettings from './pages/profile-settings';
 import ProfilePassword from './pages/profile-password';
-import NoneChat from './pages/none-chat';
+import ChatUsers from './pages/chat-users';
 import ChatContainer from './components/chat-container';
 
 const App: FC = () => {
@@ -15,7 +15,7 @@ const App: FC = () => {
     <div>
         <Routes>
             <Route path='/' element={<PrivateRoute />}>
-                <Route path='/' element={<NoneChat />}>
+                <Route path='/' element={<ChatUsers />}>
                     <Route path='/' element={<p className='none-text'>Выберите чат чтобы начать общение</p>} />
                     <Route path='/chat/:id' element={<ChatContainer />} />
                 </Route>
