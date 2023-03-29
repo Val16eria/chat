@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { CHAT_RESULT_TYPE, getChatUsers } from '../../shared/api/chat';
 import { TChatUsers } from '../../shared/types/type-chat/chat';
 
-const useChatUsers = (): [TChatUsers[]] => {
-    const {id} = useParams();
+const useChatUsers = (props: number): [TChatUsers[], (() => void)] => {
 
     const [dataUsers, setDataUsers] = useState<TChatUsers[]>([])
+    const [changeUser, setChangeUser] = useState(true);
 
     useEffect(() => {
         const handleChatUsers = async () => {
-            const chatData = await getChatUsers(id);
+            const chatData = await getChatUsers(props);
 
             if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
                 setDataUsers(chatData.data)
@@ -21,9 +20,13 @@ const useChatUsers = (): [TChatUsers[]] => {
             }
         }
         handleChatUsers();
-    }, [id])
+    }, [props])
 
-    return [dataUsers];
+    const changeChatUser = () => {
+        setChangeUser(prevState => !prevState)
+    };
+
+    return [dataUsers, changeChatUser];
 }
 
 export default useChatUsers;

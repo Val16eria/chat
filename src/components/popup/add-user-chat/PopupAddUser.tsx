@@ -10,17 +10,26 @@ import ModalDeleteUser from "../../modal/modal-delete-user";
 interface IPopupAddUser {
     close: () => void;
     modalChange: () => void;
+    userChange: () => void;
 }
 
-const PopupAddUser: FC<IPopupAddUser> = ({close, modalChange}) => {
+const PopupAddUser: FC<IPopupAddUser> = ({close, modalChange, userChange}) => {
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
     return (
         <>
-            {isAddModalOpen && <ModalAddUser modalChange={modalChange} close={() => {setAddModalOpen(false)}} />}
-            {isDeleteModalOpen && <ModalDeleteUser modalChange={modalChange} close={() => {setDeleteModalOpen(false)}} />}
+            {isAddModalOpen && <ModalAddUser
+                modalChange={modalChange}
+                userChange={userChange}
+                close={() => {setAddModalOpen(false)}}
+            />}
+            {isDeleteModalOpen && <ModalDeleteUser
+                modalChange={modalChange}
+                userChange={userChange}
+                close={() => {setDeleteModalOpen(false)}}
+            />}
             <div className='popup-add-user' onClick={close}>
                 <div className='popup-add-user__container' onClick={e => e.stopPropagation()}>
                     <div className='popup-add' onClick={() => {setAddModalOpen(true)}}>

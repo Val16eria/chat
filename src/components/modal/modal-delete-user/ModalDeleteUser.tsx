@@ -20,9 +20,10 @@ type FormData = yup.InferType<typeof schema>;
 interface IModalDeleteUser {
     close: () => void;
     modalChange: () => void;
+    userChange: () => void;
 }
 
-const ModalDeleteUser: FC<IModalDeleteUser> = ({close, modalChange}) => {
+const ModalDeleteUser: FC<IModalDeleteUser> = ({close, modalChange, userChange}) => {
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
@@ -35,7 +36,8 @@ const ModalDeleteUser: FC<IModalDeleteUser> = ({close, modalChange}) => {
         const chatData = await deleteChatUsers(data.users, chatId);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            modalChange();
+            // modalChange();
+            userChange();
             close();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {

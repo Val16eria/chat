@@ -24,11 +24,13 @@
     background: #EFEFEF;
 }
 
-.chat-header__title p:nth-child(2) {
+.chat-header__title {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+}
 
+.chat-header__title p:nth-child(2) {
     font-size: 10px;
     color: gray;
 }

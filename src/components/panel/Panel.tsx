@@ -14,7 +14,14 @@ interface IPanel extends HTMLAttributes<HTMLFormElement> {
     changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Panel: FC<IPanel> = ({modalChange, userInfo, search, changeSearch, ...rest}) => {
+const Panel: FC<IPanel> =
+    ({
+         modalChange,
+         userInfo,
+         search,
+         changeSearch,
+         ...rest
+    }) => {
 
     const {children} = rest;
 
@@ -29,6 +36,7 @@ const Panel: FC<IPanel> = ({modalChange, userInfo, search, changeSearch, ...rest
                 <ChatList
                     search={search}
                     userInfo={userInfo}
+                    modalChange={modalChange}
                 />
             </div>
             {children}

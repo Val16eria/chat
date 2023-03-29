@@ -1,10 +1,9 @@
 import React, { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { TChatUsers } from '../../../shared/types/type-chat/chat';
 import { IChat } from '../../../shared/api/chat';
 
-import useChatPanel from '../../../hooks/chat-data/useChatPanel';
-import useChatUsers from '../../../hooks/chat-users/useChatUsers';
 import PopupAddUser from '../../popup/add-user-chat';
 
 import Avatar from '../../../image/avatar.svg';
@@ -12,30 +11,43 @@ import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
 
 interface IChatHeader {
-    chatInfo?: IChat[];
+    id?: string;
+    userInfo: IChat[];
+    modalChange: () => void;
+    dataUsers: TChatUsers[];
+    userChange: () => void;
 }
 
-const ChatHeader:FC<IChatHeader> = ({chatInfo}) => {
+const ChatHeader:FC<IChatHeader> =
+    ({
+         userInfo,
+         modalChange,
+         dataUsers,
+         userChange}) => {
+
+    const { id } = useParams();
 
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [panelUserInfo, changeChatInfo] = useChatPanel();
-    const [dataUsers] = useChatUsers();
-
-    const {id} = useParams();
 
     const handleInfo = () => {
-        for (let i in panelUserInfo)
-        {
-            if (panelUserInfo[i].id == Number(id))
-            {
-                return panelUserInfo[i]
-            }
-        }
+        const index = userInfo.map(i => i.id).indexOf(Number(id));
+        return userInfo[index];
+        // for (let i in userInfo)
+        // {
+        //     if (userInfo[i].id == Number(id))
+        //     {
+        //         return userInfo[i]
+        //     }
+        // }
     }
 
     return (
         <>
-            {isPopupOpen && <PopupAddUser modalChange={changeChatInfo} close={() => {setPopupOpen(false)}} />}
+            {isPopupOpen && <PopupAddUser
+                modalChange={modalChange}
+                userChange={userChange}
+                close={() => {setPopupOpen(false)}}
+            />}
             <div className='chat-header'>
                 <div className='chat-header__user'>
                     <img src={Avatar} alt='avatar' />
@@ -43,12 +55,10 @@ const ChatHeader:FC<IChatHeader> = ({chatInfo}) => {
                         <p>{handleInfo()?.title}</p>
                         <p>{dataUsers.length} пользовталей(ля)</p>
                     </div>
-
                 </div>
                 <img src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} />
             </div>
         </>
-
     );
 }
 

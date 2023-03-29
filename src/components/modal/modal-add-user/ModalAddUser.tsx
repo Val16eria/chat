@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -22,9 +22,10 @@ type FormData = yup.InferType<typeof schema>;
 interface IModalAddUser {
     close: () => void;
     modalChange: () => void;
+    userChange: () => void;
 }
 
-const ModalAddUser: FC<IModalAddUser> = ({close, modalChange}) => {
+const ModalAddUser: FC<IModalAddUser> = ({close, modalChange, userChange}) => {
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
@@ -37,7 +38,8 @@ const ModalAddUser: FC<IModalAddUser> = ({close, modalChange}) => {
         const chatData = await putAddUsers(data.users, chatId);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            modalChange();
+            // modalChange();
+            userChange();
             close();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {

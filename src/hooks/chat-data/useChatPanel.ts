@@ -21,6 +21,7 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
                 setPanelUserInfo(panelInfo.data);
             }
         }
+
         handlePanelInfo();
     }, [changePanel]);
 

@@ -103,7 +103,7 @@ export const deleteChatUsers = async (users: number, chatId: number): Promise<Ch
     }
 }
 
-export const getChatUsers = async (dto: string | undefined): Promise<ChatResult<IChatUser[]>> => {
+export const getChatUsers = async (dto: number): Promise<ChatResult<IChatUser[]>> => {
     try {
         const chatData = await api.get<IChatUser[]>(`/chats/${dto}/users`);
         return {

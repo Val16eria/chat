@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { TChat } from '../../../shared/types/type-chat/chat';
@@ -11,9 +11,10 @@ import './ChatList.css';
 interface IChatUser {
     userInfo: TChat[];
     search: string;
+    modalChange: () => void;
 }
 
-const ChatList:FC<IChatUser> = ({userInfo, search}) => {
+const ChatList:FC<IChatUser> = ({userInfo, search, modalChange}) => {
 
     const navigate = useNavigate();
 
@@ -24,8 +25,7 @@ const ChatList:FC<IChatUser> = ({userInfo, search}) => {
         const chatData = await postChatToken('token', item.id);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            console.log('все ок');
-            console.log(item.id);
+            // modalChange();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
             navigate('/');

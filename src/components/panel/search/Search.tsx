@@ -18,7 +18,10 @@ const Search: FC<ISearch> = ({modalChange, changeSearch, search}) => {
 
     return (
         <>
-            {isPopupOpen && <ModalNewChat modalChange={modalChange} close={() => {setPopupOpen(false)}} />}
+            {isPopupOpen && <ModalNewChat
+                modalChange={modalChange}
+                close={() => {setPopupOpen(false)}}
+            />}
             <div className='search-container'>
                 <NavLink to='/profile'>Профиль</NavLink>
                 <div className='search-chat'>

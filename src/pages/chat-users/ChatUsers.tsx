@@ -1,25 +1,26 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import useChatPanel from '../../hooks/chat-data/useChatPanel';
+
+import { IChat } from '../../shared/api/chat';
 
 import Panel from '../../components/panel';
 
 import './ChatUsers.css';
 
-const ChatUsers: FC = () => {
 
-    const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
+interface IChatUsers {
+    userInfo: IChat[];
+    modalChange: () => void;
+    search: string;
+    changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-    // const filtered = !search
-    //     ? userInfo
-    //     : userInfo.filter((item) =>
-    //         item.title.toLowerCase().includes(search.toLowerCase())
-    //     );
+const ChatUsers:FC<IChatUsers> = ({userInfo, modalChange, search, changeSearch}) => {
 
     return (
         <Panel
             userInfo={userInfo}
-            modalChange={changeChatInfo}
+            modalChange={modalChange}
             search={search}
             changeSearch={changeSearch}
         >
