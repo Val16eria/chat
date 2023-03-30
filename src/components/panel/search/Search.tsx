@@ -1,27 +1,21 @@
-import React, { FC, useState } from 'react';
+import React, {FC, useContext, useState} from 'react';
 import { NavLink } from 'react-router-dom';
+
+import { AppContext } from '../../../pages/chat-users/ChatUsers';
 
 import CreateChat from '../../../image/createChat.svg';
 import ModalNewChat from '../../modal/modal-new-chat';
 
 import './Search.css';
 
-interface ISearch {
-    modalChange: () => void;
-    search: string;
-    changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+const Search: FC = () => {
 
-const Search: FC<ISearch> = ({modalChange, changeSearch, search}) => {
-
+    const { search, changeSearch } = useContext(AppContext);
     const [isPopupOpen, setPopupOpen] = useState(false);
 
     return (
         <>
-            {isPopupOpen && <ModalNewChat
-                modalChange={modalChange}
-                close={() => {setPopupOpen(false)}}
-            />}
+            {isPopupOpen && <ModalNewChat close={() => {setPopupOpen(false)}}/>}
             <div className='search-container'>
                 <NavLink to='/profile'>Профиль</NavLink>
                 <div className='search-chat'>

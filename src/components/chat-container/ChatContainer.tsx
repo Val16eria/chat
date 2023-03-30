@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { IChat } from '../../shared/api/chat';
 import useChatUsers from '../../hooks/chat-users/useChatUsers';
 
 import ChatHeader from './chat-header';
@@ -10,25 +9,14 @@ import ChatMain from './chat-main';
 
 import './ChatContainer.css';
 
-interface IChatContainer {
-    userInfo: IChat[];
-    modalChange: () => void;
-}
-
-const ChatContainer: FC<IChatContainer> = ({userInfo, modalChange}) => {
+const ChatContainer: FC = () => {
 
     const { id } = useParams();
-    const [dataUsers, changeChatUser] = useChatUsers(Number(id));
+    const [dataUsers] = useChatUsers(Number(id));
 
     return (
         <div className='chat-container'>
-            <ChatHeader
-                id={id}
-                userInfo={userInfo}
-                modalChange={modalChange}
-                dataUsers={dataUsers}
-                userChange={changeChatUser}
-            />
+            <ChatHeader id={id} dataUsers={dataUsers}/>
             <ChatMain />
             <ChatFooter />
         </div>

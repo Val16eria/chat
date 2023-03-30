@@ -1,8 +1,7 @@
-import React, { FC, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { FC, useContext, useState } from 'react';
 
 import { TChatUsers } from '../../../shared/types/type-chat/chat';
-import { IChat } from '../../../shared/api/chat';
+import { AppContext } from '../../../pages/chat-users/ChatUsers';
 
 import PopupAddUser from '../../popup/add-user-chat';
 
@@ -12,42 +11,23 @@ import './ChatHeader.css';
 
 interface IChatHeader {
     id?: string;
-    userInfo: IChat[];
-    modalChange: () => void;
     dataUsers: TChatUsers[];
-    userChange: () => void;
 }
 
-const ChatHeader:FC<IChatHeader> =
-    ({
-         userInfo,
-         modalChange,
-         dataUsers,
-         userChange}) => {
+const ChatHeader:FC<IChatHeader> = ({dataUsers, id}) => {
 
-    const { id } = useParams();
+    const { userInfo } = useContext(AppContext);
 
     const [isPopupOpen, setPopupOpen] = useState(false);
 
     const handleInfo = () => {
         const index = userInfo.map(i => i.id).indexOf(Number(id));
         return userInfo[index];
-        // for (let i in userInfo)
-        // {
-        //     if (userInfo[i].id == Number(id))
-        //     {
-        //         return userInfo[i]
-        //     }
-        // }
     }
 
     return (
         <>
-            {isPopupOpen && <PopupAddUser
-                modalChange={modalChange}
-                userChange={userChange}
-                close={() => {setPopupOpen(false)}}
-            />}
+            {isPopupOpen && <PopupAddUser close={() => {setPopupOpen(false)}} />}
             <div className='chat-header'>
                 <div className='chat-header__user'>
                     <img src={Avatar} alt='avatar' />

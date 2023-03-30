@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import useChatPanel from './hooks/chat-data/useChatPanel';
-
 import LoginForm from './pages/login-form';
 import RegForm from './pages/regist-form';
 import PrivateRoute from './routing/privateRoute';
@@ -13,28 +11,16 @@ import ChatUsers from './pages/chat-users';
 import ChatContainer from './components/chat-container';
 
 const App: FC = () => {
-    // тут информация о чатах
-    const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
-
     return (
         <div>
             <Routes>
                 <Route path='/' element={<PrivateRoute />}>
-                    <Route
-                        path='/'
-                        element={<ChatUsers
-                            userInfo={userInfo}
-                            modalChange={changeChatInfo}
-                            search={search}
-                            changeSearch={changeSearch}/>}>
+                    <Route path='/' element={<ChatUsers />}>
                         <Route
                             path='/'
-                            element={<p className='none-text'>Выберите чат чтобы начать общение</p>}/>
-                        <Route
-                            path='/chat/:id'
-                            element={<ChatContainer
-                                userInfo={userInfo}
-                                modalChange={changeChatInfo}/>}/>
+                            element={<p className='none-text'>Выберите чат чтобы начать общение</p>}
+                        />
+                        <Route path='/chat/:id' element={<ChatContainer />} />
                     </Route>
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile-settings' element={<ProfileSettings />} />

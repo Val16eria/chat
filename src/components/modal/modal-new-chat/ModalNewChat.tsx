@@ -1,10 +1,11 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, {FC, HTMLAttributes, useContext} from 'react';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
 import { CHAT_RESULT_TYPE, postChat } from '../../../shared/api/chat';
+import { AppContext } from '../../../pages/chat-users/ChatUsers';
 
 import DataPage from '../../form-data';
 
@@ -21,10 +22,11 @@ type FormData = yup.InferType<typeof schema>;
 
 interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
-    modalChange: () => void;
 }
 
-const ModalNewChat: FC<IModalChat> = ({close, modalChange}) => {
+const ModalNewChat: FC<IModalChat> = ({close}) => {
+
+    const { changeChatInfo } = useContext(AppContext);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
@@ -34,7 +36,7 @@ const ModalNewChat: FC<IModalChat> = ({close, modalChange}) => {
         const chatData = await postChat(data);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            modalChange();
+            changeChatInfo();
             close();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {

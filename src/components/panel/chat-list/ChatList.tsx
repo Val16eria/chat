@@ -1,31 +1,29 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { TChat } from '../../../shared/types/type-chat/chat';
 import { CHAT_RESULT_TYPE, postChatToken } from '../../../shared/api/chat';
+import { AppContext } from '../../../pages/chat-users/ChatUsers';
 
 import Avatar from '../../../image/avatar.svg';
 
 import './ChatList.css';
 
 interface IChatUser {
-    userInfo: TChat[];
-    search: string;
-    modalChange: () => void;
 }
 
-const ChatList:FC<IChatUser> = ({userInfo, search, modalChange}) => {
+const ChatList:FC<IChatUser> = () => {
 
     const navigate = useNavigate();
 
+    const { userInfo, changeChatInfo, search } = useContext(AppContext);
     const [isActive, setActive] = useState<number>(0);
 
     const onClick = async (item: TChat) => {
-        // запрос на отправку токена
         const chatData = await postChatToken('token', item.id);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            // modalChange();
+            changeChatInfo();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
             navigate('/');

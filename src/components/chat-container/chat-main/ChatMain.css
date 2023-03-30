@@ -1,3 +1,20 @@
 .chat-main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    padding: 48px 20px;
+}
+
+.chat-main__date p {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    text-align: center;
+    color: #999999;
+}
+
+.chat-main__messages {
 
 }

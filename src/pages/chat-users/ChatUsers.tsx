@@ -1,31 +1,32 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { IChat } from '../../shared/api/chat';
+import useChatPanel from '../../hooks/chat-data/useChatPanel';
+import { IContext } from '../../shared/types/context/context';
 
 import Panel from '../../components/panel';
 
 import './ChatUsers.css';
 
 
-interface IChatUsers {
-    userInfo: IChat[];
-    modalChange: () => void;
-    search: string;
-    changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+export const AppContext = React.createContext({} as IContext);
 
-const ChatUsers:FC<IChatUsers> = ({userInfo, modalChange, search, changeSearch}) => {
+const ChatUsers:FC = () => {
 
+    const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
+
+    const value:IContext = {
+        userInfo,
+        changeChatInfo,
+        search,
+        changeSearch
+    }
     return (
-        <Panel
-            userInfo={userInfo}
-            modalChange={modalChange}
-            search={search}
-            changeSearch={changeSearch}
-        >
-            <Outlet />
-        </Panel>
+        <AppContext.Provider value={value}>
+            <Panel>
+                <Outlet />
+            </Panel>
+        </AppContext.Provider>
     );
 }
 

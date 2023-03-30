@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -6,6 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
 import { CHAT_RESULT_TYPE, deleteChatUsers } from '../../../shared/api/chat';
+import { AppContext } from '../../../pages/chat-users/ChatUsers';
 
 import DataPage from '../../form-data';
 
@@ -19,25 +20,24 @@ type FormData = yup.InferType<typeof schema>;
 
 interface IModalDeleteUser {
     close: () => void;
-    modalChange: () => void;
-    userChange: () => void;
 }
 
-const ModalDeleteUser: FC<IModalDeleteUser> = ({close, modalChange, userChange}) => {
+const ModalDeleteUser: FC<IModalDeleteUser> = ({close}) => {
+
+    const { id } = useParams();
+    const chatId = Number(id)
+
+    const { changeChatInfo } = useContext(AppContext);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
-    const {id} = useParams();
-    const chatId = Number(id)
-
     const onSubmit = async (data: FormData) => {
         const chatData = await deleteChatUsers(data.users, chatId);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            // modalChange();
-            userChange();
+            changeChatInfo();
             close();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
