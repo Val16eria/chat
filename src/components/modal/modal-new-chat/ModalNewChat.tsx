@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
 import { CHAT_RESULT_TYPE, postChat } from '../../../shared/api/chat';
-import { AppContext } from '../../../pages/chat-users/ChatUsers';
+import { ChatContext } from '../../../pages/chat-users/ChatUsers';
 
 import DataPage from '../../form-data';
 
@@ -26,7 +26,7 @@ interface IModalChat extends HTMLAttributes<HTMLInputElement> {
 
 const ModalNewChat: FC<IModalChat> = ({close}) => {
 
-    const { changeChatInfo } = useContext(AppContext);
+    const { changeChatInfo } = useContext(ChatContext);
 
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)

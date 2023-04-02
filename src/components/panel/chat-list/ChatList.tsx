@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { TChat } from '../../../shared/types/type-chat/chat';
 import { CHAT_RESULT_TYPE, postChatToken } from '../../../shared/api/chat';
-import { AppContext } from '../../../pages/chat-users/ChatUsers';
+import { ChatContext } from '../../../pages/chat-users/ChatUsers';
 
 import Avatar from '../../../image/avatar.svg';
 
@@ -16,7 +16,7 @@ const ChatList:FC<IChatUser> = () => {
 
     const navigate = useNavigate();
 
-    const { userInfo, changeChatInfo, search } = useContext(AppContext);
+    const { userInfo, changeChatInfo, search } = useContext(ChatContext);
     const [isActive, setActive] = useState<number>(0);
 
     const onClick = async (item: TChat) => {
@@ -42,7 +42,7 @@ const ChatList:FC<IChatUser> = () => {
                     .map(item => {
                     return (
                         <li key={item.id}>
-                            <NavLink onClick={() => onClick(item)} to={`/chat/${item.id}`}>
+                            <NavLink onClick={() => onClick(item)} to={`/chats/${item.id}`}>
                             <div className={isActive === item.id ? 'list-container active' : 'list-container'}>
                                 <div className='list-user'>
                                     <img src={item.avatar || Avatar} alt='avatar'/>

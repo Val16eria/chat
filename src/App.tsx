@@ -11,6 +11,7 @@ import ChatUsers from './pages/chat-users';
 import ChatContainer from './components/chat-container';
 
 const App: FC = () => {
+
     return (
         <div>
             <Routes>
@@ -20,7 +21,7 @@ const App: FC = () => {
                             path='/'
                             element={<p className='none-text'>Выберите чат чтобы начать общение</p>}
                         />
-                        <Route path='/chat/:id' element={<ChatContainer />} />
+                        <Route path='/chats/:id' element={<ChatContainer />} />
                     </Route>
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/profile-settings' element={<ProfileSettings />} />

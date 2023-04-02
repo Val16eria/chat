@@ -1,14 +1,15 @@
-import React, {FC, useContext} from 'react';
+import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
-import { CHAT_RESULT_TYPE, deleteChatUsers } from '../../../shared/api/chat';
-import { AppContext } from '../../../pages/chat-users/ChatUsers';
+import { CHAT_RESULT_TYPE, deleteChatUsers } from '../../../../shared/api/chat';
 
-import DataPage from '../../form-data';
+import DataPage from '../../../form-data';
+
+import '../ModalActionChat.css';
 
 const schema = yup.object().shape({
     users: yup
@@ -27,8 +28,6 @@ const ModalDeleteUser: FC<IModalDeleteUser> = ({close}) => {
     const { id } = useParams();
     const chatId = Number(id)
 
-    const { changeChatInfo } = useContext(AppContext);
-
     const { register, handleSubmit, setError, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     })
@@ -37,7 +36,6 @@ const ModalDeleteUser: FC<IModalDeleteUser> = ({close}) => {
         const chatData = await deleteChatUsers(data.users, chatId);
 
         if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-            changeChatInfo();
             close();
         }
         if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
@@ -46,7 +44,7 @@ const ModalDeleteUser: FC<IModalDeleteUser> = ({close}) => {
     }
 
     return (
-        <div className='modal-add__container' onClick={close}>
+        <div className='modal-action__container' onClick={close}>
             <DataPage
                 title='Удалить пользователя'
                 btn='Удалить'

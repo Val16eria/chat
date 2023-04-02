@@ -1,4 +1,4 @@
-.popup-add-user {
+.popup-edit-user {
     position: absolute;
 
     top: 0;
@@ -7,7 +7,7 @@
     width: 200%;
 }
 
-.popup-add-user__container {
+.popup-edit-user__container {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
     border-radius: 12px;
 }
 
-.popup-add {
+.popup-edit {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -32,7 +32,7 @@
     align-items: center;
 }
 
-.popup-add-user p {
+.popup-edit-user p {
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;

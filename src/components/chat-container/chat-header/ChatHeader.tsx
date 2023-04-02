@@ -1,24 +1,30 @@
 import React, { FC, useContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import { TChatUsers } from '../../../shared/types/type-chat/chat';
-import { AppContext } from '../../../pages/chat-users/ChatUsers';
+import useChatUsers from '../../../hooks/chat-users/useChatUsers';
+import { IUsersCount } from '../../../shared/types/context/context';
+import { ChatContext } from '../../../pages/chat-users/ChatUsers';
 
-import PopupAddUser from '../../popup/add-user-chat';
+import PopupEditUser from '../../popup/edit-user-chat';
 
 import Avatar from '../../../image/avatar.svg';
 import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
 
-interface IChatHeader {
-    id?: string;
-    dataUsers: TChatUsers[];
-}
+export const UsersCountContext = React.createContext({} as IUsersCount);
 
-const ChatHeader:FC<IChatHeader> = ({dataUsers, id}) => {
+const ChatHeader:FC = () => {
 
-    const { userInfo } = useContext(AppContext);
+    const { id } = useParams();
 
+    const { userInfo } = useContext(ChatContext);
+    const [dataUsers, changeFlag] = useChatUsers(Number(id));
     const [isPopupOpen, setPopupOpen] = useState(false);
+
+    const value: IUsersCount = {
+        dataUsers,
+        changeFlag
+    }
 
     const handleInfo = () => {
         const index = userInfo.map(i => i.id).indexOf(Number(id));
@@ -27,7 +33,10 @@ const ChatHeader:FC<IChatHeader> = ({dataUsers, id}) => {
 
     return (
         <>
-            {isPopupOpen && <PopupAddUser close={() => {setPopupOpen(false)}} />}
+            <UsersCountContext.Provider value={value}>
+                {isPopupOpen && <PopupEditUser close={() => {setPopupOpen(false)}} />}
+            </UsersCountContext.Provider>
+
             <div className='chat-header'>
                 <div className='chat-header__user'>
                     <img src={Avatar} alt='avatar' />
@@ -36,7 +45,9 @@ const ChatHeader:FC<IChatHeader> = ({dataUsers, id}) => {
                         <p>{dataUsers.length} пользовталей(ля)</p>
                     </div>
                 </div>
-                <img src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} />
+                <div className='chat-header__ellipsis'>
+                    <img  src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} />
+                </div>
             </div>
         </>
     );

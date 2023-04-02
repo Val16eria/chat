@@ -1,7 +1,7 @@
-import React, {FC, useContext, useState} from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { AppContext } from '../../../pages/chat-users/ChatUsers';
+import { ChatContext } from '../../../pages/chat-users/ChatUsers';
 
 import CreateChat from '../../../image/createChat.svg';
 import ModalNewChat from '../../modal/modal-new-chat';
@@ -10,7 +10,7 @@ import './Search.css';
 
 const Search: FC = () => {
 
-    const { search, changeSearch } = useContext(AppContext);
+    const { search, changeSearch } = useContext(ChatContext);
     const [isPopupOpen, setPopupOpen] = useState(false);
 
     return (

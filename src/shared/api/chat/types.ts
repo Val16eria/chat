@@ -13,8 +13,9 @@ export interface IToken {
     token: string;
 }
 
-export interface IAddUser {
+export interface IEditChat {
     users: number[]
+    chatId: number
 }
 
 export interface IChatUser {

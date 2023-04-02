@@ -2,7 +2,7 @@ import {
     BadResponse,
     CHAT_RESULT_TYPE,
     ChatResult,
-    IAddUser,
+    IEditChat,
     IChat,
     IChatUser,
     IToken
@@ -16,6 +16,22 @@ export const postChat = async (dto: {
         const chatData = await api.post<IChat>('/chats', {
             ...dto
         });
+        return {
+            type: CHAT_RESULT_TYPE.SUCCESS,
+            data: chatData.data,
+        };
+    } catch (e: unknown) {
+        const error = e as BadResponse;
+        return {
+            type: CHAT_RESULT_TYPE.FAILURE,
+            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
+        };
+    }
+}
+
+export const deleteChat = async (chatId: number): Promise<ChatResult<IEditChat>> => {
+    try {
+        const chatData = await api.delete<IEditChat>('/chats', {data: {chatId: chatId}});
         return {
             type: CHAT_RESULT_TYPE.SUCCESS,
             data: chatData.data,
@@ -63,9 +79,9 @@ export const postChatToken = async (token: string, id: number): Promise<ChatResu
     }
 }
 
-export const putAddUsers = async (users: number, chatId: number): Promise<ChatResult<IAddUser>> => {
+export const putAddUsers = async (users: number, chatId: number): Promise<ChatResult<IEditChat>> => {
     try {
-        const chatData = await api.put<IAddUser>('/chats/users', {
+        const chatData = await api.put<IEditChat>('/chats/users', {
             users: [
                 users
             ], chatId: chatId
@@ -83,9 +99,9 @@ export const putAddUsers = async (users: number, chatId: number): Promise<ChatRe
     }
 }
 
-export const deleteChatUsers = async (users: number, chatId: number): Promise<ChatResult<IAddUser>> => {
+export const deleteChatUsers = async (users: number, chatId: number): Promise<ChatResult<IEditChat>> => {
     try {
-        const chatData = await api.delete<IAddUser>('/chats/users', {data: {
+        const chatData = await api.delete<IEditChat>('/chats/users', {data: {
             users: [
                 users
             ], chatId: chatId
