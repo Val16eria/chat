@@ -1,18 +1,47 @@
-import React, { FC} from 'react';
+import React, { FC, useContext, useEffect } from 'react';
+import { UsersCountContext } from '../ChatContainer';
+
+import { connectWebSocketAPI } from '../../../api/webSocket';
+import { postChatToken } from '../../../shared/api/chat';
+import { useParams } from 'react-router-dom';
+
 import './ChatMain.css';
 
 const ChatMain: FC = () => {
 
-    // const onClick = async () => {
-    //     const chatData = await postMessages(Number(id));
-    //
-    //     if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-    //         console.log('работает')
-    //     }
-    //     if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
-    //         console.log('проблемки')
-    //     }
-    // }
+    const { id } = useParams();
+    const { dataUsers } = useContext(UsersCountContext);
+    let state = dataUsers;
+
+    const handleState = () => {
+        return state = dataUsers;
+    }
+
+    useEffect(() => {
+        const initData = async () => {
+
+            const tokenResponse = await postChatToken('', Number(id));
+
+            const socket = connectWebSocketAPI(
+                Number(handleState().pop()?.id),
+                Number(id),
+                String(Object.entries(tokenResponse.data).map(i => i.pop())));
+
+            socket.addEventListener('open', () => {
+                socket.send(
+                    JSON.stringify({
+                        content: '0',
+                        type: 'get old'
+                    })
+                );
+            });
+
+            socket?.addEventListener('message', (event) => {
+                console.log('message', event.data)
+            });
+        };
+        initData();
+    }, [state])
 
     return (
         <div className='chat-main'>

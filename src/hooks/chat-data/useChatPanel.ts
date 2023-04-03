@@ -7,12 +7,9 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
 
     const [panelUserInfo, setPanelUserInfo] = useState<TChat[]>([]);
     const [changePanel, setChangePanel] = useState(true);
-
-    // поиск по чатам
     const [search, setSearch] = useState('');
 
     useEffect(() => {
-
         const handlePanelInfo = async () => {
             // передаю сюда квери
             const panelInfo = await getChat(search);

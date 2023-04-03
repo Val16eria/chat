@@ -61,7 +61,7 @@ export const getChat = async (dto: string): Promise<ChatResult<IChat[]>> => {
     }
 }
 
-export const postChatToken = async (token: string, id: number): Promise<ChatResult<IToken>> => {
+export const postChatToken = async (token: string, id: number | undefined): Promise<ChatResult<IToken>> => {
     try {
         const chatData = await api.post<IToken>(`/chats/token/${id}`, {
             token

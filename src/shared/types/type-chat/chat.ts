@@ -18,3 +18,9 @@ export type TChatUsers = {
     phone: string;
     role: string;
 }
+
+export type ConnectSocketDataType = {
+    userId: number;
+    chatId: number;
+    token: string;
+}

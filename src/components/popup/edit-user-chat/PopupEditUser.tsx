@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { CHAT_RESULT_TYPE, deleteChat } from '../../../shared/api/chat';
 import { ChatContext } from '../../../pages/chat-users/ChatUsers';
-import { UsersCountContext } from '../../chat-container/chat-header/ChatHeader';
+
 
 import ModalAddUser from '../../modal/modal-action-chat/modal-add-user';
 import ModalDeleteUser from '../../modal/modal-action-chat/modal-delete-user';
@@ -12,6 +12,7 @@ import Add from '../../../image/add.svg';
 import Delete from '../../../image/delete.svg';
 import DeleteChat from '../../../image/delete-chat.svg';
 import './PopupEditUser.css';
+import { UsersCountContext } from '../../chat-container/ChatContainer';
 
 
 interface IPopupAddUser {
