@@ -2,31 +2,23 @@ import React, { FC, useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ChatContext } from '../../../pages/chat-users/ChatUsers';
+import { TChatUsers } from '../../../shared/types/type-chat/chat';
 
 import PopupEditUser from '../../popup/edit-user-chat';
 
 import Avatar from '../../../image/avatar.svg';
 import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
-import {UsersCountContext} from "../ChatContainer";
 
-// export const UsersCountContext = React.createContext({} as IUsersCount);
+interface IChatHeader {
+    dataUsers: TChatUsers[]
+}
 
-const ChatHeader:FC = () => {
+const ChatHeader:FC<IChatHeader> = ({dataUsers}) => {
 
     const { id } = useParams();
-
     const { userInfo } = useContext(ChatContext);
-    const { dataUsers, changeFlag } = useContext(UsersCountContext);
-
-    // const [dataUsers, changeFlag] = useChatUsers(Number(id));
-
     const [isPopupOpen, setPopupOpen] = useState(false);
-
-    // const value: IUsersCount = {
-    //     dataUsers,
-    //     changeFlag
-    // }
 
     const handleInfo = () => {
         const index = userInfo.map(i => i.id).indexOf(Number(id));
@@ -35,9 +27,7 @@ const ChatHeader:FC = () => {
 
     return (
         <>
-            {/*<UsersCountContext.Provider value={value}>*/}
-                {isPopupOpen && <PopupEditUser close={() => {setPopupOpen(false)}} />}
-            {/*</UsersCountContext.Provider>*/}
+            {isPopupOpen && <PopupEditUser close={() => {setPopupOpen(false)}} />}
 
             <div className='chat-header'>
                 <div className='chat-header__user'>
