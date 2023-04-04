@@ -1,26 +1,25 @@
-import React, {FC, useContext} from 'react';
-import { useParams } from 'react-router-dom';
-
-import useInitData from '../../../hooks/chat-token/useInitData';
-import { ChatContext } from '../../../pages/chat-users/ChatUsers';
+import React, { FC } from 'react';
 
 import './ChatMain.css';
+import {TGetMessage, TSendMessage} from "../../../shared/types/type-chat/chat";
+import Message from "./message";
 
-const ChatMain: FC = () => {
+interface IChatMain {
+    getMessage: TGetMessage[],
+    sendMessage: TSendMessage[]
+}
 
-    const { id } = useParams();
-    const { userInfo } = useContext(ChatContext);
-    const [] = useInitData(Number(id), 'hello', userInfo);
+const ChatMain: FC<IChatMain> = ({getMessage, sendMessage}) => {
 
     return (
-        <div className='chat-main'>
-            <div className='chat-main__date'>
-                <p>19 июня</p>
+        <>
+            <div className='chat-main'>
+                <div className='chat-main__date'>
+                    <p>19 июня</p>
+                </div>
+                <Message getMessage={getMessage} sendMessage={sendMessage}/>
             </div>
-            <div className='chat-main__messages'>
-                <p>Chat</p>
-            </div>
-        </div>
+        </>
     );
 }
 

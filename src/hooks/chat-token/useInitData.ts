@@ -1,10 +1,17 @@
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { postChatToken } from '../../shared/api/chat';
 import { connectWebSocketAPI } from '../../api/webSocket';
 import { getUsers } from '../../shared/api/auth';
-import { TChat } from '../../shared/types/type-chat/chat';
+import { TChat, TGetMessage, TSendMessage } from '../../shared/types/type-chat/chat';
 
-const useInitData = (id: number, message2: string, userInfo: TChat[]): [] => {
+const useInitData = (
+    id: number,
+    message2: string,
+    userInfo: TChat[]):
+    [TGetMessage[], TSendMessage[]] => {
+
+    const [getMessage, setGetMessage] = useState<TGetMessage[]>([]);
+    const [sendMessage, setSendMessage] = useState<TSendMessage[]>([]);
 
     useEffect(() => {
         const initData = async () => {
@@ -17,18 +24,21 @@ const useInitData = (id: number, message2: string, userInfo: TChat[]): [] => {
                 Object.entries(tokenResponse.data)[0].pop());
 
             socket.addEventListener('open', () => {
-                socket.send(
-                    JSON.stringify({
-                        content: '0',
-                        type: 'get old'
-                    })
-                );
-                // sendMessage(message2)
-                // getMessage()
+                if (socket.readyState === 1) {
+                    // sendMessage(message2);
+                    // getMessage();
+                }
+                else {
+                    socket.send(
+                        JSON.stringify({
+                            content: '0',
+                            type: 'get old'
+                        })
+                    );
+                }
             });
 
             const sendMessage = (message: string) => {
-                console.log('сообщение отправлено')
                 socket.send(
                     JSON.stringify({
                         content: message,
@@ -38,19 +48,22 @@ const useInitData = (id: number, message2: string, userInfo: TChat[]): [] => {
             }
 
             const getMessage = () => {
-                console.log('сообщение получено')
                 const chat = Array.isArray(userInfo) &&
                 userInfo.find((chat) => chat.id === id);
+                console.log('сообщение получено', chat)
             }
 
             socket?.addEventListener('message', (event) => {
-                console.log('message', event.data)
+                console.log('message', event.data);
+                setSendMessage(event.data)
             });
         };
         initData();
     }, [id])
 
-    return [];
+    console.log('getMessage', getMessage);
+    console.log('sendMessage', sendMessage);
+    return [getMessage, sendMessage];
 }
 
 export default useInitData;
