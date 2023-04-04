@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { postChatToken } from '../../shared/api/chat';
 import { connectWebSocketAPI } from '../../api/webSocket';
 import { getUsers } from '../../shared/api/auth';
-import {TChat} from "../../shared/types/type-chat/chat";
+import { TChat } from '../../shared/types/type-chat/chat';
 
 const useInitData = (id: number, message2: string, userInfo: TChat[]): [] => {
 
@@ -48,7 +48,7 @@ const useInitData = (id: number, message2: string, userInfo: TChat[]): [] => {
             });
         };
         initData();
-    }, [])
+    }, [id])
 
     return [];
 }

@@ -9,6 +9,7 @@ import ProfileSettings from './pages/profile-settings';
 import ProfilePassword from './pages/profile-password';
 import ChatUsers from './pages/chat-users';
 import ChatContainer from './components/chat-container';
+import NotFound from "./pages/errors/404";
 
 const App: FC = () => {
 
@@ -29,6 +30,7 @@ const App: FC = () => {
                 </Route>
                 <Route path='/auth/login' element={<LoginForm />} />
                 <Route path='/auth/reg' element={<RegForm />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </div>
   );
