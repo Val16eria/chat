@@ -1,17 +1,24 @@
+.message {
+    display: flex;
+    justify-content: end;
+}
 
 .message__container {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-
+    gap: 10px;
     max-width: 402px;
     border-radius: 10px;
     padding: 11px;
     background: #F8F8F8;
+    min-width: 220px;
 }
 
 .message__name {
-
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #3369F3;
 }
 
 .message__content {

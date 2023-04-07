@@ -1,7 +1,5 @@
-import React, { FC, useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {FC, useContext, useState} from 'react';
 
-import { ChatContext } from '../../../pages/chat-users/ChatUsers';
 import { TChatUsers } from '../../../shared/types/type-chat/chat';
 
 import PopupEditUser from '../../popup/edit-user-chat';
@@ -9,6 +7,7 @@ import PopupEditUser from '../../popup/edit-user-chat';
 import Avatar from '../../../image/avatar.svg';
 import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
+import {ChatContext} from "../../../pages/chat-users/ChatUsers";
 
 interface IChatHeader {
     dataUsers: TChatUsers[]
@@ -16,14 +15,8 @@ interface IChatHeader {
 
 const ChatHeader:FC<IChatHeader> = ({dataUsers}) => {
 
-    const { id } = useParams();
-    const { userInfo } = useContext(ChatContext);
     const [isPopupOpen, setPopupOpen] = useState(false);
-
-    const handleInfo = () => {
-        const index = userInfo.map(i => i.id).indexOf(Number(id));
-        return userInfo[index];
-    }
+    const { handleInfo } = useContext(ChatContext);
 
     return (
         <>

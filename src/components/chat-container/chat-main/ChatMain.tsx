@@ -1,24 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
+
+import { ChatContext } from '../../../pages/chat-users/ChatUsers';
+
+import Message from './message';
 
 import './ChatMain.css';
-import {TGetMessage, TSendMessage} from "../../../shared/types/type-chat/chat";
-import Message from "./message";
 
-interface IChatMain {
-    getMessage: TGetMessage[],
-    sendMessage: TSendMessage[]
-}
+const ChatMain: FC = () => {
 
-const ChatMain: FC<IChatMain> = ({getMessage, sendMessage}) => {
+    const { handleInfo } = useContext(ChatContext);
 
     return (
         <>
-            <div className='chat-main'>
-                <div className='chat-main__date'>
-                    <p>19 июня</p>
+            {handleInfo()?.last_message?.content === '' ? <p className='empty-chat'>Начните общение</p> :
+                <div className='chat-main'>
+                    <div className='chat-main__date'>
+                        <p>19 июня</p>
+                    </div>
+                    {handleInfo()?.last_message?.content !== '' ? <Message /> : ''}
                 </div>
-                <Message getMessage={getMessage} sendMessage={sendMessage}/>
-            </div>
+            }
         </>
     );
 }

@@ -40,22 +40,25 @@ const ChatList:FC<IChatUser> = () => {
                     .toLowerCase()
                     .includes(search.toLowerCase()))
                     .map(item => {
+                        console.log(item);
                     return (
                         <li key={item.id}>
                             <NavLink onClick={() => onClick(item)} to={`/chats/${item.id}`}>
-                            <div className={isActive === item.id ? 'list-container active' : 'list-container'}>
-                                <div className='list-user'>
-                                    <img src={item.avatar || Avatar} alt='avatar'/>
-                                    <div className='list-user__name'>
-                                        <p>{item.title}</p>
-                                        <p>{item.last_message}</p>
+                                <div className={isActive === item.id ? 'list-container active' : 'list-container'}>
+                                    <div className='list-user'>
+                                        <img src={item.avatar || Avatar} alt='avatar'/>
+                                        <div className='list-user__name'>
+                                            <p>{item.title}</p>
+                                            {/* или getMessage */}
+                                            <p>{item.last_message?.content}</p>
+                                        </div>
+                                    </div>
+                                    <div className='list-user__time'>
+                                        {/* или getMessage */}
+                                        <p>{item.last_message?.time}</p>
+                                        {item.unread_count ? <p>{item.unread_count}</p> : ''}
                                     </div>
                                 </div>
-                                <div className='list-user__time'>
-                                    <p>12:51</p>
-                                    {item.unread_count ? <p>{item.unread_count}</p> : ''}
-                                </div>
-                            </div>
                             </NavLink>
                         </li>
                     );

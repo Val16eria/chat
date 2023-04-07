@@ -1,11 +1,8 @@
-import React, {FC, useContext} from 'react';
+import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 
 import useChatUsers from '../../hooks/chat-users/useChatUsers';
 import { IUsersCount } from '../../shared/types/context/context';
-
-import { ChatContext } from '../../pages/chat-users/ChatUsers';
-import useInitData from '../../hooks/chat-token/useInitData';
 
 import ChatHeader from './chat-header';
 import ChatFooter from './chat-footer';
@@ -18,8 +15,6 @@ export const UsersCountContext = React.createContext({} as IUsersCount);
 const ChatContainer: FC = () => {
 
     const { id } = useParams();
-    const { userInfo } = useContext(ChatContext);
-    const [getMessage, sendMessage] = useInitData(Number(id), 'hello', userInfo);
 
     const [dataUsers, changeFlag] = useChatUsers(Number(id));
 
@@ -31,8 +26,8 @@ const ChatContainer: FC = () => {
     return (
         <div className='chat-container'>
             <UsersCountContext.Provider value={value}>
-                <ChatHeader dataUsers={dataUsers}/>
-                <ChatMain getMessage={getMessage} sendMessage={sendMessage}/>
+                <ChatHeader dataUsers={dataUsers} />
+                <ChatMain />
                 <ChatFooter />
             </UsersCountContext.Provider>
         </div>

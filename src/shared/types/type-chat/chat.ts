@@ -4,7 +4,22 @@ export type TChat = {
     avatar?: string;
     created_by: number;
     unread_count: number;
-    last_message?: string;
+    last_message?: TLastMessage;
+}
+
+export type TLastMessage = {
+    user: TUserChat;
+    time: string;
+    content: string;
+}
+
+export type TUserChat = {
+    first_name: string;
+    second_name: string;
+    avatar: string;
+    email: string;
+    login: string;
+    phone: string;
 }
 
 export type TChatUsers = {

@@ -6,7 +6,22 @@ export interface IChat {
     avatar?: string;
     created_by: number;
     unread_count: number;
-    last_message?: string;
+    last_message?: ILastMessage;
+}
+
+export interface ILastMessage {
+    user: IUserChat;
+    time: string;
+    content: string;
+}
+
+export interface IUserChat {
+    first_name: string;
+    second_name: string;
+    avatar: string;
+    email: string;
+    login: string;
+    phone: string;
 }
 
 export interface IToken {

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { postChatToken } from '../../shared/api/chat';
 import { connectWebSocketAPI } from '../../api/webSocket';
 import { getUsers } from '../../shared/api/auth';
@@ -6,12 +6,16 @@ import { TChat, TGetMessage, TSendMessage } from '../../shared/types/type-chat/c
 
 const useInitData = (
     id: number,
-    message2: string,
-    userInfo: TChat[]):
-    [TGetMessage[], TSendMessage[]] => {
+    userInfo: TChat[],
+    message2: string ):
+    [TGetMessage[], TSendMessage, (() => void)] => {
 
     const [getMessage, setGetMessage] = useState<TGetMessage[]>([]);
-    const [sendMessage, setSendMessage] = useState<TSendMessage[]>([]);
+    const [sendMessage, setSendMessage] = useState<TSendMessage>({} as TSendMessage);
+
+    const [flag, setFlag] = useState<boolean>(false);
+
+    console.log('msg from initData', message2);
 
     useEffect(() => {
         const initData = async () => {
@@ -24,18 +28,14 @@ const useInitData = (
                 Object.entries(tokenResponse.data)[0].pop());
 
             socket.addEventListener('open', () => {
-                if (socket.readyState === 1) {
-                    // sendMessage(message2);
-                    // getMessage();
-                }
-                else {
-                    socket.send(
-                        JSON.stringify({
-                            content: '0',
-                            type: 'get old'
-                        })
-                    );
-                }
+                socket.send(
+                    JSON.stringify({
+                        content: '0',
+                        type: 'get old'
+                    })
+                );
+                sendMessage(message2);
+                getMessage();
             });
 
             const sendMessage = (message: string) => {
@@ -45,25 +45,37 @@ const useInitData = (
                         type: 'message'
                     })
                 );
+                console.log('сообщение отправлено')
             }
 
             const getMessage = () => {
                 const chat = Array.isArray(userInfo) &&
                 userInfo.find((chat) => chat.id === id);
-                console.log('сообщение получено', chat)
+                console.log('сообщение получено');
             }
 
             socket?.addEventListener('message', (event) => {
-                console.log('message', event.data);
-                setSendMessage(event.data)
+                const value = Array(JSON.parse(event.data))[0];
+                console.log('value', value);
+
+                if (Array.isArray(value))
+                    setGetMessage(value);
+                else
+                    setSendMessage(value)
             });
         };
         initData();
-    }, [id])
+    }, [flag])
+
+
+    const handleFlag = () => {
+        setFlag(prevState => !prevState);
+    }
 
     console.log('getMessage', getMessage);
     console.log('sendMessage', sendMessage);
-    return [getMessage, sendMessage];
+
+    return [getMessage, sendMessage, handleFlag];
 }
 
 export default useInitData;

@@ -14,3 +14,16 @@
     text-align: center;
     color: #999999;
 }
+
+.empty-chat {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    color: #999999;
+}
