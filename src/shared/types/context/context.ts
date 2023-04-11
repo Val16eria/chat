@@ -18,5 +18,6 @@ export interface IMessageContext {
     getMessage: TGetMessage[],
     sendMessage: TSendMessage,
     handleFlag: () => void,
+    userId: number,
     handleSendMsg: (msg: any) => any
 }

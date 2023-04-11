@@ -8,19 +8,20 @@ const useInitData = (
     id: number,
     userInfo: TChat[],
     message2: string ):
-    [TGetMessage[], TSendMessage, (() => void)] => {
+    [TGetMessage[], TSendMessage, (() => void), number] => {
 
     const [getMessage, setGetMessage] = useState<TGetMessage[]>([]);
     const [sendMessage, setSendMessage] = useState<TSendMessage>({} as TSendMessage);
 
-    const [flag, setFlag] = useState<boolean>(false);
-
-    console.log('msg from initData', message2);
+    const [isFlag, setFlag] = useState<boolean>(false);
+    const [userId, setUserId] = useState(0);
 
     useEffect(() => {
         const initData = async () => {
             const tokenResponse = await postChatToken('', id);
             const userId = await getUsers();
+
+            setUserId(Object.entries(userId.data)[0].pop());
 
             const socket = connectWebSocketAPI(
                 Object.entries(userId.data)[0].pop(),
@@ -56,7 +57,6 @@ const useInitData = (
 
             socket?.addEventListener('message', (event) => {
                 const value = Array(JSON.parse(event.data))[0];
-                console.log('value', value);
 
                 if (Array.isArray(value))
                     setGetMessage(value);
@@ -65,17 +65,17 @@ const useInitData = (
             });
         };
         initData();
-    }, [flag])
+    }, [isFlag]) // сюда не добавлять id!!!
 
 
     const handleFlag = () => {
         setFlag(prevState => !prevState);
     }
 
-    console.log('getMessage', getMessage);
-    console.log('sendMessage', sendMessage);
+    // console.log('getMessage', getMessage);
+    // console.log('sendMessage', sendMessage);
 
-    return [getMessage, sendMessage, handleFlag];
+    return [getMessage, sendMessage, handleFlag, userId];
 }
 
 export default useInitData;

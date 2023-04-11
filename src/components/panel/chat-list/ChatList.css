@@ -50,16 +50,20 @@
 }
 
 .list-user__name p:nth-child(2) {
+    overflow: hidden;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-
     color: #999999;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 135px;
 }
 
 .list-user__time {
     display: flex;
     flex-direction: column;
+    align-items: end;
     gap: 14px;
 }
 

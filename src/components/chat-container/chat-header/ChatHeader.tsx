@@ -1,22 +1,23 @@
 import React, {FC, useContext, useState} from 'react';
 
-import { TChatUsers } from '../../../shared/types/type-chat/chat';
+import { ChatContext, MessageContext } from '../../../pages/chat-users/ChatUsers';
+import { UsersCountContext } from '../ChatContainer';
 
 import PopupEditUser from '../../popup/edit-user-chat';
 
 import Avatar from '../../../image/avatar.svg';
 import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
-import {ChatContext} from "../../../pages/chat-users/ChatUsers";
 
-interface IChatHeader {
-    dataUsers: TChatUsers[]
-}
 
-const ChatHeader:FC<IChatHeader> = ({dataUsers}) => {
+const ChatHeader:FC = () => {
 
     const [isPopupOpen, setPopupOpen] = useState(false);
+    const { userId } = useContext(MessageContext);
+    const { dataUsers } = useContext(UsersCountContext);
     const { handleInfo } = useContext(ChatContext);
+
+    console.log(dataUsers);
 
     return (
         <>
@@ -31,7 +32,8 @@ const ChatHeader:FC<IChatHeader> = ({dataUsers}) => {
                     </div>
                 </div>
                 <div className='chat-header__ellipsis'>
-                    <img  src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} />
+                    {userId == handleInfo()?.created_by ?
+                        <img  src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} /> : ''}
                 </div>
             </div>
         </>

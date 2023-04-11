@@ -26,7 +26,7 @@ const ChatContainer: FC = () => {
     return (
         <div className='chat-container'>
             <UsersCountContext.Provider value={value}>
-                <ChatHeader dataUsers={dataUsers} />
+                <ChatHeader />
                 <ChatMain />
                 <ChatFooter />
             </UsersCountContext.Provider>

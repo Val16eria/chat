@@ -28,12 +28,15 @@
     color: white;
 }
 
-.chat-footer__typing input {
+.chat-footer__typing textarea {
     min-width: 849px;
+    box-sizing: border-box;
     min-height: 32px;
     width: 100%;
+    max-height: 100px;
     height: 100%;
 
+    resize: none;
     border: none;
     outline: none;
     text-align: left;
@@ -43,7 +46,7 @@
     padding-left: 15px;
 }
 
-.chat-footer__typing input::placeholder {
+.chat-footer__typing textarea::placeholder {
     padding: 10px 729px 10px 20px;
     font-weight: 500;
     font-size: 12px;

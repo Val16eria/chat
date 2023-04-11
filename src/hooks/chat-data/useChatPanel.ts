@@ -20,7 +20,7 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
         }
 
         handlePanelInfo();
-    }, [changePanel, panelUserInfo]);
+    }, [changePanel, panelUserInfo]); // panelUserInfo
 
     const changeChatInfo = () => {
         setChangePanel(prevState => !prevState)
@@ -30,6 +30,7 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
         setSearch(e.target.value)
     }
 
+    console.log('change', changePanel);
     return [panelUserInfo, changeChatInfo, search, changeSearch];
 }
 

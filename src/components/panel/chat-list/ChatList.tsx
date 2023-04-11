@@ -40,7 +40,6 @@ const ChatList:FC<IChatUser> = () => {
                     .toLowerCase()
                     .includes(search.toLowerCase()))
                     .map(item => {
-                        console.log(item);
                     return (
                         <li key={item.id}>
                             <NavLink onClick={() => onClick(item)} to={`/chats/${item.id}`}>

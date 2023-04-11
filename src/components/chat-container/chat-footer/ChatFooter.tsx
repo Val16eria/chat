@@ -11,7 +11,7 @@ const ChatFooter: FC = () => {
     const { handleSendMsg, handleFlag } = useContext(MessageContext);
     const { changeChatInfo } = useContext(ChatContext);
 
-    const [msg, setMsg] = useState<any>('');
+    const [msg, setMsg] = useState<string>('');
 
     const sendChat = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,8 +38,7 @@ const ChatFooter: FC = () => {
                 />
             </div>
             <div className='chat-footer__typing'>
-                <input
-                    type='text'
+                <textarea
                     value={msg}
                     onChange={(e) => setMsg(e.target.value)}
                     placeholder='Сообщение'

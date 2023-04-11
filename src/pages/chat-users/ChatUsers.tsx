@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
 import useChatPanel from '../../hooks/chat-data/useChatPanel';
@@ -18,9 +18,9 @@ const ChatUsers: FC = () => {
     const [messag, setMessag] = useState('');
 
     const handleSendMsg = (msg: any) => {
-        console.log('это msg', msg);
         setMessag(msg);
     }
+
 
     const handleInfo = () => {
         const index = userInfo.map(i => i.id).indexOf(Number(id));
@@ -30,12 +30,13 @@ const ChatUsers: FC = () => {
     const { id } = useParams();
 
     const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
-    const [getMessage, sendMessage, handleFlag] = useInitData(Number(id), userInfo, messag);
+    const [getMessage, sendMessage, handleFlag, userId] = useInitData(Number(id), userInfo, messag);
 
     const message:IMessageContext = {
         getMessage,
         sendMessage,
         handleFlag,
+        userId,
         handleSendMsg
     }
 
@@ -46,6 +47,10 @@ const ChatUsers: FC = () => {
         changeSearch,
         handleInfo // информация о пользователе при выбранном чате
     }
+
+    useEffect(() => {
+        changeChatInfo();
+    }, [])
 
     return (
         <ChatContext.Provider value={value}>
