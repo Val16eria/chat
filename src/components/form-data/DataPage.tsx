@@ -4,9 +4,9 @@ import Button from '../button';
 import LinkPage from '../link-page';
 import Title from '../title/Title';
 
-import './AuthForm.css';
+import './DataPage.css';
 
-interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
+interface IDataForm extends HTMLAttributes<HTMLFormElement>{
     title: string;
     btn: string;
     linkText?: string;
@@ -14,7 +14,7 @@ interface IAuthForm extends HTMLAttributes<HTMLFormElement>{
     error?:  string;
 }
 
-const AuthForm: FC<IAuthForm> = (
+const DataPage: FC<IDataForm> = (
     {
         title,
         btn,
@@ -27,12 +27,12 @@ const AuthForm: FC<IAuthForm> = (
     const {children} = rest;
 
     return (
-        <form className='auth-form' {...rest} >
+        <form className='form-data' {...rest} >
             <Title title={title} />
-            <div className={'auth-form__container'}>
+            <div className={'form-data__container'}>
                 {children}
             </div>
-            <div className='auth-form__actions'>
+            <div className='form-data__actions'>
                 <Button btn={btn} />
                 <LinkPage linkUrl={linkUrl} linkText={linkText}/>
                 <p className='error-modal'>{error}</p>
@@ -41,4 +41,4 @@ const AuthForm: FC<IAuthForm> = (
     );
 }
 
-export default AuthForm;
+export default DataPage;

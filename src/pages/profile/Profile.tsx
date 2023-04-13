@@ -62,7 +62,6 @@ const Profile: FC = () => {
                     </div>
                     : <Loader/>
             }
-
         </div>
     );
 }

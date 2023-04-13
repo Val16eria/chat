@@ -1,4 +1,4 @@
-.auth-form {
+.form-data {
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -16,27 +16,27 @@
     border-radius: 12px;
 }
 
-.auth-form__title {
+.form-data__title {
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
 }
 
-.auth-form__container {
+.form-data__container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
 }
 
-.auth-form__actions {
+.form-data__actions {
     display: flex;
     flex-direction: column;
     gap: 10px;
     text-align: center;
 }
 
-.auth-form__actions a {
+.form-data__actions a {
     color: #3369F3;
 }
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, InputHTMLAttributes} from 'react';
+import React, { forwardRef, InputHTMLAttributes } from 'react';
 import './InputInfo.css';
 
 interface IInputInfo extends InputHTMLAttributes<HTMLInputElement> {
@@ -17,9 +17,7 @@ const InputInfo = forwardRef<HTMLInputElement, IInputInfo>((
         <>
             <div className='inputInfo-container' >
                 <div>
-                    <label>
-                        {title}
-                    </label>
+                    <label>{title}</label>
                     <p className='error-valid'>{error}</p>
                 </div>
                 <div>

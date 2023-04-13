@@ -49,8 +49,7 @@ const ProfilePassword: FC = () => {
         const usersPassword = await putPassword(data);
 
         if (usersPassword.type === USER_RESULT_TYPE.SUCCESS) {
-            navigate('/');
-            alert('Пароль успешно изменен')
+            navigate('/profile');
         }
         if (usersPassword.type === USER_RESULT_TYPE.FAILURE) {
             setError('oldPassword', {type: 'custom', message: usersPassword.data})

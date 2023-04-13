@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { postSignUp, USER_RESULT_TYPE } from '../../shared/api/auth';
 
 import InputValue from '../../components/input/InputValue';
-import AuthForm from '../../components/auth-form/AuthForm';
+import DataPage from '../../components/form-data';
 
 const schema = yup.object({
     email: yup
@@ -60,7 +60,7 @@ const RegForm: FC = () => {
     }
 
     return (
-        <AuthForm
+        <DataPage
             title='Регистрация'
             btn='Зарегистрироваться'
             linkText='Войти'
@@ -109,7 +109,7 @@ const RegForm: FC = () => {
                 register={{...register('confirmPassword')}}
                 error={errors.confirmPassword?.message ?? ''}
             />
-        </AuthForm>
+        </DataPage>
     );
 }
 

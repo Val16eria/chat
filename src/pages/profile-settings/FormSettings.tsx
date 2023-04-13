@@ -5,7 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { putUsers, USER_RESULT_TYPE } from '../../shared/api/users';
 import * as yup from 'yup';
 
-import { TUser } from '../../hooks/user-data/useProfile';
+import { TUser } from '../../shared/types/type-profile/profile';
+
 import Avatar from '../../components/avatar';
 import InputInfo from '../../components/inputInfo';
 import Button from '../../components/button';
@@ -58,14 +59,13 @@ const FormSettings: FC<IUser> = ({homeUserInfo}) => {
         const usersData = await putUsers(data);
 
         if (usersData.type === USER_RESULT_TYPE.SUCCESS) {
-            navigate('/');
+            navigate('/profile');
         }
         if (usersData.type === USER_RESULT_TYPE.FAILURE) {
             setError('email', {type: 'custom', message: usersData.data})
         }
     }
 
-    console.log(errors);
     return (
         <form className='profile-container__settings' onSubmit={handleSubmit(onSubmit)}>
             <Avatar avatar={homeUserInfo.avatar} />
