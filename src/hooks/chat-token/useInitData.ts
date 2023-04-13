@@ -65,15 +65,12 @@ const useInitData = (
             });
         };
         initData();
-    }, [isFlag]) // сюда не добавлять id!!!
+    }, [isFlag])
 
 
     const handleFlag = () => {
         setFlag(prevState => !prevState);
     }
-
-    // console.log('getMessage', getMessage);
-    // console.log('sendMessage', sendMessage);
 
     return [getMessage, sendMessage, handleFlag, userId];
 }

@@ -1,4 +1,4 @@
-import React, {FC, useContext, useState} from 'react';
+import React, { FC, useContext, useState } from 'react';
 
 import { ChatContext, MessageContext } from '../../../pages/chat-users/ChatUsers';
 import { UsersCountContext } from '../ChatContainer';

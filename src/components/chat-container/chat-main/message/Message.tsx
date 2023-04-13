@@ -11,14 +11,14 @@ const Message: FC = () => {
     const { sendMessage, getMessage, userId } = useContext(MessageContext);
     const { handleInfo } = useContext(ChatContext);
 
-    console.log('информация1', handleInfo());
-    console.log('информация2', sendMessage);
+    console.log('handleInfo', handleInfo());
+    console.log('sendMessage', sendMessage);
+    console.log('getMessage', getMessage);
 
     return (
         <>
             {[sendMessage].map(item => {
                 return (
-                    // возможно нормально не работет из-за замены сообщения
                     <ul key={item.id} className={item.user_id == userId ? 'message-send' : 'message-get'}>
                         <li key={item.id} className='message__container'>
                             <p className='message__name'>{handleInfo()?.last_message?.user?.first_name}</p>

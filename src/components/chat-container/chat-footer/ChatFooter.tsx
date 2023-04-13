@@ -41,7 +41,7 @@ const ChatFooter: FC = () => {
                 <textarea
                     value={msg}
                     onChange={(e) => setMsg(e.target.value)}
-                    placeholder='Сообщение'
+                    placeholder='Сообщение...'
                 />
             </div>
             <div className='chat-footer__send'>

@@ -11,7 +11,6 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
 
     useEffect(() => {
         const handlePanelInfo = async () => {
-            // передаю сюда квери
             const panelInfo = await getChat(search);
 
             if (panelInfo.type === CHAT_RESULT_TYPE.SUCCESS) {
@@ -20,7 +19,7 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
         }
 
         handlePanelInfo();
-    }, [changePanel, panelUserInfo]); // panelUserInfo
+    }, [changePanel]); // panelUserInfo
 
     const changeChatInfo = () => {
         setChangePanel(prevState => !prevState)

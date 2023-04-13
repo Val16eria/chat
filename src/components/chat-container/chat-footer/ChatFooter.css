@@ -29,25 +29,28 @@
 }
 
 .chat-footer__typing textarea {
+    display: flex;
+
     min-width: 849px;
-    box-sizing: border-box;
     min-height: 32px;
-    width: 100%;
     max-height: 100px;
+    width: 100%;
     height: 100%;
 
+    box-sizing: border-box;
     resize: none;
     border: none;
     outline: none;
-    text-align: left;
-    background: #EFEFEF;
-    border-radius: 30px;
 
-    padding-left: 15px;
+    text-align: left;
+    border-radius: 30px;
+    padding-top: 10px;
+    padding-left: 30px;
+    background: #EFEFEF;
 }
 
 .chat-footer__typing textarea::placeholder {
-    padding: 10px 729px 10px 20px;
+    padding: 5px 0;
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
