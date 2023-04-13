@@ -1,5 +1,5 @@
 import React from 'react';
-import {TChat, TChatUsers, TGetMessage, TSendMessage} from '../type-chat/chat';
+import { TChat, TChatUsers, TGetMessage, TSendMessage } from '../type-chat/chat';
 
 export interface IChatContext {
     userInfo: TChat[],
