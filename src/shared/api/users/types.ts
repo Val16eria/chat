@@ -19,13 +19,13 @@ export enum USER_RESULT_TYPE {
 type UserResultSuccess<T> = {
     type: USER_RESULT_TYPE.SUCCESS,
     data: T,
-}
+};
 
 type UserResultFailure = {
     type: USER_RESULT_TYPE.FAILURE,
     data: string,
-}
+};
 
 export type UserResult<T> = UserResultSuccess<T> | UserResultFailure;
 
-export type BadResponse = AxiosError<{ reason: string }>
+export type BadResponse = AxiosError<{ reason: string }>;
