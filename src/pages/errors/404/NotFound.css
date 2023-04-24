@@ -1,0 +1,36 @@
+.not-found__container {
+    display: flex;
+    flex-direction: column;
+    gap: 69px;
+
+    margin: 280px auto;
+    align-items: center;
+    text-align: center;
+}
+
+.not-found__container a {
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+
+    text-decoration: none;
+    color: #3369F3;
+}
+
+.not-found__title {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.not-found__title h2 {
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.not-found__title p {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+}
