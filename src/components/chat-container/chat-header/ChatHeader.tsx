@@ -1,14 +1,14 @@
 import React, { FC, useContext, useState } from 'react';
 
-import { ChatContext, MessageContext } from '../../../pages/chat-users/ChatUsers';
-import { UsersCountContext } from '../ChatContainer';
+import { MessageContext } from '../../../shared/types/context/contextMessage';
+import { UsersCountContext } from '../../../shared/types/context/contextChatContainer';
+import { ChatContext } from '../../../shared/types/context/contextChat';
 
 import PopupEditUser from '../../popup/edit-user-chat';
 
 import Avatar from '../../../image/avatar.svg';
 import Ellipsis from '../../../image/ellipsis.svg';
 import './ChatHeader.css';
-
 
 const ChatHeader:FC = () => {
 
@@ -17,12 +17,20 @@ const ChatHeader:FC = () => {
     const { dataUsers } = useContext(UsersCountContext);
     const { handleInfo } = useContext(ChatContext);
 
-    console.log(dataUsers);
+    const onOpen = () => {
+        setPopupOpen(true);
+    }
+
+    const onClose = () => {
+        setPopupOpen(false);
+    }
+
+    const options = userId === handleInfo()?.created_by
+        && <img  src={Ellipsis} alt='option' onClick={onOpen} />;
 
     return (
         <>
-            {isPopupOpen && <PopupEditUser close={() => {setPopupOpen(false)}} />}
-
+            {isPopupOpen && <PopupEditUser close={onClose} />}
             <div className='chat-header'>
                 <div className='chat-header__user'>
                     <img src={Avatar} alt='avatar' />
@@ -32,8 +40,7 @@ const ChatHeader:FC = () => {
                     </div>
                 </div>
                 <div className='chat-header__ellipsis'>
-                    {userId == handleInfo()?.created_by ?
-                        <img  src={Ellipsis} alt='option' onClick={() => setPopupOpen(true)} /> : ''}
+                    {options}
                 </div>
             </div>
         </>

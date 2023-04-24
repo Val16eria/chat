@@ -13,11 +13,19 @@ const Avatar: FC<IAvatar> = ({avatar, title}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const onClose = () => {
+        setIsModalOpen(false);
+    }
+
+    const onOpen = () => {
+        setIsModalOpen(true)
+    }
+
     return (
         <>
-            {isModalOpen && (<ModalAvatar close={() => {setIsModalOpen(false)}}/>)}
+            {isModalOpen && (<ModalAvatar close={onClose} />)}
             <div className='profile-avatar'>
-                <AvatarImg open={() => {setIsModalOpen(true)}} avatar={avatar}/>
+                <AvatarImg open={onOpen} avatar={avatar}/>
                 <Title title={title} />
             </div>
         </>

@@ -3,26 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
+import { schema } from '../../components/validateData/schemaLogin';
+import { FormData } from '../../components/validateData/schemaLogin';
 import { postSignIn, USER_RESULT_TYPE } from '../../shared/api/auth';
 import { login } from '../../shared/lib/auth';
 
 import InputValue from '../../components/input';
 import DataPage from '../../components/form-data';
-
-const schema = yup.object({
-   login: yup
-       .string()
-       .required('Обязательное поле'),
-   password: yup
-       .string()
-       .required('Обязательное поле')
-       .min(8, 'Пароль не должен быть менее 8 символов')
-       .max(15, 'Пароль не должен быть более 15 символов')
-});
-
-type FormData = yup.InferType<typeof schema>;
 
 const LoginForm: FC = () => {
 
@@ -55,13 +43,13 @@ const LoginForm: FC = () => {
             <InputValue
                 type='text'
                 lab='Логин'
-                register={{...register('login')}}
+                {...register('login')}
                 error={errors.login?.message ?? ''}
             />
             <InputValue
                 type='password'
                 lab='Пароль'
-                register={{...register('password')}}
+                {...register('password')}
                 error={errors.password?.message ?? ''}
             />
         </DataPage>

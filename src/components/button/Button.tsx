@@ -5,12 +5,10 @@ interface IButton {
     btn: string;
 }
 
-const Button: FC<IButton> = ({ btn}) => {
-    return (
-        <div className='button-container'>
-            <button type='submit' >{btn}</button>
-        </div>
-    );
-}
+const Button: FC<IButton> = ({ btn}) => (
+    <div className='button-container'>
+        <button type='submit' >{btn}</button>
+    </div>
+)
 
 export default Button;

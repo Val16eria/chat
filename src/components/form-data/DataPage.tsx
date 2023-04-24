@@ -24,13 +24,11 @@ const DataPage: FC<IDataForm> = (
         ...rest
     }) => {
 
-    const {children} = rest;
-
     return (
         <form className='form-data' {...rest} >
             <Title title={title} />
             <div className={'form-data__container'}>
-                {children}
+                {rest.children}
             </div>
             <div className='form-data__actions'>
                 <Button btn={btn} />

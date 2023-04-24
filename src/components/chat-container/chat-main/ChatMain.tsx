@@ -1,7 +1,6 @@
 import React, { FC, useContext } from 'react';
 
-import { ChatContext } from '../../../pages/chat-users/ChatUsers';
-
+import { ChatContext } from '../../../shared/types/context/contextChat';
 import Message from './message';
 
 import './ChatMain.css';
@@ -9,6 +8,7 @@ import './ChatMain.css';
 const ChatMain: FC = () => {
 
     const { handleInfo } = useContext(ChatContext);
+    const content = handleInfo()?.last_message?.content !== '' ? <Message /> : '';
 
     return (
         <>
@@ -17,7 +17,7 @@ const ChatMain: FC = () => {
                     <div className='chat-main__date'>
                         <p>19 июня</p>
                     </div>
-                    {handleInfo()?.last_message?.content !== '' ? <Message /> : ''}
+                    {content}
                 </div>
             }
         </>

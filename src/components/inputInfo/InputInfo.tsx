@@ -14,21 +14,19 @@ const InputInfo = forwardRef<HTMLInputElement, IInputInfo>((
     }, ref) => {
 
     return (
-        <>
-            <div className='inputInfo-container' >
-                <div>
-                    <label>{title}</label>
-                    <p className='error-valid'>{error}</p>
-                </div>
-                <div>
-                    <input
-                        className='inputInfo-input'
-                        {...props}
-                        ref={ref}
-                    />
-                </div>
+        <div className='inputInfo-container' >
+            <div>
+                <label>{title}</label>
+                <p className='error-valid'>{error}</p>
             </div>
-        </>
+            <div>
+                <input
+                    className='inputInfo-input'
+                    {...props}
+                    ref={ref}
+                />
+            </div>
+        </div>
     );
 })
 

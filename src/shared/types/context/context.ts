@@ -6,7 +6,7 @@ export interface IChatContext {
     changeChatInfo: () => void,
     search: string,
     changeSearch: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    handleInfo: () => TChat
+    handleInfo: () => TChat | undefined
 }
 
 export interface IUsersCount {

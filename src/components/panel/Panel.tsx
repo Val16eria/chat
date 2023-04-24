@@ -10,15 +10,13 @@ interface IPanel extends HTMLAttributes<HTMLFormElement> {
 
 const Panel: FC<IPanel> = ({...rest}) => {
 
-    const {children} = rest;
-
     return (
         <div className='chat'>
             <div className='panel'>
                 <Search/>
                 <ChatList/>
             </div>
-                {children}
+            {rest.children}
         </div>
     );
 }

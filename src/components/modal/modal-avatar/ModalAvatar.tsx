@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 type FormData = yup.InferType<typeof schema>;
 
 interface IModalAvatar extends HTMLAttributes<HTMLInputElement> {
-    close?: () => void;
+    close: () => void;
 }
 
 const ModalAvatar: FC<IModalAvatar> = ({close}) => {
@@ -38,7 +38,8 @@ const ModalAvatar: FC<IModalAvatar> = ({close}) => {
         const avaData = await putAvatar(formData);
 
         if (avaData.type === USER_RESULT_TYPE.SUCCESS) {
-            navigate('/')
+            navigate('/profile');
+            close();
         }
         if (avaData.type === USER_RESULT_TYPE.FAILURE) {
             setError('avatar', {type: 'custom', message: avaData.data})

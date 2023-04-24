@@ -3,14 +3,14 @@ import { Outlet, useParams } from 'react-router-dom';
 
 import useChatPanel from '../../hooks/chat-data/useChatPanel';
 import useInitData from '../../hooks/chat-token/useInitData';
+
 import { IChatContext, IMessageContext } from '../../shared/types/context/context';
+import { MessageContext } from '../../shared/types/context/contextMessage';
+import { ChatContext } from '../../shared/types/context/contextChat';
 
 import Panel from '../../components/panel';
 
 import './ChatUsers.css';
-
-export const ChatContext = React.createContext({} as IChatContext);
-export const MessageContext = React.createContext({} as IMessageContext);
 
 const ChatUsers: FC = () => {
 
@@ -21,10 +21,8 @@ const ChatUsers: FC = () => {
         setMessag(msg);
     }
 
-
     const handleInfo = () => {
-        const index = userInfo.map(i => i.id).indexOf(Number(id));
-        return userInfo[index];
+        return userInfo.find(item => item.id == Number(id));
     }
 
     const { id } = useParams();

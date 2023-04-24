@@ -5,8 +5,8 @@ import InputInfo from '../../components/inputInfo';
 import Avatar from '../../components/avatar/Avatar';
 import ProfileButtons from './ProfileButtons';
 import useProfile from '../../hooks/user-data/useProfile';
-
 import Loader from '../../components/loader';
+
 import './Profile.css';
 
 const Profile: FC = () => {

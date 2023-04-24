@@ -1,24 +1,16 @@
-import React, {FC, HTMLAttributes, useContext} from 'react';
+import React, { FC, HTMLAttributes, useContext } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import * as yup from 'yup';
 
+import { schema } from '../../validateData/schemaNewChat';
+import { FormData } from '../../validateData/schemaNewChat';
 import { CHAT_RESULT_TYPE, postChat } from '../../../shared/api/chat';
-import { ChatContext } from '../../../pages/chat-users/ChatUsers';
+import { ChatContext } from '../../../shared/types/context/contextChat';
 
 import DataPage from '../../form-data';
 
 import './ModalNewChat.css';
-
-const schema = yup.object().shape({
-    title: yup
-        .string()
-        .max(15, 'Название не должно быть более 30 символов')
-        .required('Обязательное поле')
-})
-
-type FormData = yup.InferType<typeof schema>;
 
 interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
