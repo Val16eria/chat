@@ -3,42 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
+import { schema } from '../../components/validateData/schemaRegistration';
+import { FormData } from '../../components/validateData/schemaRegistration';
 import { postSignUp, USER_RESULT_TYPE } from '../../shared/api/auth';
 
 import InputValue from '../../components/input/InputValue';
 import DataPage from '../../components/form-data';
 
-const schema = yup.object({
-    email: yup
-        .string()
-        .email('Неправильный формат ввода')
-        .required('Обязательное поле'),
-    login: yup
-        .string()
-        .required('Обязательное поле'),
-    first_name: yup
-        .string()
-        .required('Обязательное поле'),
-    second_name: yup
-        .string()
-        .required('Обязательное поле'),
-    phone: yup
-        .string()
-        .required('Обязательное поле'),
-    password: yup
-        .string()
-        .required('Обязательное поле')
-        .min(8, 'Пароль не должен быть менее 8 символов')
-        .max(15, 'Пароль не должен быть более 15 символов'),
-    confirmPassword: yup
-        .string()
-        .required('Обязательное поле')
-        .oneOf([yup.ref('password'), ''], 'Пароли не совпадают')
-});
-
-type FormData = yup.InferType<typeof schema>;
 
 const RegForm: FC = () => {
 
@@ -70,43 +42,43 @@ const RegForm: FC = () => {
             <InputValue
                 type='email'
                 lab='Почта'
-                register={{...register('email')}}
+                {...register('email')}
                 error={errors.email?.message ?? ''}
             />
             <InputValue
                 type='text'
                 lab='Логин'
-                register={{...register('login')}}
+                {...register('login')}
                 error={errors.login?.message ?? ''}
             />
             <InputValue
                 type='text'
                 lab='Имя'
-                register={{...register('first_name')}}
+                {...register('first_name')}
                 error={errors.first_name?.message ?? ''}
             />
             <InputValue
                 type='text'
                 lab='Фамилия'
-                register={{...register('second_name')}}
+                {...register('second_name')}
                 error={errors.second_name?.message ?? ''}
             />
             <InputValue
                 type='tel'
                 lab='Телефон'
-                register={{...register('phone')}}
+                {...register('phone')}
                 error={errors.phone?.message ?? ''}
             />
             <InputValue
                 type='password'
                 lab='Пароль'
-                register={{...register('password')}}
+                {...register('password')}
                 error={errors.password?.message ?? ''}
             />
             <InputValue
                 type='password'
                 lab='Пароль (еще раз)'
-                register={{...register('confirmPassword')}}
+                {...register('confirmPassword')}
                 error={errors.confirmPassword?.message ?? ''}
             />
         </DataPage>

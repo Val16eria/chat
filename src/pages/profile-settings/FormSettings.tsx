@@ -3,36 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { putUsers, USER_RESULT_TYPE } from '../../shared/api/users';
-import * as yup from 'yup';
+
+import { schema } from '../../components/validateData/schemSettings';
+import { FormData } from '../../components/validateData/schemSettings';
 
 import { TUser } from '../../shared/types/type-profile/profile';
 
 import Avatar from '../../components/avatar';
 import InputInfo from '../../components/inputInfo';
 import Button from '../../components/button';
-
-const schema = yup.object({
-    email: yup
-        .string()
-        .email('Неправильный формат ввода')
-        .required('Обязательное поле'),
-    login: yup
-        .string()
-        .required('Обязательное поле'),
-    first_name: yup
-        .string()
-        .required('Обязательное поле'),
-    second_name: yup
-        .string()
-        .required('Обязательное поле'),
-    display_name: yup
-        .string(),
-    phone: yup
-        .string()
-        .required('Обязательное поле'),
-});
-
-type FormData = yup.InferType<typeof schema>;
 
 interface IUser {
     homeUserInfo: TUser

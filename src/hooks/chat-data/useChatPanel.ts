@@ -29,7 +29,6 @@ const useChatPanel = (): [TChat[], (() => void), string, ((e: React.ChangeEvent<
         setSearch(e.target.value)
     }
 
-    console.log('change', changePanel);
     return [panelUserInfo, changeChatInfo, search, changeSearch];
 }
 

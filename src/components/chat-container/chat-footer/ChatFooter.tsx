@@ -1,6 +1,13 @@
-import React, { FC, FormEvent, useContext, useState } from 'react';
+import React, {
+    ChangeEvent,
+    FC,
+    FormEvent,
+    useContext,
+    useState
+} from 'react';
 
-import { ChatContext, MessageContext } from '../../../pages/chat-users/ChatUsers';
+import { MessageContext } from '../../../shared/types/context/contextMessage';
+import { ChatContext } from '../../../shared/types/context/contextChat';
 
 import Clip from '../../../image/clip.svg';
 import Arrow from '../../../image/arrow.svg';
@@ -25,6 +32,10 @@ const ChatFooter: FC = () => {
         }
     }
 
+    const textSend = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        setMsg(e.target.value);
+    }
+
     return (
         <form className='chat-footer' onSubmit={(e) => sendChat(e)}>
             <div className='chat-footer__clip'>
@@ -40,7 +51,7 @@ const ChatFooter: FC = () => {
             <div className='chat-footer__typing'>
                 <textarea
                     value={msg}
-                    onChange={(e) => setMsg(e.target.value)}
+                    onChange={textSend}
                     placeholder='Сообщение...'
                 />
             </div>

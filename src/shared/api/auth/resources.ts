@@ -1,4 +1,4 @@
-import {BadResponse, IUser, USER_RESULT_TYPE, UserResult} from '../users';
+import { BadResponse, IUser, USER_RESULT_TYPE, UserResult } from '../users';
 import { api } from '../apiAxios';
 
 export const postSignUp = async (dto: {

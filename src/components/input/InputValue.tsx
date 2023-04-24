@@ -1,25 +1,29 @@
-import React, { FC } from 'react';
+import React, { forwardRef, InputHTMLAttributes } from 'react';
 import './InputValue.css';
 
-interface IInputValue {
-    type: string;
+interface IInputValue extends InputHTMLAttributes<HTMLInputElement>{
     lab: string;
-    register: any;
     error: string;
 }
 
-const InputValue: FC<IInputValue> = ({ type, lab, register, error }) => {
+const InputValue = forwardRef<HTMLInputElement, IInputValue>((
+    {
+        lab,
+        error,
+        ...props
+    }, ref) => {
+
     return (
         <div className='inp-form_container'>
             <label>{lab}</label>
             <input
-                {...register}
                 className='inp-form_input'
-                type={type}
+                {...props}
+                ref={ref}
             />
             <p className='error-valid'>{error}</p>
         </div>
     );
-}
+})
 
 export default InputValue;

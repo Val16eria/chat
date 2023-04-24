@@ -2,18 +2,15 @@ import React, { FC, useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { CHAT_RESULT_TYPE, deleteChat } from '../../../shared/api/chat';
-import { ChatContext } from '../../../pages/chat-users/ChatUsers';
+import { UsersCountContext } from '../../../shared/types/context/contextChatContainer';
+import { ChatContext } from '../../../shared/types/context/contextChat';
 
-
-import ModalAddUser from '../../modal/modal-action-chat/modal-add-user';
-import ModalDeleteUser from '../../modal/modal-action-chat/modal-delete-user';
+import ModalUser from '../../modal/modal-user';
 
 import Add from '../../../image/add.svg';
 import Delete from '../../../image/delete.svg';
 import DeleteChat from '../../../image/delete-chat.svg';
 import './PopupEditUser.css';
-import { UsersCountContext } from '../../chat-container/ChatContainer';
-
 
 interface IPopupAddUser {
     close: () => void;
@@ -37,8 +34,16 @@ const PopupEditUser: FC<IPopupAddUser> = ({close}) => {
             close();
             navigate('/');
         }
-        if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
-        }
+    }
+
+    const closeAddAction = () => {
+        changeFlag();
+        changeChatInfo();
+        setAddModalOpen(false);
+    }
+
+    const openAddAction = () => {
+        setAddModalOpen(true);
     }
 
     const closeDeleteAction = () => {
@@ -47,23 +52,21 @@ const PopupEditUser: FC<IPopupAddUser> = ({close}) => {
         setDeleteModalOpen(false)
     };
 
-    const closeAddAction = () => {
-        changeFlag();
-        changeChatInfo();
-        setAddModalOpen(false);
+    const openDeleteAction = () => {
+        setDeleteModalOpen(true)
     }
 
     return (
         <>
-            {isAddModalOpen && <ModalAddUser close={closeAddAction}/>}
-            {isDeleteModalOpen && <ModalDeleteUser close={closeDeleteAction}/>}
+            {isAddModalOpen && <ModalUser title='Добавить пользователя' btn='Добавить' close={closeAddAction} />}
+            {isDeleteModalOpen && <ModalUser title='Удалить пользователя' btn='Удалить' close={closeDeleteAction} />}
             <div className='popup-edit-user' onClick={close}>
                 <div className='popup-edit-user__container' onClick={e => e.stopPropagation()}>
-                    <div className='popup-edit' onClick={() => {setAddModalOpen(true)}}>
+                    <div className='popup-edit' onClick={openAddAction}>
                         <img src={Add} alt='add-user' />
                         <p>Добавить пользователя</p>
                     </div>
-                    <div className='popup-edit' onClick={() => setDeleteModalOpen(true)}>
+                    <div className='popup-edit' onClick={openDeleteAction}>
                         <img src={Delete} alt='delete-user' />
                         <p>Удалить пользователя</p>
                     </div>
