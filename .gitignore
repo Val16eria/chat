@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+.env
 # Default ignored files
 /shelf/
 /workspace.xml
@@ -8,4 +9,4 @@
 
 #IDEA
 /.idea
-.env
+
