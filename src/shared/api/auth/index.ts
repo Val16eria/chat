@@ -1,2 +1,2 @@
-export * from '../users/types';
 export * from './resources';
+export * from './types';

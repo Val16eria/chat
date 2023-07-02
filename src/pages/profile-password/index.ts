@@ -1,1 +1,1 @@
-export { default } from './ProfilePassword'
+export { ProfilePassword } from './ProfilePassword'
