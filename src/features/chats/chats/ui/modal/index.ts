@@ -1,0 +1,1 @@
+export { ModalNewChat } from './modal-new-chat';

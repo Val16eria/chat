@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import './NotFound.css';
 
-const NotFound: FC = () => {
+export const NotFound: FC = () => {
     return (
         <div className='not-found__container'>
             <div className='not-found__title'>
@@ -13,6 +13,4 @@ const NotFound: FC = () => {
             <NavLink to='/'>Назад к чатам</NavLink>
         </div>
     );
-}
-
-export default NotFound;
+};

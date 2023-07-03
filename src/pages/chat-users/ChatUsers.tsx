@@ -1,20 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-import useChatPanel from '../../hooks/chat-data/useChatPanel';
-import useInitData from '../../hooks/chat-token/useInitData';
-
-import { IChatContext, IMessageContext } from '../../shared/types/context/context';
-import { MessageContext } from '../../shared/types/context/contextMessage';
-import { ChatContext } from '../../shared/types/context/contextChat';
-
-import Panel from '../../components/panel';
-
 import './ChatUsers.css';
+import { useChatPanel } from '../../features/chats/chats/model/hooks/useChatPanel';
+import { Panel } from '../../features/chats/chats/ui';
 
-const ChatUsers: FC = () => {
+export const ChatUsers: FC = () => {
 
-    // принимает сообщение
     const [messag, setMessag] = useState('');
 
     const handleSendMsg = (msg: any) => {
@@ -22,43 +14,20 @@ const ChatUsers: FC = () => {
     }
 
     const handleInfo = () => {
-        return userInfo.find(item => item.id == Number(id));
+        // return userInfo.find(item => item.id == Number(id));
     }
 
     const { id } = useParams();
 
-    const [userInfo, changeChatInfo, search, changeSearch] = useChatPanel();
-    const [getMessage, sendMessage, handleFlag, userId] = useInitData(Number(id), userInfo, messag);
-
-    const message:IMessageContext = {
-        getMessage,
-        sendMessage,
-        handleFlag,
-        userId,
-        handleSendMsg
-    }
-
-    const value:IChatContext = {
-        userInfo,
-        changeChatInfo,
-        search,
-        changeSearch,
-        handleInfo // информация о пользователе при выбранном чате
-    }
+    const [userInfo, changeChatInfo] = useChatPanel();
 
     useEffect(() => {
         changeChatInfo();
     }, [])
 
     return (
-        <ChatContext.Provider value={value}>
-            <MessageContext.Provider value={message}>
-                <Panel>
-                    <Outlet />
-                </Panel>
-            </MessageContext.Provider>
-        </ChatContext.Provider>
+        <Panel>
+            <Outlet />
+        </Panel>
     );
-}
-
-export default ChatUsers;
+};

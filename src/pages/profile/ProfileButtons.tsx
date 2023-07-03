@@ -1,28 +1,15 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { postLogout, USER_RESULT_TYPE } from '../../shared/api/auth';
-import { logout } from '../../shared/lib/auth';
-
-import LinkPage from '../../components/link-page';
-
 import './ProfileButtons.css';
+import { LinkPage } from '../../shared/ui/link-page';
 
-const ProfileButtons: FC = () => {
+export const ProfileButtons: FC = () => {
 
     const navigate = useNavigate();
 
     const handleSubmit = async () => {
-        const logoutData = await postLogout();
-
-        if (logoutData.type === USER_RESULT_TYPE.SUCCESS) {
-            logout();
-            navigate('/auth/login')
-        }
-        if (logoutData.type === USER_RESULT_TYPE.FAILURE) {
-            logout();
-            navigate('/auth/login');
-        }
+        // const logoutData = await postLogout();
     }
 
     return (
@@ -38,6 +25,4 @@ const ProfileButtons: FC = () => {
             </div>
         </div>
     );
-}
-
-export default ProfileButtons;
+};

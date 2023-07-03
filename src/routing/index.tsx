@@ -2,16 +2,17 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import PrivateRoute from './privateRoute';
-import ChatUsers from '../pages/chat-users';
-import ChatContainer from '../components/chat-container';
-import Profile from '../pages/profile';
-import ProfileSettings from '../pages/profile-settings';
-import ProfilePassword from '../pages/profile-password';
-import LoginForm from '../pages/login-form';
-import RegForm from '../pages/regist-form';
-import NotFound from '../pages/errors/404';
 
-const Router = () => {
+import { Login } from '../features/auth/login/ui';
+import { Registration } from '../features/auth/registration/ui';
+import { ChatContainer } from '../features/chats/chats/ui/chat-container';
+import { ChatUsers } from '../pages/chat-users';
+import { Profile } from '../pages/profile';
+import { NotFound } from '../pages/errors/404';
+import { ProfilePassword } from '../pages/profile-password';
+import { ProfileSettings } from '../pages/profile-settings';
+
+export const Router = () => {
     return (
         <Routes>
             <Route path='/' element={<PrivateRoute />}>
@@ -26,11 +27,9 @@ const Router = () => {
                 <Route path='/profile-settings' element={<ProfileSettings />} />
                 <Route path='/profile-password' element={<ProfilePassword />} />
             </Route>
-            <Route path='/auth/login' element={<LoginForm />} />
-            <Route path='/auth/reg' element={<RegForm />} />
+            <Route path='/auth/login' element={<Login />} />
+            <Route path='/auth/reg' element={<Registration />} />
             <Route path='*' element={<NotFound />} />
         </Routes>
     );
-}
-
-export default Router;
+};
