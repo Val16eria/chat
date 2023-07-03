@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../../shared/hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks/useRedux';
 import { chatsThunk } from '../../model/redux';
+import { selectChats } from '../../lib';
 
 import './ChatList.css';
 
@@ -10,14 +11,13 @@ export const ChatList:FC = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const chats = useAppSelector(selectChats);
 
     useEffect(() => {
-        const handleChat = async () => {
-            const data = await dispatch(chatsThunk({}));
-        console.log('data', data.payload);
-        }
-        handleChat();
+        dispatch(chatsThunk({}));
     }, []);
+
+    console.log('chats', chats);
 
     const [isActive, setActive] = useState<number>(0);
 
