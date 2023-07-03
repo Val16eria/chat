@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authSignInReducer } from '../features/auth/login/model/redux/loginSlice';
 import { authSignUpReducer } from '../features/auth/registration/model/redux/registrationSlice';
+import { chatsReducer } from '../features/chats/chats/model/redux/chatsSlice';
 
 export const store = configureStore({
     reducer: {
-        signIn: authSignInReducer,
-        signUp: authSignUpReducer,
+        isAuth: authSignInReducer,
+        userId: authSignUpReducer,
+        chats: chatsReducer,
         
     },
 });

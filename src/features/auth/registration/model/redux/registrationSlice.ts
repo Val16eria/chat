@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IAuthSignUp } from '../../../../../shared/api';
+
 import { authSignUpThunk } from './registrationThunk';
 
 interface IAuthSignUpSlice {
-    signUp: IAuthSignUp | null;
+    userId: string | number | null;
     loading: boolean;
     error: string | null;
 }
 
 const initialState: IAuthSignUpSlice = {
-    signUp: null,
+    userId: null,
     loading: false,
     error: null,
 }
@@ -22,13 +22,13 @@ const authSignUpSlice = createSlice({
         builder.addCase(authSignUpThunk.pending, (state: IAuthSignUpSlice) => {
             state.loading = true;
         });
-        // builder.addCase(authSignUpThunk.fulfilled, (state: IAuthSignUpSlice, action: PayloadAction<IAuthSignUp>) => {
-        //     state.loading = false;
-        //     state.signUp = action.payload;
-        // });
+        builder.addCase(authSignUpThunk.fulfilled, (state: IAuthSignUpSlice, action: PayloadAction<number | string>) => {
+            state.loading = false;
+            state.userId = action.payload;
+        });
         builder.addCase(authSignUpThunk.rejected, (state: IAuthSignUpSlice, action: PayloadAction<any>) => {
             state.loading = false;
-            state.signUp = action.payload;
+            state.error = action.payload;
         });
     }
 });

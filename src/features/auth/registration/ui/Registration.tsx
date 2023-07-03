@@ -1,27 +1,29 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 
-import { authSignUp } from '../../../../shared/api/auth';
-import { login } from '../../../../shared/lib/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { schema, FormData } from '../lib';
 
-import { Auth } from '../../auth';
+import { useAppDispatch } from '../../../../shared/hooks/useRedux';
+import { authSignUpThunk } from '../model/redux';
+
 import { InputValue } from '../../../../shared/ui/input';
+import { Auth } from '../../auth';
 
 export const Registration: FC = () => {
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
-    const {register, handleSubmit, formState: { errors }} = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
-    })
+    });
 
-    const onSubmit = (data: FormData) => {
-        authSignUp(data).then(() => login());
-    }
+    const onSubmit = async (data: FormData) => {
+        await dispatch(authSignUpThunk(data));
+        navigate('/');
+    };
 
     return (
         <Auth

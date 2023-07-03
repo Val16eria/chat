@@ -21,7 +21,7 @@ export const Login: FC = () => {
     });
 
     const onSubmit = async (data: FormData) => {
-        await dispatch(authSignInThunk(data));
+        await dispatch(authSignInThunk(data)).unwrap()
         navigate('/');
     };
 

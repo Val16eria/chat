@@ -1,18 +1,28 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { postChatToken } from '../../../../../shared/api/chat';
+import { useAppDispatch } from '../../../../../shared/hooks/useRedux';
+import { chatsThunk } from '../../model/redux';
 
 import './ChatList.css';
 
 export const ChatList:FC = () => {
 
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleChat = async () => {
+            const data = await dispatch(chatsThunk({}));
+        console.log('data', data.payload);
+        }
+        handleChat();
+    }, []);
 
     const [isActive, setActive] = useState<number>(0);
 
     const onClick = async (item: any) => {
-        const chatData = await postChatToken('token', item.id);
+        // const chatData = await postChatToken('token', item.id);
         setActive(item.id);
     }
 
