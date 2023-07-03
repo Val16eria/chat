@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import './ProfileSettings.css';
-import { FormSettings } from './FormSettings';
+// import { FormSettings } from './FormSettings';
 import { ButtonBack } from '../../shared/ui/buttonBack';
 
 export const ProfileSettings: FC = () => {

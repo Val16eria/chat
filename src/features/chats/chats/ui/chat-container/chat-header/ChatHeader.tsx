@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react';
 
-import Avatar from '../../../image/avatar.svg';
-import './ChatHeader.css';
 import { PopupEditUser } from '../../../../../users/ui';
+
+import Avatar from '../../../../../../assets/icons/avatar.svg';
+import './ChatHeader.css';
+
 
 export const ChatHeader:FC = () => {
 

@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import CreateChat from '../../../image/createChat.svg';
+import CreateChat from '../../../../../../assets/icons/createChat.svg';
 import './Search.css';
 import { ModalNewChat } from '../../modal/modal-new-chat';
 

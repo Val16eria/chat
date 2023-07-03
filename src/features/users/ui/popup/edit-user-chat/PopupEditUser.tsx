@@ -1,9 +1,9 @@
 import React, { FC, useContext, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Add from '../../../image/add.svg';
-import Delete from '../../../image/delete.svg';
-import DeleteChat from '../../../image/delete-chat.svg';
+import Add from '../../../../../assets/icons/add.svg';
+import Delete from '../../../../../assets/icons/delete.svg';
+import DeleteChat from '../../../../../assets/icons/delete-chat.svg';
 import './PopupEditUser.css';
 import { ModalUser } from '../../modal-user';
 

@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { authSignInThunk } from './loginThunk';
 import { IAuthSignIn } from '../../../../../shared/api/auth';
 

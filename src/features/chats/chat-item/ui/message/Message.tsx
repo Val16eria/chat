@@ -1,7 +1,8 @@
 import React, { FC, useContext }  from 'react';
 
-import CheckLine from '../../../../image/checkLine.svg';
-import CheckDoubleLine from '../../../../image/checkDoubleLine.svg';
+// import CheckLine from '../../../../image/checkLine.svg';
+// import CheckDoubleLine from '../../../../image/checkDoubleLine.svg';
+
 import './Message.css';
 
 export const Message: FC = () => {

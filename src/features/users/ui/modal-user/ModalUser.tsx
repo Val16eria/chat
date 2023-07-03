@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import { schema } from '../../../chats/chats/lib/schemaModal';
 import { FormData } from '../../../chats/chats/lib/schemaModal';
-import {CHAT_RESULT_TYPE, deleteChatUsers, putAddUsers} from '../../../../shared/api/chat';
 
 import './ModalUser.css';
 import { Auth } from '../../../auth/auth';
@@ -28,24 +27,10 @@ export const ModalUser: FC<IModalAddUser> = ({close, title, btn}) => {
 
     const onSubmit = async (data: FormData) => {
         if (btn === 'Добавить') {
-            const chatData = await putAddUsers(data.users, chatId);
-
-            if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-                close();
-            }
-            if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
-                setError('users', { type: 'custom', message: chatData.data })
-            }
+            // const chatData = await putAddUsers(data.users, chatId);
         }
         else if (btn === 'Удалить') {
-            const chatData = await deleteChatUsers(data.users, chatId);
-
-            if (chatData.type === CHAT_RESULT_TYPE.SUCCESS) {
-                close();
-            }
-            if (chatData.type === CHAT_RESULT_TYPE.FAILURE) {
-                setError('users', { type: 'custom', message: chatData.data })
-            }
+            // const chatData = await deleteChatUsers(data.users, chatId);
         }
     }
 

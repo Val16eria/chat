@@ -6,12 +6,11 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import { schema } from '../../features/users/lbi/schemaPassword';
 import { FormData } from '../../features/users/lbi/schemaPassword';
-import { putPassword, USER_RESULT_TYPE } from '../../shared/api/users';
+import { putPassword } from '../../shared/api/users';
 
-import Avatar from '../../features/users/ui/avatar/Avatar';
+// import Avatar from '../../features/users/ui/avatar/Avatar';
 
 import '../profile-settings/ProfileSettings.css';
-import { Button } from '@mui/material';
 import { ButtonBack } from '../../shared/ui/buttonBack';
 import { InputInfo } from '../../shared/ui/inputInfo';
 

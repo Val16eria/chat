@@ -1,9 +1,10 @@
 import React, { FC, HTMLAttributes } from 'react';
 
-import './Auth.css';
 import { Title } from '../../../shared/ui/title';
 import { Button } from '../../../shared/ui/button';
 import { LinkPage } from '../../../shared/ui/link-page';
+
+import './Auth.css';
 
 interface IAuth extends HTMLAttributes<HTMLFormElement>{
     title: string;
@@ -26,7 +27,7 @@ export const Auth: FC<IAuth> = (
     return (
         <form className='auth__container' {...rest} >
             <Title title={title} />
-            <div className={'auth__content'}>
+            <div className='auth__content'>
                 {rest.children}
             </div>
             <div className='auth__actions'>

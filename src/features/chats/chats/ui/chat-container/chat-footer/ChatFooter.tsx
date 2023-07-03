@@ -5,8 +5,8 @@ import React, {
     useState
 } from 'react';
 
-import Clip from '../../../../../../assets/icons/clip.svg'
-import Arrow from '../../../image/arrow.svg';
+import Clip from '../../../../../../assets/icons/clip.svg';
+import Arrow from '../../../../../../assets/icons/arrow.svg';
 import './ChatFooter.css';
 
 export const ChatFooter: FC = () => {

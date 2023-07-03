@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import Avatar from '../../features/users/ui/avatar/Avatar';
+// import Avatar from '../../features/users/ui/avatar/Avatar';
 
 import './Profile.css';
 

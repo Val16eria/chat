@@ -3,11 +3,9 @@ import React, { FC, HTMLAttributes, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
-import { CHAT_RESULT_TYPE, postChat } from '../../../../../../shared/api/chat';
-
-import './ModalNewChat.css';
 import { schema } from '../../../lib/schemaModal';
 import { Auth } from '../../../../../auth/auth';
+import './ModalNewChat.css';
 
 interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
