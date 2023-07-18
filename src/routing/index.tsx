@@ -6,7 +6,7 @@ import PrivateRoute from './privateRoute';
 import { Login } from '../features/auth/login/ui';
 import { Registration } from '../features/auth/registration/ui';
 import { ChatContainer } from '../features/chats/chats/ui/chat-container';
-import { ChatUsers } from '../pages/chat-users';
+import { Chat } from '../pages/chat';
 import { Profile } from '../pages/profile';
 import { NotFound } from '../pages/errors/404';
 import { ProfilePassword } from '../pages/profile-password';
@@ -16,7 +16,7 @@ export const Router = () => {
     return (
         <Routes>
             <Route path='/' element={<PrivateRoute />}>
-                <Route path='/' element={<ChatUsers />}>
+                <Route path='/' element={<Chat />}>
                     <Route
                         path='/'
                         element={<p className='none-text'>Выберите чат чтобы начать общение</p>}

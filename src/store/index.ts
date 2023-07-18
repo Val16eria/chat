@@ -8,7 +8,6 @@ export const store = configureStore({
         isAuth: authSignInReducer,
         userId: authSignUpReducer,
         chats: chatsReducer,
-        
     },
 });
 

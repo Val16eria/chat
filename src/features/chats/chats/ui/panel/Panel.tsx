@@ -1,21 +1,21 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
-import './Panel.css';
 import { ChatList } from '../chat-list';
 import { Search } from './search';
 
-interface IPanel extends HTMLAttributes<HTMLFormElement> {
+import './Panel.css';
+interface IPanel {
+    children: React.ReactNode;
 }
 
-export const Panel: FC<IPanel> = ({...rest}) => {
-
+export const Panel: FC<PropsWithChildren<IPanel>> = ({ children }) => {
     return (
         <div className='chat'>
             <div className='panel'>
                 <Search/>
                 <ChatList/>
             </div>
-            {rest.children}
+            {children}
         </div>
     );
 };
