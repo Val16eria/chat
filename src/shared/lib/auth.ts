@@ -5,7 +5,6 @@ export const login = () => {
 };
 
 export const logout = () => {
-    localStorage.removeItem('isAuth');
     authLogout();
 };
 

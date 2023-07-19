@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import './ProfileSettings.css';
 // import { FormSettings } from './FormSettings';
-import { ButtonBack } from '../../shared/ui/buttonBack';
+import { ButtonBack } from '../../shared/ui/button-back';
 
 export const ProfileSettings: FC = () => {
 

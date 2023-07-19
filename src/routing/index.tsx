@@ -6,7 +6,7 @@ import PrivateRoute from './privateRoute';
 import { Login } from '../features/auth/login/ui';
 import { Registration } from '../features/auth/registration/ui';
 import { Chat } from '../pages/chat';
-import { Profile } from '../pages/profile';
+import { Profile } from '../pages/profile/profile';
 import { NotFound } from '../pages/errors/404';
 import { ProfilePassword } from '../pages/profile-password';
 import { ProfileSettings } from '../pages/profile-settings';

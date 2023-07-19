@@ -7,8 +7,9 @@ interface IInputInfo extends InputHTMLAttributes<HTMLInputElement> {
     error?: string,
 }
 
+// eslint-disable-next-line react/display-name
 export const InputInfo = forwardRef<HTMLInputElement, IInputInfo>(
-    ({title,error,...props}, ref) => {
+    ({title, error, ...props}, ref) => {
     return (
         <div className='inputInfo-container' >
             <div>
@@ -25,3 +26,4 @@ export const InputInfo = forwardRef<HTMLInputElement, IInputInfo>(
         </div>
     );
 });
+

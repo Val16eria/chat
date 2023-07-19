@@ -1,4 +1,4 @@
 export * from './chat-container';
-export * from './chat-list';
+export * from './panel/chat-list';
 export * from './modal';
-export * from './panel';
+export * from './panel/panel';

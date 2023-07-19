@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks/useRedux';
-import { chatsThunk } from '../../model/redux';
-import { selectChats } from '../../lib';
+import { useAppDispatch, useAppSelector } from '../../../../../../shared/hooks/useRedux';
+import { chatsThunk } from '../../../model/redux';
+import { selectChats } from '../../../lib';
 
-import Avatar from '../../../../../assets/icons/avatar.svg';
+import Avatar from '../../../../../../assets/icons/avatar.svg';
 import './ChatList.css';
 
 export const ChatList:FC = () => {

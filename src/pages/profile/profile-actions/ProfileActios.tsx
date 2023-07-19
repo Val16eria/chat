@@ -1,16 +1,11 @@
 import React, { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import './ProfileButtons.css';
-import { LinkPage } from '../../shared/ui/link-page';
+import { logout } from '../../../shared/lib';
+import { LinkPage } from '../../../shared/ui';
 
-export const ProfileButtons: FC = () => {
+import './ProfileActions.css';
 
-    const navigate = useNavigate();
-
-    const handleSubmit = async () => {
-        // const logoutData = await postLogout();
-    }
+export const ProfileActions: FC = () => {
 
     return (
         <div className='profile-buttons'>
@@ -21,7 +16,7 @@ export const ProfileButtons: FC = () => {
                 <LinkPage linkUrl='/profile-password' linkText='Изменить пароль' />
             </div>
             <div className='profile-button' >
-                <LinkPage linkText='Выйти' handleBack={() => handleSubmit()} />
+                <LinkPage linkText='Выйти' linkUrl='/auth/login' handleBack={logout} />
             </div>
         </div>
     );

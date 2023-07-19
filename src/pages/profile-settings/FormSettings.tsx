@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { InputInfo } from '../../shared/ui/inputInfo';
+import { InputInfo } from '../../shared/ui/input-info';
 
 interface IUser {
     // homeUserInfo: TUser

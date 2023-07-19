@@ -7,26 +7,23 @@ import {
     IAuthUser 
 } from './types';
 
-// registration
 export const authSignUp = async (dto: IAuthSignUp): Promise<number | string> => {
     const response = await api.post<number, AxiosResponse<number>>('/auth/signup', {...dto});
     return response.data;
 };
 
-// login
 export const authSignIn = async (dto: IAuthSignIn): Promise<string> => {
     const response = await api.post<string, AxiosResponse<string>>('/auth/signin', {...dto});
     return response.data;
 };
 
-// get user info
 export const authUser = async (): Promise<IAuthUser> => {
     const response = await api.get<IAuthUser, AxiosResponse<IAuthUser>>('/auth/user');
     return response.data;
 };
 
-// logout 
 export const authLogout = async (): Promise<string> => {
-    const response = await api.post<string, AxiosResponse<string>>('/auth/logout', {data: ''});
+    const response = await api.post<string, AxiosResponse<string>>('/auth/logout');
+    if (response.status === 200) localStorage.removeItem('isAuth');
     return response.data;
 };

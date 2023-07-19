@@ -43,7 +43,6 @@ export const ChatHeader:FC = () => {
                     </div>
                 </div>
                 <div className='chat-header__ellipsis'>
-                    <img onClick={open} src={Options} alt='options' />
                     {options}
                 </div>
             </div>

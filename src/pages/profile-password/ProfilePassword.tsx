@@ -11,8 +11,8 @@ import { putPassword } from '../../shared/api/users';
 // import Avatar from '../../features/users/ui/avatar/Avatar';
 
 import '../profile-settings/ProfileSettings.css';
-import { ButtonBack } from '../../shared/ui/buttonBack';
-import { InputInfo } from '../../shared/ui/inputInfo';
+import { ButtonBack } from '../../shared/ui/button-back';
+import { InputInfo } from '../../shared/ui/input-info';
 
 export const ProfilePassword: FC = () => {
 
