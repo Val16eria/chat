@@ -7,8 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { schema } from '../../../chats/chats/lib/schemaModal';
 import { FormData } from '../../../chats/chats/lib/schemaModal';
 
+import { FormContainer } from '../../../../shared/ui';
+
 import './ModalUser.css';
-import { Auth } from '../../../auth/auth';
 
 interface IModalAddUser {
     close: () => void;
@@ -36,7 +37,7 @@ export const ModalUser: FC<IModalAddUser> = ({close, title, btn}) => {
 
     return (
         <div className='modal-user__container' onClick={close}>
-            <Auth
+            <FormContainer
                 title={title}
                 btn={btn}
                 error={errors.users?.message ?? ''}
@@ -47,7 +48,7 @@ export const ModalUser: FC<IModalAddUser> = ({close, title, btn}) => {
                     type='text'
                     {...register('users')}
                 />
-            </Auth>
+            </FormContainer>
         </div>
     );
 }

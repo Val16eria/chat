@@ -1,1 +1,1 @@
-export { ChatContainer } from './ChatContainer';
+export * from './chat-container';

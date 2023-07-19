@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../../shared/hooks/useRedux';
 import { authSignInThunk } from '../model/redux';
 
 import { InputValue } from '../../../../shared/ui/input';
-import { Auth } from '../../auth';
+import { FormContainer } from '../../../../shared/ui/form-container';
 
 export const Login: FC = () => {
 
@@ -26,7 +26,7 @@ export const Login: FC = () => {
     };
 
     return (
-        <Auth
+        <FormContainer
             title='Войти'
             btn='Авторизоваться'
             linkText='Нет аккаунта?'
@@ -45,6 +45,6 @@ export const Login: FC = () => {
                 {...register('password')}
                 error={errors.password?.message ?? ''}
             />
-        </Auth>
+        </FormContainer>
     );
 };

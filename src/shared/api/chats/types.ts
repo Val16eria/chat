@@ -2,6 +2,7 @@ export interface IGetChats {
     id: number;
     title: string;
     avatar: string;
+    created_by: number;
     unread_count: 15;
     last_message: ILastMessage
 }

@@ -6,9 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
 import { putAvatar } from '../../../../../shared/api/users';
+import { FormContainer } from '../../../../../shared/ui';
 
 import './ModalAvatar.css';
-import { Auth } from '../../../../auth/auth';
 
 const schema = yup.object().shape({
     avatar: yup
@@ -33,7 +33,7 @@ export const ModalAvatar: FC<IModalAvatar> = ({close}) => {
     const [image, setImage] = useState<any>();
 
     const onSubmit = async (data: FormData) => {
-        let formData = new FormData();
+        const formData = new FormData();
         formData.append('avatar', image);
         const avaData = await putAvatar(formData);
     }
@@ -46,7 +46,7 @@ export const ModalAvatar: FC<IModalAvatar> = ({close}) => {
 
     return (
         <div className='modal-avatar__container' onClick={close}>
-            <Auth
+            <FormContainer
                 title='Загрузите файл'
                 btn='Поменять'
                 error={errors.avatar?.message ?? ''}
@@ -65,7 +65,7 @@ export const ModalAvatar: FC<IModalAvatar> = ({close}) => {
                     {...register('avatar')}
                     onChange={handleOnChange}
                 />
-            </Auth>
+            </FormContainer>
         </div>
     );
 };

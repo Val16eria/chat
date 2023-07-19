@@ -8,4 +8,7 @@ export const getAllChats = async (dto: IChatsQueryParams): Promise<IGetChats[]> 
     return response.data;
 };
 
-
+export const getChatFiles = async (id: string | undefined): Promise<IGetChats> => {
+    const response = await api.get<IGetChats, AxiosResponse<IGetChats>>(`/chats/${id}/files`);
+    return response.data;
+};

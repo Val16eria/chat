@@ -1,12 +1,12 @@
 import React, { FC, HTMLAttributes } from 'react';
 
-import { Title } from '../../../shared/ui/title';
-import { Button } from '../../../shared/ui/button';
-import { LinkPage } from '../../../shared/ui/link-page';
+import { Title } from '../title';
+import { Button } from '../button';
+import { LinkPage } from '../link-page';
 
-import './Auth.css';
+import './FormContainer.css';
 
-interface IAuth extends HTMLAttributes<HTMLFormElement>{
+interface IFormContainer extends HTMLAttributes<HTMLFormElement>{
     title: string;
     btn: string;
     linkText?: string;
@@ -14,7 +14,7 @@ interface IAuth extends HTMLAttributes<HTMLFormElement>{
     error?:  string;
 }
 
-export const Auth: FC<IAuth> = (
+export const FormContainer: FC<IFormContainer> = (
     {
         title,
         btn,
@@ -25,12 +25,12 @@ export const Auth: FC<IAuth> = (
     }
 ) => {
     return (
-        <form className='auth__container' {...rest} >
+        <form className='form-container__container' {...rest} >
             <Title title={title} />
-            <div className='auth__content'>
+            <div className='form-container__content'>
                 {rest.children}
             </div>
-            <div className='auth__actions'>
+            <div className='form-container__actions'>
                 <Button btn={btn} />
                 <LinkPage linkUrl={linkUrl} linkText={linkText}/>
                 <p className='error-modal'>{error}</p>
