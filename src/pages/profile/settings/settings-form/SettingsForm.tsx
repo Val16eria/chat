@@ -20,12 +20,12 @@ export const SettingsForm: FC<ISettingsForm> = (
     }
 ) => {
     return (
-        <div className='profile'>
+        <div className='flexable-row'>
             <ButtonBack />
             {user ?
-            <form className='profile-container__settings' {...rest}>
+            <form className='settings__form' {...rest}>
                 <Avatar user_name={user.first_name} />
-                <div className='profile-info'>
+                <div className='flexable-column settings__form_content'>
                     {rest.children}
                 </div>
                 <Button btn={btnText} />

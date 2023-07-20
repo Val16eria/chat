@@ -8,7 +8,7 @@ import { Registration } from '../features/auth/registration/ui';
 import { Chat } from '../pages/chat';
 import { Profile } from '../pages/profile/profile-content';
 import { NotFound } from '../pages/errors/404';
-import { ChatContainer } from '../features/chats/chats/ui/chat-container/chat-container';
+import { ChatContainer } from '../features/chats/chats/ui/chats-content/chat-content';
 import { ProfileSettings, ProfilePassword } from '../pages/profile/settings';
 
 export const Router = () => {

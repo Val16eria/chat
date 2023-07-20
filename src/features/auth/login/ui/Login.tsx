@@ -8,7 +8,7 @@ import { schema, FormData } from '../lib';
 import { useAppDispatch } from '../../../../shared/hooks/useRedux';
 import { authSignInThunk } from '../model/redux';
 
-import { InputValue } from '../../../../shared/ui/input';
+import { InputValue } from '../../../../shared/ui/input-value';
 import { FormContainer } from '../../../../shared/ui/form-container';
 
 export const Login: FC = () => {

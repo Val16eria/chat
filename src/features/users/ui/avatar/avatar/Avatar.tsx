@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { ModalAvatar } from '../modal-avatar';
+import { ModalAvatar } from '../../modal-window';
 import { AvatarImg } from '../avatar-img';
 import { Title } from '../../../../../shared/ui';
 

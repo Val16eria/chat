@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react';
 
 import { Title } from '../title';
-import { Button } from '../button';
+import { Button } from '../buttons/base-button';
 import { LinkPage } from '../link-page';
 
 import './FormContainer.css';

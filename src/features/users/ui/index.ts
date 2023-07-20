@@ -1,3 +1,3 @@
 export * from './avatar';
-export * from './modal-user';
-export *from './popup';
+export * from '../../chats/chats/ui/modal-window/modal-add-user';
+export *from './popup-window';

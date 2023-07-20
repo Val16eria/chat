@@ -3,12 +3,12 @@ import React, { FC } from 'react';
 import { logout } from '../../../shared/lib';
 import { LinkPage } from '../../../shared/ui';
 
-import './ProfileActions.css';
+import './ProfileActions.scss';
 
 export const ProfileActions: FC = () => {
 
     return (
-        <div className='profile-buttons'>
+        <div className='flexable-column profile-buttons'>
             <div className='profile-button'>
                 <LinkPage linkUrl='/settings' linkText='Изменить данные' />
             </div>

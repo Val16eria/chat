@@ -1,0 +1,34 @@
+.panel-content {
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.panel-content__list {
+    gap: 14px;
+
+    min-height: 100vh;
+    max-width: 370px;
+    width: 100%;
+    padding: 20px 10px 0 10px;
+
+    background: #FBFBFB;
+}
+
+.panel-content__search {
+    gap: 23px;
+}
+
+.panel-content__search a {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    text-align: right;
+    text-decoration: none;
+    color: #999999;
+}
+
+.panel-content__search_input {
+    gap: 10px;
+    align-items: center;
+}

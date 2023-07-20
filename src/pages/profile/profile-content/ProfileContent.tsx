@@ -12,7 +12,7 @@ import {
 import { Avatar } from '../../../features/users/ui';
 import { ProfileActions } from '../profile-actions';
 
-import './Profile.css';
+import './ProfileContent.scss';
 
 export const ProfileContent: FC = () => {
 
@@ -24,12 +24,12 @@ export const ProfileContent: FC = () => {
     }, []);
 
     return (
-        <div className='profile'>
+        <div className='flexible-row'>
             <ButtonBack />
             {user ?
-            <div className='profile-container'>
+            <div className='flexible-column profile-container'>
                 <Avatar user_name={user?.first_name}/>
-                    <div className='profile-info'>
+                    <div className='flexible-column profile-info'>
                         <InputInfo
                             title='Почта'
                             type='email'
