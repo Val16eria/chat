@@ -1,16 +1,16 @@
 import React, { FC, useState } from 'react';
-import { ModalAvatar } from '../modal-avatar';
 
-import { Title } from '../../../../../shared/ui/title';
+import { ModalAvatar } from '../modal-avatar';
 import { AvatarImg } from '../avatar-img';
+import { Title } from '../../../../../shared/ui';
 
 import './Avatar.css';
 
 interface IAvatar {
-    title: string;
+    user_name: string;
 }
 
-export const Avatar: FC<IAvatar> = ({ title }) => {
+export const Avatar: FC<IAvatar> = ({ user_name }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,8 +27,8 @@ export const Avatar: FC<IAvatar> = ({ title }) => {
             {isModalOpen && (<ModalAvatar close={close} />)}
             <div className='profile-avatar'>
                 <AvatarImg open={open} />
-                <Title title={title} />
+                <Title title={user_name} />
             </div>
         </>
-    );
+    )
 };

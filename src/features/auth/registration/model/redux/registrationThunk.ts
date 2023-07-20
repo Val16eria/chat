@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IAuthSignUp, authSignUp } from '../../../../../shared/api';
 import { login } from '../../../../../shared/lib/auth';
 
-export const authSignUpThunk = createAsyncThunk<string | number, IAuthSignUp>(
+export const authSignUpThunk = createAsyncThunk<number | string, IAuthSignUp>(
     'authSignUp/authSignUpThunk',
     async (authSignUpData: IAuthSignUp, thunkAPI) => {
         try {

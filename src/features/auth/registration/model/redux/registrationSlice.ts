@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { authSignUpThunk } from './registrationThunk';
 
 interface IAuthSignUpSlice {
-    userId: string | number | null;
+    userId: number | string | null;
     loading: boolean;
     error: string | null;
 }

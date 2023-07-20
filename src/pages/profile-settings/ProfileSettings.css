@@ -1,8 +1,0 @@
-.profile-container__settings {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    align-items: center;
-
-    margin: 60px auto 109px auto;
-}

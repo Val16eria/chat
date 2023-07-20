@@ -1,13 +1,6 @@
 import * as yup from 'yup';
 
 export const schema = yup.object({
-    email: yup
-        .string()
-        .email('Неправильный формат ввода')
-        .required('Обязательное поле'),
-    login: yup
-        .string()
-        .required('Обязательное поле'),
     first_name: yup
         .string()
         .required('Обязательное поле'),
@@ -16,6 +9,13 @@ export const schema = yup.object({
         .required('Обязательное поле'),
     display_name: yup
         .string(),
+    login: yup
+        .string()
+        .required('Обязательное поле'),
+    email: yup
+        .string()
+        .email('Неправильный формат ввода')
+        .required('Обязательное поле'),
     phone: yup
         .string()
         .required('Обязательное поле'),

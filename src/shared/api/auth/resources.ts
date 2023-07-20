@@ -8,7 +8,7 @@ import {
 } from './types';
 
 export const authSignUp = async (dto: IAuthSignUp): Promise<number | string> => {
-    const response = await api.post<number, AxiosResponse<number>>('/auth/signup', {...dto});
+    const response = await api.post<number| string, AxiosResponse<number | string>>('/auth/signup', {...dto});
     return response.data;
 };
 

@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
-import { putAvatar } from '../../../../../shared/api/users';
 import { FormContainer } from '../../../../../shared/ui';
 
 import './ModalAvatar.css';
@@ -35,7 +34,7 @@ export const ModalAvatar: FC<IModalAvatar> = ({close}) => {
     const onSubmit = async (data: FormData) => {
         const formData = new FormData();
         formData.append('avatar', image);
-        const avaData = await putAvatar(formData);
+        // const avaData = await putAvatar(formData);
     }
 
     const handleOnChange = (e: any) => {
