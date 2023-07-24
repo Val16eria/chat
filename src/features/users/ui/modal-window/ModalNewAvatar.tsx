@@ -1,4 +1,8 @@
-import React, { FC, HTMLAttributes, useState } from 'react';
+import React, { 
+    FC, 
+    HTMLAttributes, 
+    useState 
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useForm } from 'react-hook-form';
@@ -8,7 +12,7 @@ import * as yup from 'yup';
 
 import { FormContainer } from '../../../../shared/ui';
 
-import './ModalAvatar.css';
+import './ModalAvatar.scss';
 
 const schema = yup.object().shape({
     avatar: yup

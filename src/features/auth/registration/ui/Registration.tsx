@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import { schema, FormData } from '../lib';
 
-import { useAppDispatch } from '../../../../shared/hooks/useRedux';
+import { useAppDispatch } from '../../../../shared/hooks';
 import { authSignUpThunk } from '../model/redux';
 
-import { InputValue } from '../../../../shared/ui/input-value';
-import { FormContainer } from '../../../../shared/ui/form-container';
+import { FormContainer, BaseInput } from '../../../../shared/ui';
 
 export const Registration: FC = () => {
 
@@ -33,43 +33,43 @@ export const Registration: FC = () => {
             linkUrl='/auth/login'
             onSubmit={handleSubmit(onSubmit)}
         >
-            <InputValue
+            <BaseInput
                 type='email'
                 lab='Почта'
                 {...register('email')}
                 error={errors.email?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='text'
                 lab='Логин'
                 {...register('login')}
                 error={errors.login?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='text'
                 lab='Имя'
                 {...register('first_name')}
                 error={errors.first_name?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='text'
                 lab='Фамилия'
                 {...register('second_name')}
                 error={errors.second_name?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='tel'
                 lab='Телефон'
                 {...register('phone')}
                 error={errors.phone?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='password'
                 lab='Пароль'
                 {...register('password')}
                 error={errors.password?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='password'
                 lab='Пароль (еще раз)'
                 {...register('confirmPassword')}

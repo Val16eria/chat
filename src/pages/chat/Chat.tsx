@@ -1,14 +1,12 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Panel } from '../../features/chats/chats/ui';
-
-import './Chat.css';
+import { PanelContent } from '../../features/chats/ui';
 
 export const Chat: FC = () => {
     return (
-        <Panel>
+        <PanelContent>
             <Outlet />
-        </Panel>
+        </PanelContent>
     );
 };

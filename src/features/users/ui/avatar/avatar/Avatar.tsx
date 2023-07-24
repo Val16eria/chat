@@ -1,34 +1,45 @@
-import React, { FC, useState } from 'react';
+import React, 
+{ 
+    FC, 
+    useEffect, 
+    useState 
+} from 'react';
 
-import { ModalAvatar } from '../../modal-window';
-import { AvatarImg } from '../avatar-img';
-import { Title } from '../../../../../shared/ui';
+import { resourcesPath } from '../../../../../shared/api/resources';
+import { useUserSytem } from '../../../../auth/login/model/hooks';
 
-import './Avatar.css';
+import AvatarDefault from '../../../../../assets/icons/avatar.svg';
+import './Avatar.scss';
 
 interface IAvatar {
-    user_name: string;
+    open: () => void;
 }
 
-export const Avatar: FC<IAvatar> = ({ user_name }) => {
+export const Avatar: FC<IAvatar> = ({ open }) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { avatar } = useUserSytem();
+    const [ link, setLink ] = useState<string>('');
 
-    const close = () => {
-        setIsModalOpen(false);
-    }
-
-    const open = () => {
-        setIsModalOpen(true)
-    }
+    useEffect(() => {
+        const handleAvatarImg = async () => {
+            const data = await resourcesPath(avatar);
+            const url = URL.createObjectURL(data);
+            setLink(url);
+        }
+        handleAvatarImg();
+    }, [avatar])
 
     return (
-        <>
-            {isModalOpen && (<ModalAvatar close={close} />)}
-            <div className='profile-avatar'>
-                <AvatarImg open={open} />
-                <Title title={user_name} />
-            </div>
-        </>
-    )
+        <div className='flexable-column avatar__container'>
+        <img
+            alt='avatar'
+            src={link || AvatarDefault}
+            className='avatar__container_img'
+            id='target'
+        />
+        <a className='avatar-text' onClick={open}>
+            Поменять аватарку
+        </a>
+    </div>
+    );
 };

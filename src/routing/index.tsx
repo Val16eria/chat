@@ -6,10 +6,10 @@ import PrivateRoute from './privateRoute';
 import { Login } from '../features/auth/login/ui';
 import { Registration } from '../features/auth/registration/ui';
 import { Chat } from '../pages/chat';
-import { Profile } from '../pages/profile/profile-content';
+import { Profile } from '../pages/profile';
 import { NotFound } from '../pages/errors/404';
-import { ChatContainer } from '../features/chats/chats/ui/chats-content/chat-content';
-import { ProfileSettings, ProfilePassword } from '../pages/profile/settings';
+import { SettingsData, SettingsPassword } from '../features/users/ui/settings';
+import { ChatContent } from '../features/chats/ui';
 
 export const Router = () => {
     return (
@@ -20,11 +20,11 @@ export const Router = () => {
                         path='/'
                         element={<p className='none-text'>Выберите чат чтобы начать общение</p>}
                     />
-                    <Route path='/chats/:id' element={<ChatContainer />} />
+                    <Route path='/chats/:id' element={<ChatContent />} />
                 </Route>
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/settings' element={<ProfileSettings />} />
-                <Route path='/change-password' element={<ProfilePassword />} />
+                <Route path='/settings' element={<SettingsData />} />
+                <Route path='/change-password' element={<SettingsPassword />} />
             </Route>
             <Route path='/auth/login' element={<Login />} />
             <Route path='/auth/reg' element={<Registration />} />

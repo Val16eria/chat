@@ -1,2 +1,2 @@
+export * from './avatar-content';
 export * from './avatar';
-export * from './avatar-img';

@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import { schema, FormData } from '../lib';
 
-import { useAppDispatch } from '../../../../shared/hooks/useRedux';
+import { useAppDispatch } from '../../../../shared/hooks';
 import { authSignInThunk } from '../model/redux';
 
-import { InputValue } from '../../../../shared/ui/input-value';
-import { FormContainer } from '../../../../shared/ui/form-container';
+import { FormContainer, BaseInput } from '../../../../shared/ui';
 
 export const Login: FC = () => {
 
@@ -33,13 +33,13 @@ export const Login: FC = () => {
             linkUrl='/auth/reg'
             onSubmit={handleSubmit(onSubmit)}
         >
-            <InputValue
+            <BaseInput
                 type='text'
                 lab='Логин'
                 {...register('login')}
                 error={errors.login?.message ?? ''}
             />
-            <InputValue
+            <BaseInput
                 type='password'
                 lab='Пароль'
                 {...register('password')}
