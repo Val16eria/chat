@@ -10,9 +10,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 
-import { FormContainer } from '../../../../shared/ui';
+import { FormContainer } from '../../../../../shared/ui';
 
-import './ModalAvatar.scss';
+import './ModalNewAvatar.scss';
 
 const schema = yup.object().shape({
     avatar: yup

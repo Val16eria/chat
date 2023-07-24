@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes } from 'react';
 
 import { Title } from '../title';
 import { BaseButton } from '../buttons';
-import { LinkPage } from '../link';
+import { Link } from '../link';
 
 import './FormContainer.scss';
 
@@ -30,7 +30,7 @@ export const FormContainer: FC<IFormContainer> = ({
             </div>
             <div className='flexable-column form-container__actions'>
                 <BaseButton btn={btn} />
-                <LinkPage linkUrl={linkUrl} linkText={linkText} />
+                <Link linkUrl={linkUrl} linkText={linkText} />
                 <p className='error-modal'>{error}</p>
             </div>
         </form>

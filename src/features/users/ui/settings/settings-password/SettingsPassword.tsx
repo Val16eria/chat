@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks';
 import { selectAuthUser } from '../../../../auth/auth/lib';
 
 import { SettingsForm } from '../settings-form';
-import { InputInfo } from '../../../../../shared/ui';
+import { InfoInput } from '../../../../../shared/ui';
 
 import '../settings-data/SettingsData';
 
@@ -34,19 +34,19 @@ export const SettingsPassword: FC = () => {
             user={user}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <InputInfo
+            <InfoInput
                 title='Старый пароль'
                 type='password'
                 error={errors.oldPassword?.message ?? ''}
                 {...register('oldPassword')}
             />
-            <InputInfo
+            <InfoInput
                 title='Новый пароль'
                 type='password'
                 error={errors.newPassword?.message ?? ''}
                 {...register('newPassword')}
             />
-            <InputInfo
+            <InfoInput
                 title='Повторить новый пароль'
                 type='password'
                 error={errors.confirmPassword?.message ?? ''}

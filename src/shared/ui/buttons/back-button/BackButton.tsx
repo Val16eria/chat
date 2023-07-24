@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Arrow from '../../../assets/icons/arrow.svg'
+import Arrow from '../../../../assets/icons/arrow.svg';
 import './BackButton.scss';
 
 export const BackButton: FC = () => {

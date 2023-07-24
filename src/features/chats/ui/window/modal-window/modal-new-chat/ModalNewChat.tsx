@@ -3,11 +3,11 @@ import React, { FC, HTMLAttributes } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
-import { schema, FormData } from '../../../lib/schemaNewChat';
+import { schema, FormData } from '../../../../lib/schemaNewChat';
 
 import { FormContainer } from '../../../../../../shared/ui';
 
-import './ModalNewChat.css';
+import './ModalNewChat.scss';
 
 interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;

@@ -1,4 +1,4 @@
-.popup-edit-user {
+.popup-edit-chat__container {
     position: absolute;
 
     top: 0;
@@ -7,10 +7,8 @@
     width: 200%;
 }
 
-.popup-edit-user__container {
+.popup-edit-chat__container_content {
     position: absolute;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
 
     top: 70px;
@@ -24,15 +22,13 @@
     border-radius: 12px;
 }
 
-.popup-edit {
-    display: flex;
-    flex-direction: row;
+.popup-edit-chat__content_point {
     gap: 10px;
 
     align-items: center;
 }
 
-.popup-edit-user p {
+.popup-edit-chat__point_text {
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;

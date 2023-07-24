@@ -1,21 +1,21 @@
 import React, { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../../../shared/hooks';
+import { useAppSelector } from '../../../../../shared/hooks';
+
 import { selectChats } from '../../../lib';
+import { useUserSytem } from '../../../../auth/login/model/hooks';
 
-import { useUserSytem } from '../../../../../auth/login/model/hooks';
+import { PopupEditChat } from '../../window';
 
-import { PopupEditUser } from '../../../../../users/ui';
-
-import Options from '../../../../../../assets/icons/ellipsis.svg'
-import Avatar from '../../../../../../assets/icons/avatar.svg';
-import './ChatHeader.css';
+import Options from '../../../../../assets/icons/ellipsis.svg'
+import AvatarDefault from '../../../../../assets/icons/avatar.svg';
+import './ChatHeader.scss';
 
 export const ChatHeader:FC = () => {
 
     const { id } = useParams();
-    const [isPopupOpen, setPopupOpen] = useState(false);
+    const [ isPopupOpen, setPopupOpen ] = useState(false);
 
     const chats = useAppSelector(selectChats);
     const user = useUserSytem();
@@ -33,10 +33,10 @@ export const ChatHeader:FC = () => {
 
     return (
         <>
-            {isPopupOpen && <PopupEditUser close={close} />}
+            {isPopupOpen && <PopupEditChat close={close} />}
             <div className='flexable-row chat-header__container'>
                 <div className='flexable-row chat-header__content'>
-                    <img src={Avatar} alt='avatar' />
+                    <img src={AvatarDefault} alt='avatar' />
                     <div className='flexable-column chat-header__content_title'>
                         <p>{chat?.title}</p>
                         {/* <p>{2} пользовталей(ля)</p> */}

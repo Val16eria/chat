@@ -24,6 +24,5 @@ export const authUser = async (): Promise<IAuthUser> => {
 
 export const authLogout = async (): Promise<string> => {
     const response = await api.post<string, AxiosResponse<string>>('/auth/logout');
-    if (response.status === 200) localStorage.removeItem('isAuth');
     return response.data;
 };

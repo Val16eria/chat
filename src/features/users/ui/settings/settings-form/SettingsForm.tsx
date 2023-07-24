@@ -9,7 +9,7 @@ import {
     Loader 
 } from '../../../../../shared/ui';
 
-import './SettingsForm.css';
+import './SettingsForm.scss';
 
 interface ISettingsForm extends HTMLAttributes<HTMLFormElement> {
     btnText: string;

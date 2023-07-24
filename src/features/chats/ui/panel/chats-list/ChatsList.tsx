@@ -1,14 +1,14 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../../../shared/hooks/useRedux';
+import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks';
 import { chatsThunk } from '../../../model/redux';
 import { selectChats } from '../../../lib';
 
-import Avatar from '../../../../../../assets/icons/avatar.svg';
-import './ChatList.scss';
+import AvatarDefault from '../../../../../assets/icons/avatar.svg';
+import './ChatsList.scss';
 
-export const ChatList:FC = () => {
+export const ChatsList:FC = () => {
 
     const dispatch = useAppDispatch();
     const chats = useAppSelector(selectChats);
@@ -33,7 +33,7 @@ export const ChatList:FC = () => {
                         'flexable-row chat-list__container'}
                     >
                         <div className='flexable-row chat-list__content'>
-                            <img src={item.avatar || Avatar} alt='avatar'/>
+                            <img src={item.avatar || AvatarDefault} alt='avatar'/>
                             <div className='flexable-column chat-list__content_user-name'>
                                 <p>{item.title}</p>
                                 <p>{item.last_message.content}</p>

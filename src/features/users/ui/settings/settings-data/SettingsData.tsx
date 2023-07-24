@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema, FormData } from '../../../lib/schemSettings';
+import { schema, FormData } from '../../../lib/schemData';
 
 import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks';
 import { selectAuthUser } from '../../../../auth/auth/lib';
@@ -12,7 +12,7 @@ import { userThunk } from '../../../model/redux';
 import { IUser } from '../../../../../shared/api';
 
 import { SettingsForm } from '../settings-form';
-import { InputInfo } from '../../../../../shared/ui';
+import { InfoInput } from '../../../../../shared/ui';
 
 export const SettingsData: FC = () => {
 
@@ -44,37 +44,37 @@ export const SettingsData: FC = () => {
             user={user}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <InputInfo
+            <InfoInput
                 title='Почта'
                 type='email'
                 error={errors.email?.message ?? ''}
                 {...register('email')}
             />
-            <InputInfo
+            <InfoInput
                 title='Логин'
                 type='text'
                 error={errors.login?.message ?? ''}
                 {...register('login')}
             />
-            <InputInfo
+            <InfoInput
                 title='Имя'
                 type='text'
                 error={errors.first_name?.message ?? ''}
                 {...register('first_name')}
             />
-            <InputInfo
+            <InfoInput
                 title='Фамилия'
                 type='text'
                 error={errors.second_name?.message ?? ''}
                 {...register('second_name')}
             />
-            <InputInfo
+            <InfoInput
                 title='Имя в чате'
                 type='text'
                 error={errors.display_name?.message ?? ''}
                 {...register('display_name')}
             />
-            <InputInfo
+            <InfoInput
                 title='Телефон'
                 type='tel'
                 error={errors.phone?.message ?? ''}

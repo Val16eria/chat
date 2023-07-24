@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 
-import { ModalNewAvatar } from '../../modal-window';
+import { ModalNewAvatar } from '../../window/modal-window';
 import { Avatar } from '../avatar';
 import { Title } from '../../../../../shared/ui';
 
-import './ProfileContent.scss';
+import './AvatarContent.scss';
 
 interface IAvatarContent {
     user_name: string;

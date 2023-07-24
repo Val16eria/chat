@@ -4,19 +4,19 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
-import { schema, FormData } from '../../../lib/schemaModal';
+import { schema, FormData } from '../../../../lib/schemaAddUser';
 
 import { FormContainer } from '../../../../../../shared/ui';
 
-import './ModalUser.css';
+import './ModalChatUser.scss';
 
-interface IModalAddUser {
+interface IModalChatUser {
     close: () => void;
     title: string;
     btn: string;
 }
 
-export const ModalAddUser: FC<IModalAddUser> = ({close, title, btn}) => {
+export const ModalChatUser: FC<IModalChatUser> = ({close, title, btn}) => {
 
     const { id } = useParams();
     const chatId = Number(id)
@@ -35,7 +35,7 @@ export const ModalAddUser: FC<IModalAddUser> = ({close, title, btn}) => {
     }
 
     return (
-        <div className='modal-add-user__container' onClick={close}>
+        <div className='modal-chat-user__container' onClick={close}>
             <FormContainer
                 title={title}
                 btn={btn}

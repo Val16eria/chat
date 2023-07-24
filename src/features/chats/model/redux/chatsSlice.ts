@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { IGetChats } from '../../../../../shared/api';
+import { IGetChats } from '../../../../shared/api';
 import { chatsThunk } from './chatsThunk';
 
 interface IChatsSlice {

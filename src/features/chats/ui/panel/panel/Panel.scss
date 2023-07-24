@@ -1,9 +1,9 @@
-.panel-content {
+.panel__container {
     max-height: 100vh;
     overflow: hidden;
 }
 
-.panel-content__list {
+.panel__list {
     gap: 14px;
 
     min-height: 100vh;
@@ -14,11 +14,11 @@
     background: #FBFBFB;
 }
 
-.panel-content__search {
+.panel__search {
     gap: 23px;
 }
 
-.panel-content__search a {
+.panel__search_link {
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
@@ -28,7 +28,7 @@
     color: #999999;
 }
 
-.panel-content__search_input {
+.panel__search_input {
     gap: 10px;
     align-items: center;
 }

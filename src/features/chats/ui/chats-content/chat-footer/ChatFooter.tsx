@@ -5,13 +5,13 @@ import React, {
     useState
 } from 'react';
 
-import Clip from '../../../../../../assets/icons/clip.svg';
-import Arrow from '../../../../../../assets/icons/arrow.svg';
+import Clip from '../../../../../assets/icons/clip.svg';
+import Arrow from '../../../../../assets/icons/arrow.svg';
 import './ChatFooter.scss';
 
 export const ChatFooter: FC = () => {
 
-    const [msg, setMsg] = useState<string>('');
+    const [ msg, setMsg ] = useState<string>('');
 
     const sendChat = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();

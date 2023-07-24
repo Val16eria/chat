@@ -7,7 +7,7 @@ import { store } from './store';
 
 import { App } from './app';
 
-import './index.css';
+import './index.scss';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
