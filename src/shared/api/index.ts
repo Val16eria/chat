@@ -1,3 +1,4 @@
 export * from './apiAxios';
 export * from './auth';
-export * from './chat';
+export * from './chats';
+

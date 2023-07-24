@@ -1,0 +1,8 @@
+.chat-content__container {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    width: 100%;
+    margin: 10px 20px;
+}

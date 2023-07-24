@@ -1,62 +1,75 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
-import Avatar from '../../features/users/ui/avatar/Avatar';
+import { useAppDispatch, useAppSelector } from '../../shared/hooks';
+import { authUserThunk } from '../../features/auth/auth/model/redux';
+import { selectAuthUser } from '../../features/auth/auth/lib';
 
-import './Profile.css';
+import { ProfileActions, AvatarContent } from '../../features/users/ui';
+
+import { 
+    BackButton,
+    InfoInput, 
+    Loader 
+} from '../../shared/ui';
+
+import './Profile.scss';
 
 export const Profile: FC = () => {
 
-    // const [homeUserInfo] = useProfile();
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(selectAuthUser);
+
+    useEffect(() => {
+        dispatch(authUserThunk());
+    }, []);
 
     return (
-        <div className='profile'>
-            {/* <ButtonBack /> */}
-            {
-                // homeUserInfo.email ?
-                //     <div className='profile-container'>
-                //         <Avatar title={homeUserInfo.first_name} avatar={homeUserInfo.avatar} />
-                //         <div className='profile-info'>
-                //             <InputInfo
-                //                 title='Почта'
-                //                 type='email'
-                //                 defaultValue={homeUserInfo.email}
-                //                 disabled={true}
-                //             />
-                //             <InputInfo
-                //                 title='Логин'
-                //                 type='text'
-                //                 defaultValue={homeUserInfo.login}
-                //                 disabled={true}
-                //             />
-                //             <InputInfo
-                //                 title='Имя'
-                //                 type='text'
-                //                 defaultValue={homeUserInfo.first_name}
-                //                 disabled={true}
-                //             />
-                //             <InputInfo
-                //                 title='Фамилия'
-                //                 type='text'
-                //                 defaultValue={homeUserInfo.second_name}
-                //                 disabled={true}
-                //             />
-                //             <InputInfo
-                //                 title='Имя в чате'
-                //                 type='text'
-                //                 defaultValue={homeUserInfo.display_name}
-                //                 disabled={true}
-                //             />
-                //             <InputInfo
-                //                 title='Телефон'
-                //                 type='tel'
-                //                 defaultValue={homeUserInfo.phone}
-                //                 disabled={true}
-                //             />
-                //         </div>
-                //         <ProfileButtons />
-                //     </div>
-                //     : <Loader/>
-            }
+        <div className='flexible-row'>
+            <BackButton />
+            {user ?
+            <div className='flexible-column profile__container'>
+                <AvatarContent user_name={user?.first_name}/>
+                    <div className='flexible-column profile__info'>
+                        <InfoInput
+                            title='Почта'
+                            type='email'
+                            defaultValue={user?.email}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Логин'
+                            type='text'
+                            defaultValue={user?.login}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Имя'
+                            type='text'
+                            defaultValue={user?.first_name}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Фамилия'
+                            type='text'
+                            defaultValue={user?.second_name}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Имя в чате'
+                            type='text'
+                            defaultValue={user?.display_name}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Телефон'
+                            type='tel'
+                            defaultValue={user?.phone}
+                            disabled={true}
+                        />
+                    </div>
+                    <ProfileActions />
+                </div>
+            : <Loader/>}
         </div>
     );
 };

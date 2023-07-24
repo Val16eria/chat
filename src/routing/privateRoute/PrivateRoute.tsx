@@ -1,12 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet, RouteProps } from 'react-router-dom';
 
+import { isAuth } from '../../shared/lib/auth';
+
 const PrivateRoute: React.FC<RouteProps> = () => {
-
-    const isAuth = !!localStorage.getItem('isAuth');
-
     return (
-        isAuth ? <Outlet /> : <Navigate to='/auth/login' />
+        isAuth() ? <Outlet /> : <Navigate to='/auth/login' />
     );
 }
 

@@ -1,1 +1,2 @@
-export { AvatarImg } from './AvatarImg';
+export * from './avatar-content';
+export * from './avatar';

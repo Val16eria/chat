@@ -1,0 +1,27 @@
+.chat-main__container {
+    gap: 30px;
+    padding: 48px 20px;
+}
+
+.chat-main__date p {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    text-align: center;
+    color: #999999;
+}
+
+// нет такого класса в эом компоненте
+.empty-chat {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    color: #999999;
+}

@@ -1,15 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { authSignInThunk } from './loginThunk';
-import { IAuthSignIn } from '../../../../../shared/api/auth';
 
 interface IAuthSignInSlice {
-    signIn: IAuthSignIn | null;
+    isAuth: boolean;
     loading: boolean;
     error: string | null;
 }
 
 const initialState: IAuthSignInSlice = {
-    signIn: null,
+    isAuth: false,
     loading: false,
     error: null,
 }
@@ -22,10 +22,10 @@ const authSignInSlice = createSlice({
         builder.addCase(authSignInThunk.pending, (state: IAuthSignInSlice) => {
             state.loading = true;
         });
-        // builder.addCase(authSignInThunk.fulfilled, (state: IAuthSignInSlice, action: PayloadAction<IAuthSignIn>) => {
-        //     state.loading = false;
-        //     state.signIn = action.payload;
-        // });
+        builder.addCase(authSignInThunk.fulfilled, (state: IAuthSignInSlice) => {
+            state.loading = false;
+            state.isAuth = true;
+        });
         builder.addCase(authSignInThunk.rejected, (state: IAuthSignInSlice, action: PayloadAction<any>) => {
             state.loading = false;
             state.error = action.payload;

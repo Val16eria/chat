@@ -1,0 +1,27 @@
+.search__input {
+    min-width: 290px;
+    min-height: 32px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    background: #EFEFEF;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.search__input::placeholder {
+    padding: 10px 126px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance:none;
+}

@@ -1,0 +1,28 @@
+.modal-new-avatar__container {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-new-avatar__container label{
+    cursor: pointer;
+    max-width: 122px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    text-align: center;
+    text-decoration: none;
+    color: #3369F3;
+}
+
+#upload-photo {
+    display: none;
+}
+

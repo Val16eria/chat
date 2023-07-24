@@ -1,3 +1,2 @@
 export * from './avatar';
-export * from './modal-user';
-export *from './popup';
+export * from './profile-actions';
