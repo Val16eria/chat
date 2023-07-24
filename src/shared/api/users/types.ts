@@ -6,3 +6,8 @@ export interface IUser {
     email: string;
     phone: string;
 }
+
+export interface IPassword {
+    oldPassword: string;
+    newPassword: string;
+}

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema, FormData } from '../../../lib/schemData';
+import { schema, FormData } from '../../../lib/schemaData';
 
 import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks';
 import { selectAuthUser } from '../../../../auth/auth/lib';
@@ -34,8 +34,8 @@ export const SettingsData: FC = () => {
     })
 
     const onSubmit = async (data: FormData) => {
-        await dispatch(userThunk(data as IUser));
-        navigate('/');
+        await dispatch(userThunk(data as IUser))
+        .then(() => navigate('/'));
     }
 
     return (

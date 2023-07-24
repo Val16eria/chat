@@ -1,15 +1,16 @@
 .avatar__container {
     position: relative;
-    gap: 20px;
-    align-items: center;
-}
-
-.avatar__container_img {
     width: 130px;
     height: 130px;
     border-radius: 100%;
     border: 1px solid #EAEAEA;
     background: #EFEFEF;
+}
+
+.avatar__container_img {
+    margin: auto;
+    width: 50%;
+    height: 50%;
 }
 
 .avatar-text {

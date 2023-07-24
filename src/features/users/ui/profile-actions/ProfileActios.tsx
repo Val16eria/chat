@@ -9,7 +9,7 @@ export const ProfileActions: FC = () => {
     return (
         <div className='flexable-column profile-buttons'>
             <div className='profile-button'>
-                <Link linkUrl='/settings' linkText='Изменить данные' />
+                <Link linkUrl='/change-data' linkText='Изменить данные' />
             </div>
             <div className='profile-button'>
                 <Link linkUrl='/change-password' linkText='Изменить пароль' />

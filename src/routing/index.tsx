@@ -23,7 +23,7 @@ export const Router = () => {
                     <Route path='/chats/:id' element={<ChatContent />} />
                 </Route>
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/settings' element={<SettingsData />} />
+                <Route path='/change-data' element={<SettingsData />} />
                 <Route path='/change-password' element={<SettingsPassword />} />
             </Route>
             <Route path='/auth/login' element={<Login />} />

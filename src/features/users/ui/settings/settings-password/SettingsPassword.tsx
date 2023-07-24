@@ -12,6 +12,7 @@ import { SettingsForm } from '../settings-form';
 import { InfoInput } from '../../../../../shared/ui';
 
 import '../settings-data/SettingsData';
+import { changeUserPassword } from '../../../../../shared/api/users';
 
 export const SettingsPassword: FC = () => {
 
@@ -24,8 +25,8 @@ export const SettingsPassword: FC = () => {
     })
 
     const onSubmit = async (data: FormData) => {
-        // await dispatch()
-        navigate('/');
+        await changeUserPassword(data)
+        .then(() => navigate('/'));
     }
 
     return (
