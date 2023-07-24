@@ -8,13 +8,16 @@ interface IBaseInput extends InputHTMLAttributes<HTMLInputElement>{
 }
 
 // eslint-disable-next-line react/display-name
-export const BaseInput = forwardRef<HTMLInputElement, IBaseInput>(
-    ({lab,error,...props}, ref) => {
+export const BaseInput = forwardRef<HTMLInputElement, IBaseInput>(({
+    lab, 
+    error, 
+    ...props
+}, ref) => {
     return (
         <div>
-            <label className='base-input__label'>{lab}</label>
+            <label className='text-extra-small base-input__label'>{lab}</label>
             <input
-                className='base-input__input'
+                className='input-style-blue base-input__input'
                 {...props}
                 ref={ref}
             />

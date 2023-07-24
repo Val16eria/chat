@@ -7,8 +7,11 @@ interface IBaseButton {
 }
 
 export const BaseButton: FC<IBaseButton> = ({ btn }) => (
-    <div>
-        <button className='base-button__container_button' type='submit'>
+    <div className='base-button__container'>
+        <button 
+            className='text-middle base-button__container_button' 
+            type='submit'
+        >
             {btn}
         </button>
     </div>

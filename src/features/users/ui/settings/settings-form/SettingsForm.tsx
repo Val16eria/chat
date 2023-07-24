@@ -9,8 +9,6 @@ import {
     Loader 
 } from '../../../../../shared/ui';
 
-import './SettingsForm.scss';
-
 interface ISettingsForm extends HTMLAttributes<HTMLFormElement> {
     btnText: string;
     user: IAuthUser | null;
@@ -27,9 +25,9 @@ export const SettingsForm: FC<ISettingsForm> = (
         <div className='flexable-row'>
             <BackButton />
             {user ?
-            <form className='settings__form' {...rest}>
+            <form className='flexable-column profile__container' {...rest}>
                 <AvatarContent user_name={user.first_name} />
-                <div className='flexable-column settings__form_content'>
+                <div className='flexable-column profile__container_info'>
                     {rest.children}
                 </div>
                 <BaseButton btn={btnText} />

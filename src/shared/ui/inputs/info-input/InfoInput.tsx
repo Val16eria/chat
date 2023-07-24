@@ -8,17 +8,20 @@ interface IInfoInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 // eslint-disable-next-line react/display-name
-export const InfoInput = forwardRef<HTMLInputElement, IInfoInput>(
-    ({title, error, ...props}, ref) => {
+export const InfoInput = forwardRef<HTMLInputElement, IInfoInput>(({
+    title, 
+    error, 
+    ...props
+}, ref) => {
     return (
         <div className='flexable-row info-input__container' >
             <div>
-                <label className='info-input__label'>{title}</label>
+                <label className='text-middle'>{title}</label>
                 <p className='error'>{error}</p>
             </div>
             <div>
                 <input
-                    className='info-input__input'
+                    className='input-style info-input__input'
                     {...props}
                     ref={ref}
                 />

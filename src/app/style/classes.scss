@@ -1,7 +1,33 @@
+@import 'var.scss';
+
 .error {
     font-weight: 400;
     font-size: 8px;
     line-height: 8px;
 
     color: #FF2F2F;
+}
+
+.input-style {
+    border: none;
+    outline: none;
+}
+
+.input-style-blue {
+    @extend .input-style;
+    border-bottom: 1px solid var(--color-blue);
+}
+
+.profile__container {
+    gap: 60px;
+    margin: 60px auto 109px auto;
+}
+
+.profile__container_info {
+    gap: 15px;
+}
+
+.none-text {
+    margin: auto;
+    color: var(--color-gray);
 }
