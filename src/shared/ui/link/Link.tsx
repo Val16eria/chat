@@ -17,7 +17,7 @@ export const Link: FC<ILink> = ({
     return (
         <div>
             <NavLink 
-                className='link' 
+                className='text-small link' 
                 onClick={handleClick} 
                 to={`${linkUrl}`}
             >

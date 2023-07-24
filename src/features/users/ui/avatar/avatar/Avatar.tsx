@@ -31,15 +31,15 @@ export const Avatar: FC<IAvatar> = ({ open }) => {
 
     return (
         <div className='flexable-column avatar__container'>
-        <img
-            alt='avatar'
-            src={link || AvatarDefault}
-            className='avatar__container_img'
-            id='target'
-        />
-        <a className='avatar-text' onClick={open}>
-            Поменять аватарку
-        </a>
+            <img
+                alt='avatar'
+                src={link || AvatarDefault}
+                className='avatar__container_img'
+                id='target'
+            />
+            <a className='avatar-text' onClick={open}>
+                Поменять аватарку
+            </a>
     </div>
     );
 };

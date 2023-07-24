@@ -6,6 +6,6 @@ interface ITitle {
 
 export const Title: FC<ITitle> = ({ title }) => {
     return (
-        <p>{title}</p>
+        <p className='text-big'>{title}</p>
     );
 };

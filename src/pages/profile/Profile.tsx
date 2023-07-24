@@ -12,8 +12,6 @@ import {
     Loader 
 } from '../../shared/ui';
 
-import './Profile.scss';
-
 export const Profile: FC = () => {
 
     const dispatch = useAppDispatch();
@@ -24,12 +22,12 @@ export const Profile: FC = () => {
     }, []);
 
     return (
-        <div className='flexible-row'>
+        <div className='flexable-row'>
             <BackButton />
             {user ?
-            <div className='flexible-column profile__container'>
+            <div className='flexable-column profile__container'>
                 <AvatarContent user_name={user?.first_name}/>
-                    <div className='flexible-column profile__info'>
+                    <div className='flexable-column profile__container_info'>
                         <InfoInput
                             title='Почта'
                             type='email'

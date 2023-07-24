@@ -12,7 +12,7 @@ interface IAvatarContent {
 
 export const AvatarContent: FC<IAvatarContent> = ({ user_name }) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     const close = () => {
         setIsModalOpen(false);

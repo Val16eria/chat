@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
+
+import { Link } from '../../../shared/ui';
 
 import './NotFound.scss';
 
@@ -7,10 +8,10 @@ export const NotFound: FC = () => {
     return (
         <div className='flexable-column not-found__container'>
             <div className='flexable-column not-found__title'>
-                <h2>404</h2>
-                <p>Не туда попали</p>
+                <h2 className='text-extra-big'>404</h2>
+                <p className='text-big'>Не туда попали</p>
             </div>
-            <NavLink to='/'>Назад к чатам</NavLink>
+            <Link linkText='Назад к чатам' linkUrl='/' />
         </div>
     );
 };

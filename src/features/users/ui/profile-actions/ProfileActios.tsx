@@ -6,7 +6,6 @@ import { Link } from '../../../../shared/ui';
 import './ProfileActions.scss';
 
 export const ProfileActions: FC = () => {
-
     return (
         <div className='flexable-column profile-buttons'>
             <div className='profile-button'>

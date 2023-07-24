@@ -29,9 +29,11 @@ export const FormContainer: FC<IFormContainer> = ({
                 {rest.children}
             </div>
             <div className='flexable-column form-container__actions'>
-                <BaseButton btn={btn} />
-                <Link linkUrl={linkUrl} linkText={linkText} />
-                <p className='error-modal'>{error}</p>
+                <div className='flexable-column form-container__actions_btn'>
+                    <BaseButton btn={btn} />
+                    <Link linkUrl={linkUrl} linkText={linkText} />
+                </div>
+                <p className='error'>{error}</p>
             </div>
         </form>
     );
