@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { IAuthUser } from '../../../../../shared/api';
+import { IAuthUser } from '../../../../shared/api';
+
 import { authUserThunk } from './authUserThunk';
 
 interface IAuthUserSlice {

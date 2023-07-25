@@ -13,6 +13,7 @@ import { IUser } from '../../../../../shared/api';
 
 import { SettingsForm } from '../settings-form';
 import { InfoInput } from '../../../../../shared/ui';
+import { authUserThunk } from '../../../../auth/auth';
 
 export const SettingsData: FC = () => {
 
@@ -35,7 +36,8 @@ export const SettingsData: FC = () => {
 
     const onSubmit = async (data: FormData) => {
         await dispatch(userThunk(data as IUser))
-        .then(() => navigate('/'));
+        .then(() => dispatch(authUserThunk()))
+        .then(() => navigate('/profile'));
     }
 
     return (

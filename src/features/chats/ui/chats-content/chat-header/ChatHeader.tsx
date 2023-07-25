@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../../../shared/hooks';
 
 import { selectChats } from '../../../lib';
-import { useUserSytem } from '../../../../auth/login/model/hooks';
+import { useUserSytem } from '../../../../users/model/hooks';
 
 import { PopupEditChat } from '../../window';
 

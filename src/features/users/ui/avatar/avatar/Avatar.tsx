@@ -6,7 +6,7 @@ import React,
 } from 'react';
 
 import { resourcesPath } from '../../../../../shared/api/resources';
-import { useUserSytem } from '../../../../auth/login/model/hooks';
+import { useUserSytem } from '../../../model/hooks';
 
 import AvatarDefault from '../../../../../assets/icons/avatar.svg';
 import './Avatar.scss';
@@ -18,13 +18,16 @@ interface IAvatar {
 export const Avatar: FC<IAvatar> = ({ open }) => {
 
     const { avatar } = useUserSytem();
+    console.log('avatar', avatar);
     const [ link, setLink ] = useState<string>('');
 
     useEffect(() => {
         const handleAvatarImg = async () => {
-            const data = await resourcesPath(avatar);
-            const url = URL.createObjectURL(data);
-            setLink(url);
+            if (avatar) {
+                const data = await resourcesPath(avatar);
+                const url = URL.createObjectURL(data);
+                setLink(url); 
+            }
         }
         handleAvatarImg();
     }, [avatar])

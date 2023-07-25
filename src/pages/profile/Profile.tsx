@@ -1,8 +1,6 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../shared/hooks';
-import { authUserThunk } from '../../features/auth/auth/model/redux';
-import { selectAuthUser } from '../../features/auth/auth/lib';
+import { useUserSytem } from '../../features/users/model/hooks';
 
 import { ProfileActions, AvatarContent } from '../../features/users/ui';
 
@@ -14,12 +12,7 @@ import {
 
 export const Profile: FC = () => {
 
-    const dispatch = useAppDispatch();
-    const user = useAppSelector(selectAuthUser);
-
-    useEffect(() => {
-        dispatch(authUserThunk());
-    }, []);
+    const user = useUserSytem();
 
     return (
         <div className='flexable-row'>
