@@ -22,74 +22,75 @@ interface IPopupEditChat {
     close: () => void;
 }
 
+interface IPopupState {
+    addUser: boolean,
+    deleteUser: boolean,
+    changeAvatar: boolean
+}
+
 export const PopupEditChat: FC<IPopupEditChat> = ({ close }) => {
 
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useAppDispatch()
 
-    const [ isAddModalOpen, setAddModalOpen ] = useState(false);
-    const [ isDeleteModalOpen, setDeleteModalOpen ] = useState(false);
-    const [ isModalAvatar, setModalAvatar ] = useState(false);
+    const initialState = {
+        addUser: false,
+        deleteUser: false,
+        changeAvatar: false
+    }
 
+    const [ isModal, setModal ] = useState<IPopupState>(initialState);
+    
     const handleDeleteChat = async () => {
         await deleteChat(id as string)
         .then(() => dispatch(chatsThunk({})))
         .then(() => navigate('/'));
     }
 
-    const closeAddAction = () => {
-        setAddModalOpen(false);
-    }
-
-    const openAddAction = () => {
-        setAddModalOpen(true);
-    }
-
-    const closeDeleteAction = () => {
-        setDeleteModalOpen(false);
-    };
-
-    const openDeleteAction = () => {
-        setDeleteModalOpen(true);
-    }
-
-    const closeModalAvatar = () => {
-        setModalAvatar(false);
-    }
-
-    const openModalAvatar = () => {
-        setModalAvatar(true);
+    const handleClick = (name: keyof(IPopupState)) => {
+        setModal(prevState => ({
+            ...prevState,
+            [name]: !prevState[name],
+        }));
     }
 
     return (
         <>
-            {isAddModalOpen && <ModalChatUser title='Добавить пользователя' btn='Добавить' close={closeAddAction} />}
-            {isDeleteModalOpen && <ModalChatUser title='Удалить пользователя' btn='Удалить' close={closeDeleteAction} />}
-            {isModalAvatar && <ModalNewAvatar close={closeModalAvatar} />}
+            {isModal.addUser && 
+                <ModalChatUser 
+                    title='Добавить пользователя' 
+                    btn='Добавить' 
+                    close={() => handleClick('addUser')} 
+                />
+            }
+            {isModal.deleteUser && 
+                <ModalChatUser 
+                    title='Удалить пользователя' 
+                    btn='Удалить' 
+                    close={() => handleClick('deleteUser')} 
+                />
+            }
+            {isModal.changeAvatar && <ModalNewAvatar close={() => handleClick('changeAvatar')} />}
             <div className='popup-edit-chat__container' onClick={close}>
                 <div className='flexable-column popup-edit-chat__container_content' onClick={e => e.stopPropagation()}>
                     <PopupPoint 
                         Image={Add} 
-                        alt='add-user' 
                         text='Добавить пользователя' 
-                        func={openAddAction} 
+                        func={() => handleClick('addUser')}
                     />
                     <PopupPoint 
-                        Image={Delete} 
-                        alt='delete-user' 
+                        Image={Delete}  
                         text='Удалить пользователя' 
-                        func={openDeleteAction} 
+                        func={() => handleClick('deleteUser')} 
                     />
                     <PopupPoint 
                         Image={ChangeAvatar} 
-                        alt='change-avatar' 
                         text='Измениь аватар чата' 
-                        func={openModalAvatar} 
+                        func={() => handleClick('changeAvatar')} 
                     />
                     <PopupPoint 
                         Image={DeleteDark} 
-                        alt='delete-chat' 
                         text='Удалить чат' 
                         func={handleDeleteChat} 
                     />
@@ -98,3 +99,4 @@ export const PopupEditChat: FC<IPopupEditChat> = ({ close }) => {
         </>
     );
 };
+
