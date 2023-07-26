@@ -5,6 +5,10 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import { schema, FormData } from '../../../../lib/schemaNewChat';
 
+import { useAppDispatch } from '../../../../../../shared/hooks';
+import { chatsThunk } from '../../../../model/redux';
+import { createChat } from '../../../../../../shared/api';
+
 import { FormContainer } from '../../../../../../shared/ui';
 
 import './ModalNewChat.scss';
@@ -13,18 +17,22 @@ interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
 }
 
-export const ModalNewChat: FC<IModalChat> = ({close}) => {
+export const ModalNewChat: FC<IModalChat> = ({ close }) => {
+
+    const dispatch = useAppDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = async (data: FormData) => {
-        // const chatData = await postChat(data);
+        await createChat(data)
+        .then(() => dispatch(chatsThunk({})))
+        .then(() => close());
     }
 
     return (
-        <div className='modal-new-chat__container' onClick={close}>
+        <div className='modal-style' onClick={close}>
             <FormContainer
                 title='Название чата'
                 btn='Создать'

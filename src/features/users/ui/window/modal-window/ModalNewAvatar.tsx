@@ -4,7 +4,6 @@ import React, {
     HTMLAttributes, 
     useState 
 } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import { useAppDispatch } from '../../../../../shared/hooks';
@@ -21,7 +20,6 @@ interface IModalNewAvatar extends HTMLAttributes<HTMLInputElement> {
 
 export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
 
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [ file, setFile ] = useState<File>();
 
@@ -34,10 +32,7 @@ export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
         const formData = new FormData();
         formData.append('avatar', file);
         await changeAvatar(formData).then(() => dispatch(authUserThunk()))
-        .then(() => {
-            close()
-            // navigate('/profile');
-        });
+        .then(() => close());
     }
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +43,7 @@ export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
     }
 
     return (
-        <div className='modal-new-avatar__container' onClick={close}>
+        <div className='modal-style' onClick={close}>
             <FormContainer
                 title='Загрузите файл'
                 btn='Поменять'

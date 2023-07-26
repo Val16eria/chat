@@ -20,26 +20,26 @@ export const Panel: FC<PropsWithChildren<IPanel>> = ({ children }) => {
 
     const [isPopupOpen, setPopupOpen] = useState(false);
 
-    const onOpen = () => {
+    const open = () => {
         setPopupOpen(true);
     }
 
-    const onClose = () => {
+    const close = () => {
         setPopupOpen(false);
     }
 
     return (
         <>
-            {isPopupOpen && <ModalNewChat close={onClose} />}
+            {isPopupOpen && <ModalNewChat close={close} />}
             <div className='flexable-row panel__container'>
                 <div className='flexable-column panel__list'>
                     <div className='flexable-column panel__search'>
                         <NavLink className='panel__search_link' to='/profile'>
-                            Профиль
+                            Профиль 
                         </NavLink>
                         <div className='flexable-row panel__search_input'>
                             <Search/>
-                            <img src={CreateChat} alt='create chat' onClick={onOpen}/>
+                            <img src={CreateChat} alt='create chat' onClick={open}/>
                         </div>
                     </div>
                     <ChatsList/>

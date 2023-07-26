@@ -27,3 +27,12 @@ export interface IChatsQueryParams {
     limit?: number;
     title?: string;
 }
+
+export interface IChatDeleteResponse {
+    userId: number;
+    result: {
+        id: number;
+        title: string;
+        avatar: string;
+    }
+}

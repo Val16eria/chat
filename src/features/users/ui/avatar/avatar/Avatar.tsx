@@ -5,21 +5,19 @@ import React,
     useState 
 } from 'react';
 
-import { resourcesPath } from '../../../../../shared/api/resources';
 import { useUserSytem } from '../../../model/hooks';
+import { resourcesPath } from '../../../../../shared/api/resources';
+
+import { ModalNewAvatar } from '../../window';
 
 import AvatarDefault from '../../../../../assets/icons/avatar.svg';
 import './Avatar.scss';
 
-interface IAvatar {
-    open: () => void;
-}
+export const Avatar: FC = () => {
 
-export const Avatar: FC<IAvatar> = ({ open }) => {
-
-    const { avatar } = useUserSytem();
-    console.log('avatar', avatar);
     const [ link, setLink ] = useState<string>('');
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
+    const { avatar } = useUserSytem();
 
     useEffect(() => {
         const handleAvatarImg = async () => {
@@ -32,17 +30,29 @@ export const Avatar: FC<IAvatar> = ({ open }) => {
         handleAvatarImg();
     }, [avatar])
 
+    const close = () => {
+        setIsModalOpen(false);
+    }
+
+    const open = () => {
+        setIsModalOpen(true)
+    }
+
     return (
-        <div className='flexable-column avatar__container'>
-            <img
-                alt='avatar'
-                src={link || AvatarDefault}
-                className='avatar__container_img'
-                id='target'
-            />
-            <a className='avatar-text' onClick={open}>
-                Поменять аватарку
-            </a>
-    </div>
+        <>
+            {isModalOpen && <ModalNewAvatar close={close} />}
+            <div className='flexable-column avatar-large avatar__container'>
+                <img
+                    alt='avatar'
+                    src={link || AvatarDefault}
+                    className='avatar-style avatar__container_img'
+                    id='target'
+                />
+                <a className='text-extra-small avatar-text' onClick={open}>
+                    Поменять аватарку
+                </a>
+            </div>
+        </>
+        
     );
 };

@@ -29,14 +29,18 @@ export const ChatHeader:FC = () => {
         setPopupOpen(false);
     }
 
-    const options = user.id === chat?.created_by && <img onClick={open} src={Options} alt='options' />;
+    const options = user?.id === chat?.created_by && <img onClick={open} src={Options} alt='options' />;
 
     return (
         <>
             {isPopupOpen && <PopupEditChat close={close} />}
             <div className='flexable-row chat-header__container'>
                 <div className='flexable-row chat-header__content'>
-                    <img src={AvatarDefault} alt='avatar' />
+                    <img 
+                        className='avatar-style avatar-little' 
+                        src={chat?.avatar || AvatarDefault} 
+                        alt='avatar' 
+                    />
                     <div className='flexable-column chat-header__content_title'>
                         <p>{chat?.title}</p>
                         {/* <p>{2} пользовталей(ля)</p> */}

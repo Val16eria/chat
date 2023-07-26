@@ -8,8 +8,6 @@ import { schema, FormData } from '../../../../lib/schemaAddUser';
 
 import { FormContainer } from '../../../../../../shared/ui';
 
-import './ModalChatUser.scss';
-
 interface IModalChatUser {
     close: () => void;
     title: string;
@@ -35,7 +33,7 @@ export const ModalChatUser: FC<IModalChatUser> = ({close, title, btn}) => {
     }
 
     return (
-        <div className='modal-chat-user__container' onClick={close}>
+        <div className='modal-style' onClick={close}>
             <FormContainer
                 title={title}
                 btn={btn}

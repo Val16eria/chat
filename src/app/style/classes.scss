@@ -31,3 +31,29 @@
     margin: auto;
     color: var(--color-gray);
 }
+
+.avatar-style {
+    border-radius: 100%;
+    border: 1px solid #EAEAEA;
+    background: #EFEFEF;
+}
+
+.avatar-large {
+    width: 130px;
+    height: 130px;
+}
+
+.avatar-little {
+    width: 47px;
+    height: 47px;
+}
+
+.modal-style {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    backdrop-filter: blur(1px);
+}
