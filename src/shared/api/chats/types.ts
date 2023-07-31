@@ -1,3 +1,7 @@
+export interface IId {
+    id: number
+}
+
 export interface IGetChats {
     id: number;
     title: string;

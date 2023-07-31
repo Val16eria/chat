@@ -51,9 +51,9 @@ export const Chat: FC = () => {
                     }
                 }
 
-                socketsRef.current[chat.id].socket.addEventListener('open', () => {
+                socketsRef.current[chat.id].socket.addEventListener('open', async () => {
                     console.log('соединение установлено');
-                    getMessage('0');
+                    await getMessage('0');
                 });
 
                 socketsRef.current[chat.id].socket.addEventListener('message', (event: { data: string; }) => {
@@ -91,7 +91,7 @@ export const Chat: FC = () => {
                 }
     
                 const getMessage = (count: string) => {
-                    socketsRef.current[chat.id].socket.send(
+                    socketsRef.current[chat.id].socket?.send(
                         JSON.stringify({
                             content: count,
                             type: 'get old',

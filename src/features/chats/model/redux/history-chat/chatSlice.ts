@@ -21,6 +21,13 @@ const chatSlice = createSlice({
     name: 'chat',
     initialState,
     reducers: {
+        createChatFile: (state, action: PayloadAction<number>) => {
+            const newChat: TChatHistory = {[action.payload]: []};
+            state.chat = {...state.chat, ...newChat}
+        },
+        removeChatFile: (state, action: PayloadAction<number>) => {
+            delete state.chat[action.payload];
+        },
         setMessageFile: (state, action: PayloadAction<IHistoryChat[]>) => {
             const chatHistory = action.payload.reduce((acc, curr) => {
                 acc[curr.chat_id] = action.payload;
@@ -58,5 +65,10 @@ const chatSlice = createSlice({
     }
 });
 
-export const { setMessageFile, addNewMessage } = chatSlice.actions;
+export const { 
+    setMessageFile, 
+    addNewMessage, 
+    createChatFile,
+    removeChatFile 
+} = chatSlice.actions;
 export const { reducer: chatReducer } = chatSlice;

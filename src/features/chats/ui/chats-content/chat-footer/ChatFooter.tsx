@@ -26,7 +26,7 @@ export const ChatFooter: FC= () => {
     const sendChat = async (e:FormEvent<HTMLFormElement>) => {
         if (id) {
             e.preventDefault();
-            if (socketRefs !== null) {
+            if (socketRefs !== null && message.trim().length !== 0) {
                 socketRefs.current[Number(id)]?.sendMessage(message);
                 await dispatch(chatsThunk({})).unwrap()
                 .then(() => dispatch(chatThunk(id)).unwrap());
@@ -56,19 +56,20 @@ export const ChatFooter: FC= () => {
                     type='file'
                 />
             </div>
-            <div>
+            <div className='chat-footer__input'>
                 <input
+                    className='input-style chat-footer__input_inp'
                     value={message}
                     onChange={textSend}
                     placeholder='Сообщение...'
                 />
             </div>
-            <div className='chat-footer__send'>
-                <button>
+            <div>
+                <button className='chat-footer__btn'>
                     <img
+                        className='chat-footer__img'
                         src={Arrow}
                         alt='arrow back'
-                        className='buttonSend-arrow'
                     />
                 </button>
             </div>

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../../../shared/hooks';
 import { chatsThunk } from '../../../../model/redux';
+import { removeChatFile } from '../../../../model/redux/history-chat/chatSlice';
 
 import { deleteChat } from '../../../../../../shared/api';
 
@@ -46,6 +47,7 @@ export const PopupEditChat: FC<IPopupEditChat> = ({ close }) => {
         if (id) {
             await deleteChat(id)
             .then(() => dispatch(chatsThunk({})))
+            .then(() => dispatch(removeChatFile(Number(id))))
             .then(() => navigate('/'));
         } 
     }

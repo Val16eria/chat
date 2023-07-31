@@ -21,12 +21,6 @@ export const Profile: FC = () => {
                 <AvatarContent user_name={user?.first_name}/>
                     <div className='flexable-column profile__container_info'>
                         <InfoInput
-                            title='Почта'
-                            type='email'
-                            defaultValue={user?.email}
-                            disabled={true}
-                        />
-                        <InfoInput
                             title='Логин'
                             type='text'
                             defaultValue={user?.login}
@@ -48,12 +42,6 @@ export const Profile: FC = () => {
                             title='Имя в чате'
                             type='text'
                             defaultValue={user?.display_name}
-                            disabled={true}
-                        />
-                        <InfoInput
-                            title='Телефон'
-                            type='tel'
-                            defaultValue={user?.phone}
                             disabled={true}
                         />
                     </div>

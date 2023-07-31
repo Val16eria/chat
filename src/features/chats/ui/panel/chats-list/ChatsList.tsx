@@ -38,7 +38,7 @@ export const ChatsList:FC = () => {
                         </div>
                         <div className='flexable-column chat-list__content_time'>
                             <p>{item.last_message?.time}</p>
-                            {item.unread_count || ''}
+                            {item.unread_count ? <p>{item.unread_count}</p> : ''}
                         </div>
                     </div>
                     </NavLink>

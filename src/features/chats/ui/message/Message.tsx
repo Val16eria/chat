@@ -14,15 +14,18 @@ interface IMessage {
 export const Message: FC<IMessage> = ({ data }) => {
 
     const user = useAppSelector(selectAuthUser);
+    const isYourMessage: boolean = user?.id === data.user_id;
 
     return (
-        <div className={`flexable-column message__container ${
-            user?.id === data.user_id ? 
-            'message__your_text' : 
-            'message__not-your_text'}`}
+        <div className={`message__container ${isYourMessage && 'message__your_side'}`}>
+            <div className={`flexable-column message__content ${
+            isYourMessage ? 
+            'message__your_color' : 
+            'message__not-your_color'}`}
         >
             <p className='message__text'>{data.content}</p>
             <p className='text-small message__time'>{data.time}</p>
+        </div>
         </div>
     );
 }

@@ -6,6 +6,7 @@ import {
     IChatInfo, 
     IChatsQueryParams, 
     IHistoryChat,
+    IId,
     IToken
 } from './types';
 
@@ -14,8 +15,8 @@ export const getAllChats = async (dto: IChatsQueryParams): Promise<IChatInfo[]> 
     return response.data;
 };
 
-export const createChat = async (dto: {title: string}): Promise<string> => {
-    const response = await api.post<string, AxiosResponse<string>>('/chats', {...dto});
+export const createChat = async (dto: {title: string}): Promise<IId> => {
+    const response = await api.post<IId, AxiosResponse<IId>>('/chats', {...dto});
     return response.data;
 }
 

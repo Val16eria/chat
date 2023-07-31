@@ -8,6 +8,7 @@ import { schema, FormData } from '../../../../lib/schemaNewChat';
 import { useAppDispatch } from '../../../../../../shared/hooks';
 import { chatsThunk } from '../../../../model/redux';
 import { createChat } from '../../../../../../shared/api';
+import { createChatFile } from '../../../../model/redux/history-chat/chatSlice';
 
 import { FormContainer } from '../../../../../../shared/ui';
 
@@ -26,7 +27,8 @@ export const ModalNewChat: FC<IModalChat> = ({ close }) => {
     })
 
     const onSubmit = async (data: FormData) => {
-        await createChat(data);
+        await createChat(data)
+        .then((id) => dispatch(createChatFile(id.id)));
         await dispatch(chatsThunk({}))
         .then(() => close());
     }
