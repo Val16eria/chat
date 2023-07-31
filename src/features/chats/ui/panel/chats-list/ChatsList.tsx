@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../shared/hooks';
 import { chatsThunk } from '../../../model/redux';
 import { selectChats } from '../../../lib';
 
-import { IGetChats } from '../../../../../shared/api';
+import { IChatInfo } from '../../../../../shared/api';
 
 import AvatarDefault from '../../../../../assets/icons/avatar.svg';
 import './ChatsList.scss';
@@ -21,7 +21,7 @@ export const ChatsList:FC = () => {
 
     return (
         <ul className='chat-list'>
-            {chats?.map((item: IGetChats) => (
+            {chats?.map((item: IChatInfo) => (
                 <li key={item.id}>
                     <NavLink to={`/chats/${item.id}`}>
                     <div className='flexable-row chat-list__container'>

@@ -11,3 +11,12 @@ export interface IPassword {
     oldPassword: string;
     newPassword: string;
 }
+
+export interface IUserById {
+    id: number;
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    avatar: string;
+}

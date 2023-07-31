@@ -43,9 +43,11 @@ export const PopupEditChat: FC<IPopupEditChat> = ({ close }) => {
     const [ isModal, setModal ] = useState<IPopupState>(initialState);
     
     const handleDeleteChat = async () => {
-        await deleteChat(id as string)
-        .then(() => dispatch(chatsThunk({})))
-        .then(() => navigate('/'));
+        if (id) {
+            await deleteChat(id)
+            .then(() => dispatch(chatsThunk({})))
+            .then(() => navigate('/'));
+        } 
     }
 
     const handleClick = (name: keyof(IPopupState)) => {

@@ -4,7 +4,7 @@ import { api } from '../apiAxios';
 
 import { IAuthUser } from '../auth';
 import { IUser } from '../chats';
-import { IPassword } from './types';
+import { IPassword, IUserById } from './types';
 
 export const changeUserData = async (dto: IUser): Promise<IAuthUser> => {
     const response = await api.put<IAuthUser, AxiosResponse<IAuthUser>>('/user/profile', {...dto});
@@ -21,5 +21,10 @@ export const changeAvatar = async (dto: FormData): Promise<IAuthUser | string> =
     {headers: {
         'Content-Type': 'multipart/form-data'
     }});
+    return response.data;
+}
+
+export const userById = async (id: number): Promise<IUserById> => {
+    const response = await api.get<IUserById, AxiosResponse<IUserById>>(`user/${id}`);
     return response.data;
 }

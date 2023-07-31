@@ -1,0 +1,24 @@
+.message__container {
+    gap: 5px;
+    padding: 10px;
+    max-width: 420px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.message__not-your_text {
+    background: #F8F8F8;
+}
+
+.message__your_text {
+    background: #e4f7ff;
+}
+
+.message__text {
+    color: var(--color-dark);
+}
+
+.message__time {
+    color: var(--color-gray);
+    text-align: end;
+}

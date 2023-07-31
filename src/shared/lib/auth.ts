@@ -8,4 +8,6 @@ export const logout = () => {
     authLogout().then(() => localStorage.removeItem('isAuth'));
 };
 
+export const getTokenLocal = (): string => localStorage.getItem('token') as string;
+
 export const isAuth = () => !!localStorage.getItem('isAuth');

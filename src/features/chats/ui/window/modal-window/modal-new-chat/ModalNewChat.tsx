@@ -26,8 +26,8 @@ export const ModalNewChat: FC<IModalChat> = ({ close }) => {
     })
 
     const onSubmit = async (data: FormData) => {
-        await createChat(data)
-        .then(() => dispatch(chatsThunk({})))
+        await createChat(data);
+        await dispatch(chatsThunk({}))
         .then(() => close());
     }
 

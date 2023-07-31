@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { useUserSytem } from '../../features/users/model/hooks';
 
 import { ProfileActions, AvatarContent } from '../../features/users/ui';
-
 import { 
     BackButton,
     InfoInput, 

@@ -9,6 +9,10 @@ import { schema, FormData } from '../lib';
 import { useAppDispatch } from '../../../../shared/hooks';
 import { authSignUpThunk } from '../model/redux';
 
+import { authUserThunk } from '../../auth';
+
+import { login } from '../../../../shared/lib';
+
 import { FormContainer, BaseInput } from '../../../../shared/ui';
 
 export const Registration: FC = () => {
@@ -21,8 +25,10 @@ export const Registration: FC = () => {
     });
 
     const onSubmit = async (data: FormData) => {
-        await dispatch(authSignUpThunk(data));
-        navigate('/');
+        await dispatch(authSignUpThunk(data)).unwrap()
+        .then(() => dispatch(authUserThunk()).unwrap())
+        .then(() => login())
+        .then(() => navigate('/'));
     };
 
     return (

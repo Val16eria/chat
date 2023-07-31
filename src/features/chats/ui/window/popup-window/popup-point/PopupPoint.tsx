@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import './PopupPoint.scss';
 
 interface IPopupPoint {
-    Image: any;
+    Image: React.ElementType;
     text: string;
     func: (() => Promise<void>) | (() => void);
 }
