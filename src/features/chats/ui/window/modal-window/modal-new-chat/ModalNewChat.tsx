@@ -10,7 +10,7 @@ import { chatsThunk } from '../../../../model/redux';
 import { createChat } from '../../../../../../shared/api';
 import { createChatFile } from '../../../../model/redux/history-chat/chatSlice';
 
-import { FormContainer } from '../../../../../../shared/ui';
+import { FormContainer, Modal } from '../../../../../../shared/ui';
 
 import './ModalNewChat.scss';
 
@@ -34,12 +34,11 @@ export const ModalNewChat: FC<IModalChat> = ({ close }) => {
     }
 
     return (
-        <div className='modal-style' onClick={close}>
+        <Modal onClose={close}>
             <FormContainer
                 title='Название чата'
                 btn='Создать'
                 error={errors.title?.message ?? ''}
-                onClick={e => e.stopPropagation()}
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <input
@@ -49,6 +48,6 @@ export const ModalNewChat: FC<IModalChat> = ({ close }) => {
                     {...register('title')}
                 />
             </FormContainer>
-        </div>
+        </Modal>
     );
 };

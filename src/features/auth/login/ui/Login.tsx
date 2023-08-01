@@ -32,25 +32,27 @@ export const Login: FC = () => {
     };
 
     return (
-        <FormContainer
-            title='Войти'
-            btn='Авторизоваться'
-            linkText='Нет аккаунта?'
-            linkUrl='/auth/reg'
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <BaseInput
-                type='text'
-                lab='Логин'
-                {...register('login')}
-                error={errors.login?.message ?? ''}
-            />
-            <BaseInput
-                type='password'
-                lab='Пароль'
-                {...register('password')}
-                error={errors.password?.message ?? ''}
-            />
-        </FormContainer>
+        <div className='form-container__style'>
+            <FormContainer
+                title='Войти'
+                btn='Авторизоваться'
+                linkText='Нет аккаунта?'
+                linkUrl='/auth/reg'
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <BaseInput
+                    type='text'
+                    lab='Логин'
+                    {...register('login')}
+                    error={errors.login?.message ?? ''}
+                />
+                <BaseInput
+                    type='password'
+                    lab='Пароль'
+                    {...register('password')}
+                    error={errors.password?.message ?? ''}
+                />
+            </FormContainer>
+        </div>
     );
 };

@@ -32,55 +32,57 @@ export const Registration: FC = () => {
     };
 
     return (
-        <FormContainer
-            title='Регистрация'
-            btn='Зарегистрироваться'
-            linkText='Войти'
-            linkUrl='/auth/login'
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <BaseInput
-                type='email'
-                lab='Почта'
-                {...register('email')}
-                error={errors.email?.message ?? ''}
-            />
-            <BaseInput
-                type='text'
-                lab='Логин'
-                {...register('login')}
-                error={errors.login?.message ?? ''}
-            />
-            <BaseInput
-                type='text'
-                lab='Имя'
-                {...register('first_name')}
-                error={errors.first_name?.message ?? ''}
-            />
-            <BaseInput
-                type='text'
-                lab='Фамилия'
-                {...register('second_name')}
-                error={errors.second_name?.message ?? ''}
-            />
-            <BaseInput
-                type='tel'
-                lab='Телефон'
-                {...register('phone')}
-                error={errors.phone?.message ?? ''}
-            />
-            <BaseInput
-                type='password'
-                lab='Пароль'
-                {...register('password')}
-                error={errors.password?.message ?? ''}
-            />
-            <BaseInput
-                type='password'
-                lab='Пароль (еще раз)'
-                {...register('confirmPassword')}
-                error={errors.confirmPassword?.message ?? ''}
-            />
-        </FormContainer>
+        <div className='form-container__style'>
+            <FormContainer
+                title='Регистрация'
+                btn='Зарегистрироваться'
+                linkText='Войти'
+                linkUrl='/auth/login'
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <BaseInput
+                    type='email'
+                    lab='Почта'
+                    {...register('email')}
+                    error={errors.email?.message ?? ''}
+                />
+                <BaseInput
+                    type='text'
+                    lab='Логин'
+                    {...register('login')}
+                    error={errors.login?.message ?? ''}
+                />
+                <BaseInput
+                    type='text'
+                    lab='Имя'
+                    {...register('first_name')}
+                    error={errors.first_name?.message ?? ''}
+                />
+                <BaseInput
+                    type='text'
+                    lab='Фамилия'
+                    {...register('second_name')}
+                    error={errors.second_name?.message ?? ''}
+                />
+                <BaseInput
+                    type='tel'
+                    lab='Телефон'
+                    {...register('phone')}
+                    error={errors.phone?.message ?? ''}
+                />
+                <BaseInput
+                    type='password'
+                    lab='Пароль'
+                    {...register('password')}
+                    error={errors.password?.message ?? ''}
+                />
+                <BaseInput
+                    type='password'
+                    lab='Пароль (еще раз)'
+                    {...register('confirmPassword')}
+                    error={errors.confirmPassword?.message ?? ''}
+                />
+            </FormContainer>
+        </div>
     );
 };

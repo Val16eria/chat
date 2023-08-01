@@ -28,6 +28,8 @@ export const Panel: FC<PropsWithChildren<IPanel>> = ({ children }) => {
         setPopupOpen(false);
     }
 
+    console.log(isPopupOpen);
+
     return (
         <>
             {isPopupOpen && <ModalNewChat close={close} />}

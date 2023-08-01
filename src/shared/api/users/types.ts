@@ -20,3 +20,7 @@ export interface IUserById {
     login: string;
     avatar: string;
 }
+
+export interface IUserSearchByLogin {
+    login: string;
+}

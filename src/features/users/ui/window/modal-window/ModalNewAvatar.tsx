@@ -10,7 +10,7 @@ import { useAppDispatch } from '../../../../../shared/hooks';
 import { authUserThunk } from '../../../../auth/auth';
 
 import { changeAvatar } from '../../../../../shared/api/users';
-import { FormContainer } from '../../../../../shared/ui';
+import { FormContainer, Modal } from '../../../../../shared/ui';
 
 import './ModalNewAvatar.scss';
 
@@ -43,7 +43,7 @@ export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
     }
 
     return (
-        <div className='modal-style' onClick={close}>
+        <Modal onClose={close}>
             <FormContainer
                 title='Загрузите файл'
                 btn='Поменять'
@@ -65,6 +65,6 @@ export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
                     onChange={handleOnChange}
                 />
             </FormContainer>
-        </div>
+        </Modal>
     );
 };

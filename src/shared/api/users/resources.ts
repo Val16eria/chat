@@ -4,7 +4,7 @@ import { api } from '../apiAxios';
 
 import { IAuthUser } from '../auth';
 import { IUser } from '../chats';
-import { IPassword, IUserById } from './types';
+import { IPassword, IUserById, IUserSearchByLogin } from './types';
 
 export const changeUserData = async (dto: IUser): Promise<IAuthUser> => {
     const response = await api.put<IAuthUser, AxiosResponse<IAuthUser>>('/user/profile', {...dto});
@@ -26,5 +26,10 @@ export const changeAvatar = async (dto: FormData): Promise<IAuthUser | string> =
 
 export const userById = async (id: number): Promise<IUserById> => {
     const response = await api.get<IUserById, AxiosResponse<IUserById>>(`user/${id}`);
+    return response.data;
+}
+
+export const userSearch = async (dto: IUserSearchByLogin): Promise<IAuthUser[]> => {
+    const response = await api.post<IAuthUser[], AxiosResponse<IAuthUser[]>>('user/search', {...dto});
     return response.data;
 }
