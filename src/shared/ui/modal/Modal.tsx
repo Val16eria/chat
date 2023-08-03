@@ -8,8 +8,6 @@ import { useOutsideClick } from '../../hooks';
 
 import { Portal } from '../portal';
 
-import './Modal.scss';
-
 interface IModal {
     children: React.ReactNode;
     onClose: () => void;
@@ -22,7 +20,7 @@ export const Modal: FC<PropsWithChildren<IModal>> = ({ children, onClose }) => {
 
     return (
         <Portal>
-            <div className='modal__container' >
+            <div className='modal-container' >
                 <div className='form-container__style' ref={ref}>
                     {children}
                 </div>

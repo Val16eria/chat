@@ -3,6 +3,7 @@ import React, {
     FC,
     FormEvent,
     useContext,
+    useEffect,
     useState
 } from 'react';
 import { useParams } from 'react-router-dom';
@@ -28,14 +29,16 @@ export const ChatFooter: FC= () => {
             e.preventDefault();
             if (socketRefs !== null && message.trim().length !== 0) {
                 socketRefs.current[Number(id)]?.sendMessage(message);
+                setMessage('');
                 await dispatch(chatsThunk({})).unwrap()
                 .then(() => dispatch(chatThunk(id)).unwrap());
             }
-            if(message.length > 0) {
-                setMessage('');
-            }
         }
     }
+
+    useEffect(() => {
+        setMessage('');
+    }, [id])
 
     const textSend = (e:ChangeEvent<HTMLInputElement>) => {
         setMessage(e.target.value);

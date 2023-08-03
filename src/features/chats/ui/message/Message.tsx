@@ -24,7 +24,7 @@ export const Message: FC<IMessage> = ({ data }) => {
             'message__not-your_color'}`}
         >
             <p className='message__text'>{data.content}</p>
-            <p className='text-small message__time'>{data.time}</p>
+            <p className='text-small message__time'>{new Date(data.time).toLocaleString()}</p>
         </div>
         </div>
     );

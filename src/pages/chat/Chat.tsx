@@ -63,10 +63,11 @@ export const Chat: FC = () => {
                         dispatch(setMessageFile(data));
                     }
                     else {
-                        dispatch(addNewMessage({...data, chat_id: chat.id, file: null}));
+                        if (data.type === 'message') {
+                            dispatch(addNewMessage({...data, chat_id: chat.id, file: null}));
+                        }
                     }
                 });
-
                 socketsRef.current[chat.id].socket.addEventListener('close', (event: { 
                     wasClean: any; 
                     code: any; 

@@ -3,22 +3,18 @@ import React, { FC } from 'react';
 import { useUserSytem } from '../../features/users/model/hooks';
 
 import { ProfileActions, AvatarContent } from '../../features/users/ui';
-import { 
-    BackButton,
-    InfoInput, 
-    Loader 
-} from '../../shared/ui';
+import { BackButton, InfoInput } from '../../shared/ui';
 
 export const Profile: FC = () => {
 
     const user = useUserSytem();
 
     return (
-        <div className='flexable-row'>
-            <BackButton />
-            {user ?
-            <div className='flexable-column profile__container'>
-                <AvatarContent user_name={user?.first_name}/>
+        <>
+            <div className='flexable-row'>
+                <BackButton />
+                <div className='flexable-column profile__container'>
+                    <AvatarContent user_name={user?.first_name} />
                     <div className='flexable-column profile__container_info'>
                         <InfoInput
                             title='Логин'
@@ -47,7 +43,7 @@ export const Profile: FC = () => {
                     </div>
                     <ProfileActions />
                 </div>
-            : <Loader/>}
-        </div>
+            </div>
+        </>
     );
 };

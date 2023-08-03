@@ -37,7 +37,10 @@ export const ChatsList:FC = () => {
                             </div>
                         </div>
                         <div className='flexable-column chat-list__content_time'>
-                            <p>{item.last_message?.time}</p>
+                            {
+                                item.last_message?.time ? 
+                                <p>{new Date(item.last_message?.time).toLocaleDateString()}</p> : ''
+                            }
                             {item.unread_count ? <p>{item.unread_count}</p> : ''}
                         </div>
                     </div>

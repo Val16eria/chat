@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import { useUserSytem } from '../../../model/hooks';
-
 import { Avatar } from '../avatar';
 import { Title } from '../../../../../shared/ui';
 
