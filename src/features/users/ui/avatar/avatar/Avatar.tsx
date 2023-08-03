@@ -11,10 +11,10 @@ import { useAppSelector } from '../../../../../shared/hooks';
 import { resourcesPath } from '../../../../../shared/api/resources';
 
 import { ModalNewAvatar } from '../../window';
+import { Loader } from '../../../../../shared/ui';
 
 import AvatarDefault from '../../../../../assets/icons/avatar.svg';
 import './Avatar.scss';
-import { Loader } from '../../../../../shared/ui';
 
 export const Avatar: FC = () => {
 

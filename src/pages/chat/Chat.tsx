@@ -88,7 +88,6 @@ export const Chat: FC = () => {
                             type: 'message'
                         })
                     );
-                    console.log('ало блин');
                 }
     
                 const getMessage = (count: string) => {

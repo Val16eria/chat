@@ -1,4 +1,9 @@
-import React, { FC, RefObject, useEffect, useRef } from 'react';
+import React, { 
+    FC, 
+    RefObject, 
+    useEffect, 
+    useRef 
+} from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../../shared/hooks';

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { IAuthUser } from '../../../../shared/api';
 import { useAppDispatch, useAppSelector } from '../../../../shared/hooks';
 import { selectAuthUser } from '../../../auth/auth/lib';
