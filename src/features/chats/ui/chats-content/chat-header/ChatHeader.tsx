@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../../../shared/hooks';
 
 import { selectChats } from '../../../lib';
-import { useUserSytem } from '../../../../auth/login/model/hooks';
+import { selectAuthUser } from '../../../../auth/auth';
 
 import { PopupEditChat } from '../../window';
 
@@ -17,10 +17,6 @@ export const ChatHeader:FC = () => {
     const { id } = useParams();
     const [ isPopupOpen, setPopupOpen ] = useState(false);
 
-    const chats = useAppSelector(selectChats);
-    const user = useUserSytem();
-    const chat = chats.find((item) => item.id === Number(id));
-
     const open = () => {
         setPopupOpen(true);
     }
@@ -29,17 +25,24 @@ export const ChatHeader:FC = () => {
         setPopupOpen(false);
     }
 
-    const options = user.id === chat?.created_by && <img onClick={open} src={Options} alt='options' />;
+    const user = useAppSelector(selectAuthUser);
+    const chats = useAppSelector(selectChats);
+    const chat = chats.find((item) => item.id == Number(id));
+    const options = chat?.created_by === user?.id ? 
+    <img onClick={open} src={Options} alt='options' /> : '';
 
     return (
         <>
             {isPopupOpen && <PopupEditChat close={close} />}
             <div className='flexable-row chat-header__container'>
                 <div className='flexable-row chat-header__content'>
-                    <img src={AvatarDefault} alt='avatar' />
+                    <img 
+                        className='avatar-style avatar-little' 
+                        src={chat?.avatar || AvatarDefault} 
+                        alt='avatar' 
+                    />
                     <div className='flexable-column chat-header__content_title'>
                         <p>{chat?.title}</p>
-                        {/* <p>{2} пользовталей(ля)</p> */}
                     </div>
                 </div>
                 <div className='chat-header__options'>

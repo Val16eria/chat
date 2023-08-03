@@ -1,12 +1,14 @@
-import React, { FC } from 'react';
+import React, { 
+    FC, 
+    FormEvent, 
+    useState 
+} from 'react';
 import { useParams } from 'react-router-dom';
+import AsyncSelect from 'react-select/async';
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-
-import { schema, FormData } from '../../../../lib/schemaAddUser';
-
-import { FormContainer } from '../../../../../../shared/ui';
+import { FormContainer, Modal } from '../../../../../../shared/ui';
+import { addUserToChat, deleteUserToChat } from '../../../../../../shared/api';
+import { userSearch } from '../../../../../../shared/api/users';
 
 import './ModalChatUser.scss';
 
@@ -16,38 +18,61 @@ interface IModalChatUser {
     btn: string;
 }
 
-export const ModalChatUser: FC<IModalChatUser> = ({close, title, btn}) => {
+interface IUserSelect {
+    label: string;
+    value: number;
+}
+
+export const ModalChatUser: FC<IModalChatUser> = (
+{ 
+    close, 
+    title, 
+    btn 
+}) => {
 
     const { id } = useParams();
-    const chatId = Number(id)
+    const [ selectValue, setSelectValue ] = useState<IUserSelect>({} as IUserSelect);
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        resolver: yupResolver(schema)
-    })
-
-    const onSubmit = async (data: FormData) => {
-        if (btn === 'Добавить') {
-            // const chatData = await putAddUsers(data.users, chatId);
-        }
-        else if (btn === 'Удалить') {
-            // const chatData = await deleteChatUsers(data.users, chatId);
+    const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (id) {
+            if (btn === 'Добавить') {
+                await addUserToChat({ users: [selectValue.value], chatId: id })
+                .then(() => close());
+            }
+            else if (btn === 'Удалить') {
+                await deleteUserToChat({ users: [selectValue.value], chatId: id })
+                .then(() => close());
+            }
         }
     }
 
+    const changeSelect = (e: any) => {
+        setSelectValue(e);
+    }
+
+    const filterUsers = async (inputValue: string) => {
+        const data = await userSearch({ login: inputValue });
+        return data.map((item) => ({
+            label: item.login,
+            value: item.id
+        }));
+    }
+
     return (
-        <div className='modal-chat-user__container' onClick={close}>
+        <Modal onClose={close}>
             <FormContainer
                 title={title}
                 btn={btn}
-                error={errors.users?.message ?? ''}
-                onSubmit={handleSubmit(onSubmit)}
-                onClick={e => e.stopPropagation()}
+                onSubmit={onSubmit}
             >
-                <input
-                    type='text'
-                    {...register('users')}
-                />
+                <div className='modal-chat-user__select'>
+                    <AsyncSelect
+                        loadOptions={filterUsers} 
+                        onChange={changeSelect}
+                    />
+                </div>
             </FormContainer>
-        </div>
+        </Modal>
     );
 }

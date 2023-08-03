@@ -1,10 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { IGetChats } from '../../../../shared/api';
+import { IChatInfo } from '../../../../../shared/api';
 import { chatsThunk } from './chatsThunk';
 
 interface IChatsSlice {
-    chats: IGetChats[];
+    chats: IChatInfo[];
     loading: boolean;
     error: string | null;
 }
@@ -23,7 +23,7 @@ const chatsSlice = createSlice({
         builder.addCase(chatsThunk.pending, (state: IChatsSlice) => {
             state.loading = true;
         });
-        builder.addCase(chatsThunk.fulfilled, (state: IChatsSlice, action: PayloadAction<IGetChats[]>) => {
+        builder.addCase(chatsThunk.fulfilled, (state: IChatsSlice, action: PayloadAction<IChatInfo[]>) => {
             state.loading = false;
             state.chats = action.payload;
         });

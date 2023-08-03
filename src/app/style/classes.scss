@@ -31,3 +31,35 @@
     margin: auto;
     color: var(--color-gray);
 }
+
+.avatar-style {
+    border-radius: 100%;
+    border: 1px solid #EAEAEA;
+    background: #EFEFEF;
+}
+
+.avatar-large {
+    width: 130px;
+    height: 130px;
+}
+
+.avatar-little {
+    width: 47px;
+    height: 47px;
+}
+
+.form-container__style {
+    margin: 80px auto;
+    width: 340px;
+    height: auto;
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    backdrop-filter: blur(2px);
+}

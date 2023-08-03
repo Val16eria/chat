@@ -9,9 +9,7 @@ export const Search: FC = () => {
                 className='search__input'
                 type='search'
                 name='search'
-                // value={search}
                 placeholder='Поиск'
-                // onChange={changeSearch}
             />
         </>
     );

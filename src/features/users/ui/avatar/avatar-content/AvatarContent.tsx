@@ -1,6 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
-import { ModalNewAvatar } from '../../window/modal-window';
 import { Avatar } from '../avatar';
 import { Title } from '../../../../../shared/ui';
 
@@ -11,24 +10,10 @@ interface IAvatarContent {
 }
 
 export const AvatarContent: FC<IAvatarContent> = ({ user_name }) => {
-
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
-
-    const close = () => {
-        setIsModalOpen(false);
-    }
-
-    const open = () => {
-        setIsModalOpen(true)
-    }
-
     return (
-        <>
-            {isModalOpen && (<ModalNewAvatar close={close} />)}
-            <div className='flexable-column avatar-content__container'>
-                <Avatar open={open} />
-                <Title title={user_name} />
-            </div>
-        </>
+        <div className='flexable-column avatar-content__container'>
+            <Avatar />
+            <Title title={user_name} />
+        </div>
     )
 };

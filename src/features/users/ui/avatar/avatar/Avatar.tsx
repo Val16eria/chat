@@ -5,41 +5,62 @@ import React,
     useState 
 } from 'react';
 
+import { selectAuthUser } from '../../../../auth/auth';
+import { useAppSelector } from '../../../../../shared/hooks';
+
 import { resourcesPath } from '../../../../../shared/api/resources';
-import { useUserSytem } from '../../../../auth/login/model/hooks';
+
+import { ModalNewAvatar } from '../../window';
+import { Loader } from '../../../../../shared/ui';
 
 import AvatarDefault from '../../../../../assets/icons/avatar.svg';
 import './Avatar.scss';
 
-interface IAvatar {
-    open: () => void;
-}
+export const Avatar: FC = () => {
 
-export const Avatar: FC<IAvatar> = ({ open }) => {
-
-    const { avatar } = useUserSytem();
+    const user = useAppSelector(selectAuthUser);
     const [ link, setLink ] = useState<string>('');
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     useEffect(() => {
         const handleAvatarImg = async () => {
-            const data = await resourcesPath(avatar);
-            const url = URL.createObjectURL(data);
-            setLink(url);
+            if (user?.avatar) {
+                const data = await resourcesPath(user.avatar);
+                const url = URL.createObjectURL(data);
+                setLink(url); 
+            }
         }
         handleAvatarImg();
-    }, [avatar])
+    }, [user?.avatar])
+
+    const close = () => {
+        setIsModalOpen(false);
+    }
+
+    const open = () => {
+        setIsModalOpen(true)
+    }
 
     return (
-        <div className='flexable-column avatar__container'>
-            <img
-                alt='avatar'
-                src={link || AvatarDefault}
-                className='avatar__container_img'
-                id='target'
-            />
-            <a className='avatar-text' onClick={open}>
-                Поменять аватарку
-            </a>
-    </div>
+        <>
+            {!user ? 
+                <Loader /> :
+                <>
+                    {isModalOpen && <ModalNewAvatar close={close} />}
+                    <div className='flexable-column avatar-large avatar__container'>
+                        <img
+                            alt='avatar'
+                            src={link || AvatarDefault}
+                            className='avatar-style avatar__container_img'
+                            id='target'
+                        />
+                        <a className='text-extra-small avatar-text' onClick={open}>
+                            Поменять аватарку
+                        </a>
+                    </div>
+                </>
+            }
+        </>
+        
     );
 };

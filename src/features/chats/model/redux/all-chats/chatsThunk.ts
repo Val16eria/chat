@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { 
-    IGetChats, 
     IChatsQueryParams, 
-    getAllChats 
-} from '../../../../shared/api';
+    getAllChats, 
+    IChatInfo
+} from '../../../../../shared/api';
 
 
-export const chatsThunk = createAsyncThunk<IGetChats[], IChatsQueryParams>(
+export const chatsThunk = createAsyncThunk<IChatInfo[], IChatsQueryParams>(
     'chats/chatsThunk',
     async (chatsData: IChatsQueryParams, thunkAPI) => {
         try {

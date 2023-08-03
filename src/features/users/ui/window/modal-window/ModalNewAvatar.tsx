@@ -1,66 +1,61 @@
 import React, { 
+    ChangeEvent,
     FC, 
     HTMLAttributes, 
     useState 
 } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import { useForm } from 'react-hook-form';
 
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import * as yup from 'yup';
+import { useAppDispatch } from '../../../../../shared/hooks';
+import { authUserThunk } from '../../../../auth/auth';
 
-import { FormContainer } from '../../../../../shared/ui';
+import { changeAvatar } from '../../../../../shared/api/users';
+import { FormContainer, Modal } from '../../../../../shared/ui';
 
 import './ModalNewAvatar.scss';
-
-const schema = yup.object().shape({
-    avatar: yup
-        .string()
-        .required('Нужно выбрать файл')
-})
-
-type FormData = yup.InferType<typeof schema>;
 
 interface IModalNewAvatar extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
 }
 
-export const ModalNewAvatar: FC<IModalNewAvatar> = ({close}) => {
+export const ModalNewAvatar: FC<IModalNewAvatar> = ({ close }) => {
 
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const [ file, setFile ] = useState<File>();
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-        resolver: yupResolver(schema)
-    })
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const [image, setImage] = useState<any>();
-
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async () => {
+        if (!file) {
+            return;
+        }
         const formData = new FormData();
-        formData.append('avatar', image);
-        // const avaData = await putAvatar(formData);
+        formData.append('avatar', file);
+        await changeAvatar(formData).then(() => dispatch(authUserThunk()))
+        .then(() => close());
     }
 
-    const handleOnChange = (e: any) => {
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
-        const file = e.target.files[0];
-        setImage(file);
+        if (e.target.files) {
+            setFile(e.target.files[0])
+        }
     }
 
     return (
-        <div className='modal-new-avatar__container' onClick={close}>
+        <Modal onClose={close}>
             <FormContainer
                 title='Загрузите файл'
                 btn='Поменять'
-                error={errors.avatar?.message ?? ''}
+                error={errors.root?.message ?? ''}
                 onClick={e => e.stopPropagation()}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <label htmlFor='upload-photo'>
-                    {
-                        image ? <p style={{color: 'gray'}}>image.name</p> : 'Выбрать файл на компьютере'
-                    }
+                <label 
+                    className='text-small modal-new-avatar__container_label' 
+                    htmlFor='upload-photo'
+                >
+                    {file ? `${file.name}` : `Выберите файл`}
                 </label>
                 <input
                     type='file'
@@ -70,6 +65,6 @@ export const ModalNewAvatar: FC<IModalNewAvatar> = ({close}) => {
                     onChange={handleOnChange}
                 />
             </FormContainer>
-        </div>
+        </Modal>
     );
 };

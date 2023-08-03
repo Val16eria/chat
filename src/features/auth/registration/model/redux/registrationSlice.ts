@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { authSignUpThunk } from './registrationThunk';
 
 interface IAuthSignUpSlice {
-    userId: number | string | null;
+    userId: number | null;
     loading: boolean;
     error: string | null;
 }
@@ -22,7 +22,7 @@ const authSignUpSlice = createSlice({
         builder.addCase(authSignUpThunk.pending, (state: IAuthSignUpSlice) => {
             state.loading = true;
         });
-        builder.addCase(authSignUpThunk.fulfilled, (state: IAuthSignUpSlice, action: PayloadAction<number | string>) => {
+        builder.addCase(authSignUpThunk.fulfilled, (state: IAuthSignUpSlice, action: PayloadAction<number>) => {
             state.loading = false;
             state.userId = action.payload;
         });

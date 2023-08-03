@@ -5,7 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import { schema, FormData } from '../../../../lib/schemaNewChat';
 
-import { FormContainer } from '../../../../../../shared/ui';
+import { useAppDispatch } from '../../../../../../shared/hooks';
+import { chatsThunk } from '../../../../model/redux';
+import { createChat } from '../../../../../../shared/api';
+import { createChatFile } from '../../../../model/redux/history-chat/chatSlice';
+
+import { FormContainer, Modal } from '../../../../../../shared/ui';
 
 import './ModalNewChat.scss';
 
@@ -13,23 +18,29 @@ interface IModalChat extends HTMLAttributes<HTMLInputElement> {
     close: () => void;
 }
 
-export const ModalNewChat: FC<IModalChat> = ({close}) => {
+export const ModalNewChat: FC<IModalChat> = ({ close }) => {
+
+    const dispatch = useAppDispatch();
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = async (data: FormData) => {
-        // const chatData = await postChat(data);
+        if (data.title.trim().length !== 0) {
+            await createChat(data)
+            .then((id) => dispatch(createChatFile(id.id)));
+            await dispatch(chatsThunk({}))
+            .then(() => close());
+        }
     }
 
     return (
-        <div className='modal-new-chat__container' onClick={close}>
+        <Modal onClose={close}>
             <FormContainer
                 title='Название чата'
                 btn='Создать'
                 error={errors.title?.message ?? ''}
-                onClick={e => e.stopPropagation()}
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <input
@@ -39,6 +50,6 @@ export const ModalNewChat: FC<IModalChat> = ({close}) => {
                     {...register('title')}
                 />
             </FormContainer>
-        </div>
+        </Modal>
     );
 };

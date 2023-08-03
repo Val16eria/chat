@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { IAuthUser, authUser } from '../../../../../shared/api';
+import { IAuthUser, authUser } from '../../../../shared/api';
 
 export const authUserThunk = createAsyncThunk<IAuthUser>(
     'authUser/authUserThunk',
@@ -14,4 +14,3 @@ export const authUserThunk = createAsyncThunk<IAuthUser>(
         }
     }
 );
-
