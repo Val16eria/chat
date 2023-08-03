@@ -1,0 +1,22 @@
+.form-container__container {
+    gap: 57px;
+    padding: 30px;
+    width: 340px;
+    height: auto;
+    align-items: center;
+    border-radius: 12px;
+    background: var(--color-white);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+}
+
+.form-container__content {
+    gap: 16px;
+}
+
+.form-container__actions {
+    gap: 5px;
+}
+
+.form-container__actions_btn {
+    gap: 14px
+}

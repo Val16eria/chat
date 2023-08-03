@@ -1,0 +1,15 @@
+.loader__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.loader__content {
+    margin: 20% auto;
+    width: 34px;
+    height: 34px;
+}
+

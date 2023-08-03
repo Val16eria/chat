@@ -1,64 +1,35 @@
-import { BadResponse, IUser, USER_RESULT_TYPE, UserResult } from './types';
+import { AxiosResponse } from 'axios';
+
 import { api } from '../apiAxios';
 
-export const putAvatar = async (dto: FormData): Promise<UserResult<IUser>> => {
-    try {
-        const userData = await api.put<IUser>('/user/profile/avatar', dto);
-        return {
-            type: USER_RESULT_TYPE.SUCCESS,
-            data: userData.data,
-        };
-    } catch (e: unknown) {
-        const error = e as BadResponse;
-        return {
-            type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
-        };
-    }
+import { IAuthUser } from '../auth';
+import { IUser } from '../chats';
+import { IPassword, IUserById, IUserSearchByLogin } from './types';
+
+export const changeUserData = async (dto: IUser): Promise<IAuthUser> => {
+    const response = await api.put<IAuthUser, AxiosResponse<IAuthUser>>('/user/profile', {...dto});
+    return response.data;
 }
 
-export const putUsers = async (dto: {
-    first_name: string;
-    phone: string;
-    display_name?: string;
-    login: string;
-    email: string;
-    second_name: string
-}): Promise<UserResult<IUser>> => {
-    try {
-        const userData = await api.put<IUser>('/user/profile', {
-            ...dto
-        });
-        return {
-            type: USER_RESULT_TYPE.SUCCESS,
-            data: userData.data,
-        };
-    } catch (e: unknown) {
-        const error = e as BadResponse;
-        return {
-            type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
-        };
-    }
+export const changeUserPassword = async (dto: IPassword): Promise<string> => {
+    const response = await api.put<string, AxiosResponse<string>>('/user/password', {...dto});
+    return response.data;
 }
 
-export const putPassword = async (dto: {
-    oldPassword: string,
-    newPassword: string
-}): Promise<UserResult<IUser>> => {
-    try {
-        const userData = await api.put<IUser>('/user/password', {
-            ...dto
-        });
-        return {
-            type: USER_RESULT_TYPE.SUCCESS,
-            data: userData.data,
-        };
-    } catch (e: unknown) {
-        const error = e as BadResponse;
-        return {
-            type: USER_RESULT_TYPE.FAILURE,
-            data: error.response?.data?.reason || 'Извините, что-то пошло не так',
-        };
-    }
+export const changeAvatar = async (dto: FormData): Promise<IAuthUser | string> => {
+    const response = await api.put<IAuthUser, AxiosResponse<IAuthUser>>('/user/profile/avatar', dto, 
+    {headers: {
+        'Content-Type': 'multipart/form-data'
+    }});
+    return response.data;
+}
+
+export const userById = async (id: number): Promise<IUserById> => {
+    const response = await api.get<IUserById, AxiosResponse<IUserById>>(`user/${id}`);
+    return response.data;
+}
+
+export const userSearch = async (dto: IUserSearchByLogin): Promise<IAuthUser[]> => {
+    const response = await api.post<IAuthUser[], AxiosResponse<IAuthUser[]>>('user/search', {...dto});
+    return response.data;
 }

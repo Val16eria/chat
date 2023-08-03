@@ -1,31 +1,26 @@
-import { AxiosError } from "axios";
-
 export interface IUser {
-    avatar: string;
-    display_name: string;
     first_name: string;
     second_name: string;
+    dispay_name?: string;
     login: string;
     email: string;
-    password: string;
     phone: string;
 }
 
-export enum USER_RESULT_TYPE {
-    SUCCESS = 'SUCCESS',
-    FAILURE = 'FAILURE',
+export interface IPassword {
+    oldPassword: string;
+    newPassword: string;
 }
 
-type UserResultSuccess<T> = {
-    type: USER_RESULT_TYPE.SUCCESS,
-    data: T,
-};
+export interface IUserById {
+    id: number;
+    first_name: string;
+    second_name: string;
+    display_name: string;
+    login: string;
+    avatar: string;
+}
 
-type UserResultFailure = {
-    type: USER_RESULT_TYPE.FAILURE,
-    data: string,
-};
-
-export type UserResult<T> = UserResultSuccess<T> | UserResultFailure;
-
-export type BadResponse = AxiosError<{ reason: string }>;
+export interface IUserSearchByLogin {
+    login: string;
+}

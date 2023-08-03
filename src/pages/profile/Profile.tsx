@@ -1,69 +1,49 @@
 import React, { FC } from 'react';
 
-import ButtonBack from '../../components/buttonBack';
-import InputInfo from '../../components/inputInfo';
-import Avatar from '../../components/avatar/Avatar';
-import ProfileButtons from './ProfileButtons';
-import useProfile from '../../hooks/user-data/useProfile';
-import Loader from '../../components/loader';
+import { useUserSytem } from '../../features/users/model/hooks';
 
-import './Profile.css';
+import { ProfileActions, AvatarContent } from '../../features/users/ui';
+import { BackButton, InfoInput } from '../../shared/ui';
 
-const Profile: FC = () => {
+export const Profile: FC = () => {
 
-    const [homeUserInfo] = useProfile();
+    const user = useUserSytem();
 
     return (
-        <div className='profile'>
-            <ButtonBack />
-            {
-                homeUserInfo.email ?
-                    <div className='profile-container'>
-                        <Avatar title={homeUserInfo.first_name} avatar={homeUserInfo.avatar} />
-                        <div className='profile-info'>
-                            <InputInfo
-                                title='Почта'
-                                type='email'
-                                defaultValue={homeUserInfo.email}
-                                disabled={true}
-                            />
-                            <InputInfo
-                                title='Логин'
-                                type='text'
-                                defaultValue={homeUserInfo.login}
-                                disabled={true}
-                            />
-                            <InputInfo
-                                title='Имя'
-                                type='text'
-                                defaultValue={homeUserInfo.first_name}
-                                disabled={true}
-                            />
-                            <InputInfo
-                                title='Фамилия'
-                                type='text'
-                                defaultValue={homeUserInfo.second_name}
-                                disabled={true}
-                            />
-                            <InputInfo
-                                title='Имя в чате'
-                                type='text'
-                                defaultValue={homeUserInfo.display_name}
-                                disabled={true}
-                            />
-                            <InputInfo
-                                title='Телефон'
-                                type='tel'
-                                defaultValue={homeUserInfo.phone}
-                                disabled={true}
-                            />
-                        </div>
-                        <ProfileButtons />
+        <>
+            <div className='flexable-row'>
+                <BackButton />
+                <div className='flexable-column profile__container'>
+                    <AvatarContent user_name={user?.first_name} />
+                    <div className='flexable-column profile__container_info'>
+                        <InfoInput
+                            title='Логин'
+                            type='text'
+                            defaultValue={user?.login}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Имя'
+                            type='text'
+                            defaultValue={user?.first_name}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Фамилия'
+                            type='text'
+                            defaultValue={user?.second_name}
+                            disabled={true}
+                        />
+                        <InfoInput
+                            title='Имя в чате'
+                            type='text'
+                            defaultValue={user?.display_name}
+                            disabled={true}
+                        />
                     </div>
-                    : <Loader/>
-            }
-        </div>
+                    <ProfileActions />
+                </div>
+            </div>
+        </>
     );
-}
-
-export default Profile;
+};

@@ -1,0 +1,1 @@
+export { ModalNewAvatar } from './ModalNewAvatar';

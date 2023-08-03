@@ -1,0 +1,1 @@
+export { ModalChatUser } from './ModalChatUser';

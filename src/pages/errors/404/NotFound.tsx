@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
-import { NavLink } from 'react-router-dom';
 
-import './NotFound.css';
+import { Link } from '../../../shared/ui';
 
-const NotFound: FC = () => {
+import './NotFound.scss';
+
+export const NotFound: FC = () => {
     return (
-        <div className='not-found__container'>
-            <div className='not-found__title'>
-                <h2>404</h2>
-                <p>Не туда попали</p>
+        <div className='flexable-column not-found__container'>
+            <div className='flexable-column not-found__title'>
+                <h2 className='text-extra-big'>404</h2>
+                <p className='text-big'>Не туда попали</p>
             </div>
-            <NavLink to='/'>Назад к чатам</NavLink>
+            <Link linkText='Назад к чатам' linkUrl='/' />
         </div>
     );
-}
-
-export default NotFound;
+};

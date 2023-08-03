@@ -1,0 +1,11 @@
+.chat-main__container {
+    padding: 48px 20px;
+    overflow-y: auto;
+    list-style: none;
+}
+
+.chat-main__list {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+}

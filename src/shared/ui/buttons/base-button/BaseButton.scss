@@ -1,0 +1,15 @@
+.base-button__container {
+    display: flex;
+    justify-content: center;
+}
+
+.base-button__container_button {
+    padding: 12px 70px;
+    width: 280px;
+    height: 37px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 0;
+    background: var(--color-blue);
+    color: var(--color-white);
+}

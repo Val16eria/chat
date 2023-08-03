@@ -1,0 +1,21 @@
+.popup-edit-chat__container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 200%;
+}
+
+.popup-edit-chat__container_content {
+    position: absolute;
+    cursor: pointer;
+    gap: 20px;
+    top: 70px;
+    right: 0;
+    justify-content: center;
+    min-width: 210px;
+    padding: 15px;
+    background: var(--color-white);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+}

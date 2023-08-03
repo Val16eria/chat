@@ -1,0 +1,27 @@
+.avatar__container {
+    position: relative;
+}
+
+.avatar__container_img {
+    width: 100%;
+    height: 100%;
+}
+
+.avatar-text {
+    display: none;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 60px 0;
+}
+
+.avatar__container_img:hover + .avatar-text {
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+

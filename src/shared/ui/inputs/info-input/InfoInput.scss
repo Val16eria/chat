@@ -1,0 +1,21 @@
+.info-input__container {
+    gap: 30px;
+    justify-content: space-between;
+    padding: 0 0 5px 0;
+    line-height: 20px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.info-input__input {
+    min-width: 510px;
+    text-align: right;
+}
+
+.info-input__input::placeholder {
+    float: right;
+}
+
+.info-input__input:disabled {
+    background: none;
+}
+

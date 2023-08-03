@@ -1,0 +1,40 @@
+import React, { FC, HTMLAttributes } from 'react';
+
+import { Title } from '../title';
+import { BaseButton } from '../buttons';
+import { Link } from '../link';
+
+import './FormContainer.scss';
+
+interface IFormContainer extends HTMLAttributes<HTMLFormElement>{
+    title: string;
+    btn: string;
+    linkText?: string;
+    linkUrl?: string;
+    error?:  string;
+}
+
+export const FormContainer: FC<IFormContainer> = ({
+    title,
+    btn,
+    linkText,
+    linkUrl,
+    error,
+    ...rest
+}) => {
+    return (
+        <form className='flexable-column form-container__container' {...rest} >
+            <Title title={title} />
+            <div className='flexable-column form-container__content'>
+                {rest.children}
+            </div>
+            <div className='flexable-column form-container__actions'>
+                <div className='flexable-column form-container__actions_btn'>
+                    <BaseButton btn={btn} />
+                    <Link linkUrl={linkUrl} linkText={linkText} />
+                </div>
+                <p className='error'>{error}</p>
+            </div>
+        </form>
+    );
+};
