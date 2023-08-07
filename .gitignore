@@ -7,6 +7,12 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 
+# Build output
+build/
+dist/
+
 #IDEA
 /.idea
 
+# Miscellaneous
+.DS_Store
